@@ -1,0 +1,47 @@
+.nav-ace-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 0.5rem;
+}
+
+.nav-ace-logo img {
+    height: clamp(56px, 4vw, 96px);
+    width: auto;
+}
+
+.nav-body {
+    background-color: #ffffff;
+    color: #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(0.5rem, 1vw + 0.25rem, 1rem) clamp(1rem, 3vw, 2rem);
+    font-family: sans-serif;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-pages {
+    display: flex;
+    gap: clamp(0.75rem, 1.5vw, 2rem);
+}
+
+.nav-pages a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+    font-size: larger;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-pages a:hover {
+    color: #e41e26;
+    transform: translateY(-1px);
+}
+
+.nav-pages.active {
+    display: flex;
+}
