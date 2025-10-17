@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", importAll);
 
 function importAll() {
     importItem("navbar")
+    importItem("footer")
 }
 
 function importItem(name) {
