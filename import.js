@@ -15,9 +15,17 @@ function importItem(name) {
     fetch(`/items/${name}.html`)
         .then(response => response.text())
         .then(html => {
-            const navbar = document.createElement("div")
-            navbar.innerHTML = html
-            console.log(html)
-            document.body.prepend(navbar)
+            const container = document.createElement("div")
+            container.innerHTML = html
+
+            if (name === "navbar") {
+                document.body.prepend(container);
+            }
+            else if (name === "footer") {
+                document.body.appendChild(container);
+            }
+            else {
+                document.body.appendChild(container);
+            }
         });
 }
