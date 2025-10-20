@@ -1,0 +1,81 @@
+/*
+Bitwise Bandits – Code Style Guide (Java + JS/TS)
+Global rules (all code)
+•	One public type per file. Prefer files under ~300 lines when reasonable.
+•	Names: nouns for types, verbs for functions; avoid abbreviations.
+•	4 spaces, no tabs. Line length guide: 100 chars.
+•	Prefer immutability (final/const).
+•	Handle unhappy paths first; return early. Never swallow exceptions.
+•	Log once per error at boundaries; no prints in prod.
+•	Comments explain why, not what. Delete dead code.
+•	Every PR must compile, lint, format, and pass tests.
+Git & commits
+•	Branches: feat/..., fix/..., refactor/..., chore/..., docs/....
+•	Conventional Commits: type(scope): summary (present tense, 72 char subject).
+•	Squash merge. Link the Jira issue in the PR body.
+Tooling
+•	Pre-commit: format + lint + unit tests on touched packages.
+•	Secret scanner on staged files.
+•	Static analysis in CI (Error Prone for Java, ESLint for TS).
+________________________________________
+Java
+•	Style: Google Java Style with 4 spaces.
+•	Braces on same line; always use braces. No wildcard imports.
+•	Nulls: validate inputs; prefer Optional for missing results.
+•	Collections: program to interfaces (e.g., List<>), use diamond operator.
+•	Exceptions: create meaningful unchecked exceptions; no empty catch.
+•	Logging: SLF4J. Use {} placeholders, not string concat. Levels: INFO (normal), WARN (recoverable), ERROR (user impact).
+•	Concurrency: prefer CompletableFuture/executors over raw threads; document timeouts.
+•	Tests: JUnit 5 + Mockito. One behavior per test method.
+
+
+class UserService {
+    private final UserRepo repo;
+
+    UserService(UserRepo repo) { this.repo = repo; }
+
+    Optional<User> find(String id) {
+        if (id == null || id.isBlank()) throw new IllegalArgumentException("id");
+        return repo.findById(id);
+    }
+}
+Build & Quality: Gradle + Spotless (google-java-format), Error Prone in CI, JaCoCo for coverage.
+________________________________________
+TypeScript / React
+•	Use TypeScript (strict mode on). Avoid any; if unavoidable, add a TODO with Jira link.
+•	Components are functions; use hooks, not class components.
+•	Keep components under ~200 lines; extract UI into small pure components.
+•	State: server state via React Query; local state via useState/useReducer.
+•	Styling: Tailwind or CSS modules; avoid new global CSS.
+•	Props are exact and documented with JSDoc when nontrivial.
+•	Side effects isolated in custom hooks.
+type ButtonProps = { label: string; onClick: () => void; disabled?: boolean };
+export function Button({ label, onClick, disabled = false }: ButtonProps) {
+  return <button className="px-3 py-2" onClick={onClick} disabled={disabled}>{label}</button>;
+}
+Build & Quality: Vite or Next.js; ESLint (airbnb + react + ts) + Prettier; Vitest/Jest + Testing Library.
+________________________________________
+Testing
+•	Test names read like behavior: should_<do>_when_<condition>.
+•	Pyramid: many unit, some integration, few e2e.
+•	Keep fixtures small; use builders/factories.
+•	Coverage targets: core modules 80 percent, UI 60 percent.
+________________________________________
+Documentation in code
+•	Public APIs include doc comments and examples when useful.
+•	TODOs include owner + Jira ticket: // TODO(mfarr, BB-123): reason.
+•	Each package/repo has a README: purpose, setup, run, test, deploy.
+________________________________________
+Performance & safety
+•	Timeouts and retries on all network calls; no blocking I/O on UI/main threads.
+•	Validate all external inputs on server and client.
+•	Avoid leaking sensitive data to logs; prefer IDs and counts.
+________________________________________
+Review checklist (code only)
+☐	Names are precise; no magic values.
+☐	Errors validated and handled once.
+☐	Tests cover happy/unhappy paths; coverage holds.
+☐	Logging level/context make sense.
+☐	No secrets in code; configs externalized.
+☐	Lints, formats, and static checks pass.
+*/
