@@ -29,6 +29,11 @@ public class RootController {
         return Resource.Companion.get("pages/login.html");
     }
 
+    @Route.File(path = "/admin", contentType = Route.ContentType.HTML, cacheControl = "no-store")
+    public InputStream admin() {
+        return Resource.Companion.get("pages/admin.html");
+    }
+
     @Route.File(path = "/footer.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream footerHtml() {
         return Resource.Companion.get("footer/footer.html");
