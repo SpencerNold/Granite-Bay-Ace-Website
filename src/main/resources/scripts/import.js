@@ -4,6 +4,9 @@ function importAll() {
     importItem("navbar", (element) => {
         document.body.prepend(element)
     })
+    importItem("advertisement", (element) => {
+        document.body.append(element)
+    })
     importItem("footer", (element) => {
         document.body.append(element)
     })
