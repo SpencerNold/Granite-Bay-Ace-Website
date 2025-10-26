@@ -95,6 +95,9 @@ public class RootController {
     public InputStream navbarCss() {
         return Resource.Companion.get("navbar/navbar.css");
     }
+
+    @Route.File(path = "/advertisement.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream advertisementCss() {return Resource.Companion.get("pages/advertisement.css");}
     //END CSS SECTION
 
     //START JS SECTION
@@ -102,5 +105,8 @@ public class RootController {
     public InputStream importJs() {
         return Resource.Companion.get("scripts/import.js");
     }
+
+    @Route.File(path = "/advertisement.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
+    public InputStream advertisementJS() { return Resource.Companion.get("pages/advertisement.js"); }
     //END JS SECTION
 }
