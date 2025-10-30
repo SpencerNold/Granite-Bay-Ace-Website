@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role & Permission Manager</title>
+    <link rel="stylesheet" href="/roles.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Role Management</h1>
+        <p class="subtitle">Assign user or admin role to account</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search by name or username...">
+    </div>
+
+    <div class="users-grid">
+        <div class="user-card">
+            <h3 class="user-title">User #1</h3>
+            <div class="permissions-section">
+                <p class="permissions-label">ROLES</p>
+                <div class="permission-list">
+                    <label class="permission-item">
+                        <input type="checkbox" class="permission-checkbox">
+                        <span>User Account</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" class="permission-checkbox">
+                        <span>Admin Account</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-card">
+            <h3 class="user-title">User #2</h3>
+            <div class="permissions-section">
+                <p class="permissions-label">ROLES</p>
+                <div class="permission-list">
+                    <label class="permission-item">
+                        <input type="checkbox" class="permission-checkbox">
+                        <span>User Account</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" class="permission-checkbox">
+                        <span>Admin Account</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-card">
+            <h3 class="user-title">User #3</h3>
+            <div class="permissions-section">
+                <p class="permissions-label">ROLES</p>
+                <div class="permission-list">
+                    <label class="permission-item">
+                        <input type="checkbox" class="permission-checkbox">
+                        <span>User Account</span>
+                    </label>
+                    <label class="permission-item">
+                        <input type="checkbox" class="permission-checkbox">
+                        <span>Admin Account</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="save-button-container">
+        <button class="save-button">Save Changes</button>
+    </div>
+
+    <script src="/import.js"></script>
+</div>
+</body>
+</html>
