@@ -19,3 +19,6 @@ out/
 
 # MacOS
 .DS_Store
+
+# Server Files
+dev_sqlite.db
