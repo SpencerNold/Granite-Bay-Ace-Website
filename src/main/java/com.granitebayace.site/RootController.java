@@ -35,6 +35,9 @@ public class RootController extends Implementation {
         return Resource.Companion.get("pages/login.html");
     }
 
+    @Route.File(path = "/login.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream loginCss() { return Resource.Companion.get("pages/login.css"); }
+    
     @Route.File(path = "/admin", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream admin() {
         return Resource.Companion.get("pages/admin.html");
