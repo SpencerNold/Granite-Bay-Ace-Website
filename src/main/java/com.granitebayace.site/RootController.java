@@ -54,13 +54,11 @@ public class RootController {
         return Resource.Companion.get("navbar/navbar.css");
     }
 
-    @Route.File(path = "/about.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream aboutHtml() {
-        return Resource.Companion.get("pages/about.html");
-    }
-
     @Route.File(path = "/about.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
     public InputStream aboutCss() { return Resource.Companion.get("pages/about.css"); }
+
+    @Route.File(path = "/locations.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream locationsCss() { return Resource.Companion.get("pages/locations.css"); }
 
     @Route.File(path = "/import.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
     public InputStream importJs() {
