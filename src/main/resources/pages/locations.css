@@ -1,0 +1,74 @@
+/* stuff left: needs to include photos of stores */
+
+
+.locations-header {
+    color: #000000;
+    text-align: center;
+    font-family: "Inter-Italic", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+
+.locations-container {
+    display: flex;             /* boxes horizontal */
+    justify-content: center;   /* centered */
+    gap: 20px;                 /*space between boxes */
+    flex-wrap: wrap;           /* wrap on small screens */
+}
+
+.location-box {
+    display: flex;             /* use flexbox layout */
+    justify-content: center;   /* centers horizontally */
+    padding: 20px;             /* space around the box */
+}
+
+.more-card {
+    width: 220px;
+    background-color: #ececec;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: "Inter-ExtraLightItalic", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+    text-align: center;
+}
+
+.more-card summary {
+    cursor: pointer; /* pointer cursor on hover */
+}
+
+/* changing label when opened/closed */
+.more-card .label::before {
+    content: "More Details";
+}
+
+.more-card[open] .label::before {
+    content: "Less Details";
+}
+
+/* content */
+.more-content {
+    margin-top: 10px;
+    border-top: 1px solid #d8d8d8;
+    padding-top: 10px;
+    font-weight: 400;
+    text-align: left;
+    font-size: 16px;
+}
+
+.more-content p {
+    margin: 0 0 10px;
+}
+
+/* for links */
+.more-content a {
+    color: #1f57ff;
+    text-decoration: none;
+}
+
+.more-content a:hover {
+    text-decoration: underline;
+}
