@@ -2,12 +2,13 @@ package com.granitebayace.site;
 
 import me.spencernold.kwaf.Resource;
 import me.spencernold.kwaf.Route;
+import me.spencernold.kwaf.services.Implementation;
 import me.spencernold.kwaf.services.Service;
 
 import java.io.InputStream;
 
 @Service.Controller
-public class RootController {
+public class RootController extends Implementation {
 
     @Route.File(path = "/", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream index() {
@@ -76,5 +77,9 @@ public class RootController {
     @Route.File(path = "/import.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
     public InputStream importJs() {
         return Resource.Companion.get("scripts/import.js");
+    }
+
+    private DatabaseLayer getDatabase() {
+        return getService(DatabaseLayer.class);
     }
 }
