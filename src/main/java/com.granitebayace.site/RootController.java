@@ -50,9 +50,7 @@ public class RootController {
     }
 
     @Route.File(path = "/navbar.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream navbarHtml() {
-        return Resource.Companion.get("navbar/navbar.html");
-    }
+    public InputStream navbarHtml() { return Resource.Companion.get("navbar/navbar.html"); }
 
     @Route.File(path = "/navbar.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
     public InputStream navbarCss() {
@@ -64,6 +62,16 @@ public class RootController {
 
     @Route.File(path = "/locations.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
     public InputStream locationsCss() { return Resource.Companion.get("pages/locations.css"); }
+
+    @Route.File(path = "/accessibility.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
+    public InputStream accessibilityHtml() {
+        return Resource.Companion.get("pages/accessibility.html");
+    }
+
+    @Route.File(path = "/accessibility.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream accessibilityCss() {
+        return Resource.Companion.get("pages/accessibility.css");
+    }
 
     @Route.File(path = "/import.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
     public InputStream importJs() {
