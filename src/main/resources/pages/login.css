@@ -91,6 +91,28 @@ body {
     transform: scale(0.99);
 }
 
+.create-account-button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: white;
+    background-color: #333738;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s;
+}
+
+.create-account-button:hover {
+    background-color: #4a4c4d;
+}
+
+.create-account-button:active {
+    transform: scale(0.99);
+}
+
 @media (max-width: 480px) {
     .login-container {
         padding: 3rem 1rem;
