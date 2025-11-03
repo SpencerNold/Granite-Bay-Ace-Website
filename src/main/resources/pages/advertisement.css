@@ -1,42 +1,56 @@
-/* Vertical stack */
-.grid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* center each card horizontally */
-  gap: 40px;             /* space between cards */
-  padding: 40px 16px;
-  background: #f8f8f8;
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
 }
 
-/* Card */
+.grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  background: #f8f8f8;
+
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  height: auto;
+  min-height: 80vh;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
 .card {
   position: relative;
-  width: min(900px, 95vw);   /* responsive max width */
-  margin: 0 auto;
+  min-height: 400px;
+  flex-shrink: 0;
   background: white;
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0,0,0,.1);
   padding: 12px;
   text-align: center;
+  scroll-snap-align: center;
+  flex-direction: column;
 }
 
-/* Image ~ half screen tall, always centered, no cropping */
 .card img {
   display: block;
-  height: 100vh;         /* ~half of screen height */
+  height: 70vh;
   width: 100%;
-  object-fit: contain;  /* show whole page, no crop */
+  object-fit: contain;
   background: #fff;
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
 }
 
-/* Caption */
 .card figcaption {
   margin-top: 10px;
+  padding-bottom: 5px;
   font-size: 14px;
   color: #333;
 }
 
-/* Remove button */
 .remove-btn {
   position: absolute; top: 10px; right: 10px;
   width: 28px; height: 28px;

@@ -48,6 +48,7 @@ public class RootController {
     public InputStream advertisementHtml() {
         return Resource.Companion.get("pages/advertisement.html");
     }
+
     //END HTML SECTION
 
 
@@ -105,8 +106,5 @@ public class RootController {
     public InputStream importJs() {
         return Resource.Companion.get("scripts/import.js");
     }
-
-    @Route.File(path = "/advertisement.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
-    public InputStream advertisementJS() { return Resource.Companion.get("pages/advertisement.js"); }
     //END JS SECTION
 }
