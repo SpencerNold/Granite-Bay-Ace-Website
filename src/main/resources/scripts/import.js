@@ -1,15 +1,19 @@
 document.addEventListener("DOMContentLoaded", importAll);
 
-function importAll() {
-    importItem("navbar", (element) => {
+async function importAll() {
+    await importItem("navbar", (element) => {
         document.body.prepend(element)
     })
-    importItem("footer", (element) => {
+    await importItem("advertisement", (element) => {
+        document.body.append(element)
+    })
+    await importItem("footer", (element) => {
         document.body.append(element)
     })
 }
 
 function importItem(name, func) {
+    return new Promise((resolve) => {
     if (!document.querySelector(`link[href="/${name}.css"]`)) {
         const link = document.createElement("link")
         link.rel = "stylesheet"
@@ -22,5 +26,14 @@ function importItem(name, func) {
             const element = document.createElement("div")
             element.innerHTML = html
             func(element)
+            resolve();
         });
+    });
 }
+
+document.addEventListener("click", function(event) {
+    if (event.target.classList.contains("remove-btn")) {
+        const card = event.target.closest(".card");
+        card.remove();
+    }
+});
