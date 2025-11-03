@@ -13,4 +13,6 @@ application {
 
 dependencies {
     implementation("com.github.SpencerNold:KWAF:-SNAPSHOT")
+
+    implementation("org.xerial:sqlite-jdbc:3.50.3.0")
 }
