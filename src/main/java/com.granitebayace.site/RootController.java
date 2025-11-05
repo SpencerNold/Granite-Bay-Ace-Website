@@ -108,4 +108,10 @@ public class RootController extends Implementation {
     private DatabaseLayer getDatabase() {
         return getService(DatabaseLayer.class);
     }
+
+    @Route.File(path = "/roles", contentType = Route.ContentType.HTML, cacheControl = "no-store")
+    public InputStream roles() { return Resource.Companion.get("pages/roles.html"); }
+
+    @Route.File(path = "/roles.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream rolesCss() { return Resource.Companion.get("pages/roles.css"); }
 }
