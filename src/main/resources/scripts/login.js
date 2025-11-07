@@ -15,9 +15,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify({ username, password })
             });
 
-            // Scrum-136 goes here (parse response (generate error/cookie))
+            const data = await response.json();
+
+             if (!response.ok) {
+                alert(data.message || "Invalid username or password");
+                return;
+            }
+
+            localStorage.setItem("sessionKey", data.sessionKey);
+            window.location.href = "/admin";
+
         } catch (error) {
             console.error("Error sending login request:", error);
+            alert("An error occurred. Please try again later.");
         }
     });
 });
