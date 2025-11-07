@@ -103,6 +103,9 @@ public class RootController extends Implementation {
     //START JS SECTION
     @Route.File(path = "/import.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
     public InputStream importJs() { return Resource.Companion.get("scripts/import.js"); }
+
+    @Route.File(path = "/login.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
+    public InputStream loginJs() { return Resource.Companion.get("scripts/login.js"); }
     //END JS SECTION
 
     private DatabaseLayer getDatabase() {
