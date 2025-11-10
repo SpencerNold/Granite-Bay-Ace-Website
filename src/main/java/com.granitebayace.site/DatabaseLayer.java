@@ -11,11 +11,71 @@ import me.spencernold.kwaf.services.Service;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.security.MessageDigest;
+import java.security.SecureRandom;
+import java.util.Base64;
+import java.nio.charset.StandardCharsets;
 
 @Service.Database(driver = Driver.Type.SQLITE, url = "jdbc:sqlite:dev_sqlite.db")
 public class DatabaseLayer extends SQLiteDatabase {
 
     private final HashMap<Integer, Role> roleCacheMap = new HashMap<>();
+
+    //password salt / hashing helpers
+    //how long each salt will be
+    private static final int saltBytes = 16;
+
+    //generate random salt, encode as Base64
+    private String generateSalt() {
+        byte[] salt = new byte[saltBytes];
+        new SecureRandom().nextBytes(salt);
+        return Base64.getEncoder().encodeToString(salt);
+    }
+
+    //compute salt or password (sha-256) and return encoded digest
+    //salt parameter has to be base64
+    private String hashPassword(String saltB64, String plainPassword) {
+        try {
+            byte[] salt = Base64.getDecoder().decode(saltB64);
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(salt);
+            md.update(plainPassword.getBytes(StandardCharsets.UTF_8));
+            byte[] digest = md.digest();
+            return  Base64.getEncoder().encodeToString(digest);
+        } catch (Exception e) {
+            error(e);
+            return null;
+        }
+    }
+
+    //constant time string comparisons for security to avoid timing attacks (how long comparisons take)
+    //compares 2 strings byte by byte in equal time
+    private boolean constantTimeEquals(String a, String b) {
+        if(a == null || b == null) {
+            return false;
+        }
+        byte[] x = a.getBytes(StandardCharsets.UTF_8);
+        byte[] y = b.getBytes(StandardCharsets.UTF_8);
+        int len = Math.max(x.length, y.length);
+        int diff = 0;
+        for (int i = 0; i < len; i++) {
+            int xb = (i < x.length) ? x[i] : 0;
+            int yb = (i < y.length) ? y[i] : 0;
+            diff |= xb ^ yb;
+        }
+        return diff == 0 && x.length == y.length;
+    }
+
+    //returns true if plain password matches stored salted hash
+    //call from login
+    public boolean validatePassword(String username, String plainPassword) {
+        UserData user = queryUserData(username);
+        if(user == null) {
+            return false;
+        }
+        String recompute = hashPassword(user.salt(), plainPassword);
+        return constantTimeEquals(recompute, user.passhash());
+    }
 
     @Override
     public void open() {
@@ -32,7 +92,11 @@ public class DatabaseLayer extends SQLiteDatabase {
             insertRole(new Role(0, "admin", 1));
             insertRole(new Role(1, "manager", 2));
 
-            insertUserData(new UserData("admin", "12345", null, queryRole(0)));
+            //admin stuff for testing
+            String seedPassword = "12345";
+            String adminSalt = generateSalt();
+            String adminHash = hashPassword(adminSalt, seedPassword);
+            insertUserData(new UserData("admin", adminHash, adminSalt, null, queryRole(0)));
         } catch (SQLException e) {
             error(e);
         }
@@ -75,16 +139,17 @@ public class DatabaseLayer extends SQLiteDatabase {
     }
 
     public void insertUserData(UserData user) {
-        String query = "INSERT OR REPLACE INTO user_data (username, passhash, role_id, session_id) VALUES (?, ?, ?, ?)";
+        String query = "INSERT OR REPLACE INTO user_data (username, passhash, salt, role_id, session_id) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             statement.setString(1, user.username());
             statement.setString(2, user.passhash());
-            statement.setInt(3, user.role().id());
+            statement.setString(3, user.salt());
+            statement.setInt(4, user.role().id());
             Session session = user.session();
             if (session != null && session.id() != null)
-                statement.setString(4, session.id());
+                statement.setString(5, session.id());
             else
-                statement.setNull(4, Types.VARCHAR);
+                statement.setNull(5, Types.VARCHAR);
             statement.executeUpdate();
         } catch (SQLException e) {
             error(e);
@@ -96,6 +161,7 @@ public class DatabaseLayer extends SQLiteDatabase {
                 SELECT
                     u.username,
                     u.passhash,
+                    u.salt,
                     r.id AS role_id,
                     r.name AS role_name,
                     r.inheritance AS role_inheritance,
@@ -112,6 +178,7 @@ public class DatabaseLayer extends SQLiteDatabase {
                 if (result.next()) {
                     username = result.getString("username");
                     String passhash = result.getString("passhash");
+                    String salt = result.getString("salt");
                     int roleId = result.getInt("role_id");
                     String roleName = result.getString("role_name");
                     int inheritance = result.getInt("role_inheritance");
@@ -121,7 +188,7 @@ public class DatabaseLayer extends SQLiteDatabase {
                     Session session = null;
                     if (sessionId != null && expiration != null)
                         session = new Session(sessionId, LocalDateTime.parse(expiration.replace(' ', 'T')));
-                    return new UserData(username, passhash, session, role);
+                    return new UserData(username, passhash, salt, session, role);
                 }
             }
         } catch (SQLException e) {
@@ -212,6 +279,7 @@ public class DatabaseLayer extends SQLiteDatabase {
                 CREATE TABLE IF NOT EXISTS user_data (
                     username TEXT PRIMARY KEY,
                     passhash TEXT NOT NULL,
+                    salt     TEXT NOT NULL,
                     role_id INTEGER NOT NULL,
                     session_id TEXT,
                     FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
