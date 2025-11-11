@@ -20,13 +20,14 @@
 .location-box {
     display: flex;             /* use flexbox layout */
     flex-direction: column; /* stack image above details */
-    align-items: stretch;   /* children fill width */
-     width: 320px;
+    /*align-items: stretch;   /* children fill width */
+    flex: 0 0 320px
+     /*width: 320px;*/
     padding: 20px;             /* space around the box */
 }
 .location-box > .store-photo {
     display: block;
-    width: 100%;
+    width: 200px;
     height: 160px;         
     object-fit: cover;
     border-radius: 10px 10px 0 0;
