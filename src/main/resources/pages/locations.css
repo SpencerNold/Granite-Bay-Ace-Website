@@ -1,6 +1,5 @@
 
 
-
 .locations-header {
     color: #000000;
     text-align: center;
@@ -20,8 +19,9 @@
 .location-box {
     display: flex;             /* use flexbox layout */
     flex-direction: column; /* stack image above details */
-    /*justify-content: center;   /* centers horizontally */
+    /*align-items: stretch;   /* children fill width */
     flex: 0 0 320px
+     /*width: 320px;*/
     padding: 20px;             /* space around the box */
 }
 .location-box > .store-photo {
@@ -50,7 +50,6 @@
     cursor: pointer; /* pointer cursor on hover */
     display: block;         
     text-align: center;
-
 }
 
 /* changing label when opened/closed */
