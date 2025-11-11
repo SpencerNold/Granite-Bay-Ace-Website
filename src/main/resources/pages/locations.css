@@ -1,4 +1,4 @@
-/* stuff left: needs to include photos of stores */
+
 
 
 .locations-header {
@@ -12,20 +12,21 @@
 
 .locations-container {
     display: flex;             /* boxes horizontal */
-    flex-direction: column;
-    /*justify-content: center;   /* centered */
+    justify-content: center;   /* centered */
     gap: 20px;                 /*space between boxes */
     flex-wrap: wrap;           /* wrap on small screens */
 }
 
 .location-box {
     display: flex;             /* use flexbox layout */
-    justify-content: center;   /* centers horizontally */
+    flex-direction: column; /* stack image above details */
+    /*justify-content: center;   /* centers horizontally */
+    flex: 0 0 320px
     padding: 20px;             /* space around the box */
 }
 .location-box > .store-photo {
     display: block;
-    width: 100%;
+    width: 200px;
     height: 160px;         
     object-fit: cover;
     border-radius: 10px 10px 0 0;
@@ -47,6 +48,9 @@
 
 .more-card summary {
     cursor: pointer; /* pointer cursor on hover */
+    display: block;         
+    text-align: center;
+
 }
 
 /* changing label when opened/closed */
