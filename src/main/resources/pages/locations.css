@@ -12,7 +12,8 @@
 
 .locations-container {
     display: flex;             /* boxes horizontal */
-    justify-content: center;   /* centered */
+    flex-direction: column;
+    /*justify-content: center;   /* centered */
     gap: 20px;                 /*space between boxes */
     flex-wrap: wrap;           /* wrap on small screens */
 }
@@ -22,7 +23,15 @@
     justify-content: center;   /* centers horizontally */
     padding: 20px;             /* space around the box */
 }
-
+.location-box > .store-photo {
+    display: block;
+    width: 100%;
+    height: 160px;         
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 1px solid #e5e7eb;
+    background: #f6f7f9;
+}
 .more-card {
     width: 220px;
     background-color: #ececec;
