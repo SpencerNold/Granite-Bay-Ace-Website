@@ -1,12 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-</head>
-<body>
 
-<script src="/import.js"></script>
+    <style>
+        /* Base + reset */
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            background: #f8f8f8;
+
+            overflow-x: auto;
+            /* auto is fine; will show scrollbar as needed */
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+
+            min-height: 80vh;
+            padding: 40px 20px;
+        }
+
+        .card {
+            position: relative;
+            height: 50vh;
+            flex-shrink: 0;
+            background: #000;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .1);
+            padding: 25px;
+
+            /* makes each card snap while scrolling */
+            scroll-snap-align: center;
+        }
+
+        .card img {
+            display: block;
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .card figcaption {
+            margin-top: 10px;
+            padding-bottom: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 28px;
+            height: 28px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, .65);
+            color: #fff;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .remove-btn:hover {
+            background: rgba(255, 0, 0, .85);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <figure class="card">
+            <!--Resolve cache issue with image 1-->
+            <img src="../images/page01.png?v=2" alt="Advertisement 1">
+            <figcaption>Advertisement 1</figcaption>
+            <button class="remove-btn">X</button>
+        </figure>
+        <figure class="card">
+            <img src="../images/page02.png" alt="Advertisement 2">
+            <figcaption>Advertisement 2</figcaption>
+            <button class="remove-btn">X</button>
+        </figure>
+        <figure class="card">
+            <img src="../images/page03.png" alt="Advertisement 3">
+            <figcaption>Advertisement 3</figcaption>
+            <button class="remove-btn">X</button>
+        </figure>
+        <figure class="card">
+            <img src="../images/page04.png" alt="Advertisement 4">
+            <figcaption>Advertisement 4</figcaption>
+            <button class="remove-btn">X</button>
+        </figure>
+        <figure class="card">
+            <img src="../images/page05.png" alt="Advertisement 5">
+            <figcaption>Advertisement 5</figcaption>
+            <button class="remove-btn">X</button>
+        </figure>
+        <figure class="card">
+            <img src="../images/page06.png" alt="Advertisement 6">
+            <figcaption>Advertisement 6</figcaption>
+            <button class="remove-btn">X</button>
+        </figure>
+        <figure class="card">
+            <img src="../images/page07.png" alt="Advertisement 7">
+            <figcaption>Advertisement 7</figcaption>
+            <button class="remove-btn">X</button>
+        </figure>
+        <figure class="card">
+            <img src="../images/page08.png" alt="Advertisement 8">
+            <figcaption>Advertisement 8</figcaption>
+            <button class="remove-btn">X</button>
+        </figure>
+    </div>
+    <script src="/import.js"></script>
 </body>
+
 </html>

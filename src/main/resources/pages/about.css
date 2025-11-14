@@ -1,3 +1,7 @@
+.about-us-container {
+    height: 100vh;
+    overflow-y: auto;
+}
 .about-us * {
     box-sizing: border-box;
 }
