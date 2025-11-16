@@ -40,6 +40,9 @@ public class RootController extends Implementation {
     
     @Route.File(path = "/accessibility.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream accessibilityHtml() { return Resource.Companion.get("pages/accessibility.html"); }
+
+    @Route.File(path = "/AdminNavbar.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
+    public InputStream AdminNavbar() { return Resource.Companion.get("Admin/AdminNavbar.html"); }
     //END HTML SECTION
 
 
@@ -98,6 +101,9 @@ public class RootController extends Implementation {
     
     @Route.File(path = "/login.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
     public InputStream loginCss() { return Resource.Companion.get("pages/login.css"); }
+
+    @Route.File(path = "/AdminNavbar.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream AdminNavbarCss() { return Resource.Companion.get("Admin/AdminNavbar.css"); }
     //END CSS SECTION
     
     //START JS SECTION
