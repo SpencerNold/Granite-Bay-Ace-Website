@@ -4,9 +4,6 @@ async function importAll() {
     await importItem("navbar", (element) => {
         document.body.prepend(element)
     })
-    await importItem("advertisement", (element) => {
-        document.body.append(element)
-    })
     await importItem("footer", (element) => {
         document.body.append(element)
     })
