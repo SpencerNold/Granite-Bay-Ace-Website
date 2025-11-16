@@ -37,7 +37,7 @@ public class DatabaseLayer extends SQLiteDatabase {
     private String hashPassword(String saltB64, String plainPassword) {
         try {
             byte[] salt = Base64.getDecoder().decode(saltB64);
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            MessageDigest md = MessageDigest.getInstance("SHA3-256");
             md.update(salt);
             md.update(plainPassword.getBytes(StandardCharsets.UTF_8));
             byte[] digest = md.digest();
