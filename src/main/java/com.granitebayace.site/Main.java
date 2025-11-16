@@ -11,7 +11,7 @@ public class Main {
         WebServer server = new WebServer.Builder(
                 Protocol.HTTP,
                 80,
-                new Class[]{ DatabaseLayer.class, RootController.class },
+                new Class[]{ DatabaseLayer.class, RootController.class, LoginController.class },
                 Executors.newCachedThreadPool(),
                 false).build();
         server.start();
