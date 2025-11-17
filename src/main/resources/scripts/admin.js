@@ -8,6 +8,9 @@ async function importAdmin() {
     await importItem("AdminNavbar", (element) => {
         document.body.prepend(element)
     })
+    await importItem("footer", (element) => {
+        document.body.append(element)
+    })
 }
 
 function importItem(name, func) {

@@ -104,11 +104,17 @@ public class RootController extends Implementation {
 
     @Route.File(path = "/AdminNavbar.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
     public InputStream AdminNavbarCss() { return Resource.Companion.get("Admin/AdminNavbar.css"); }
+
+    @Route.File(path = "/admin.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream AdminCss() { return Resource.Companion.get("pages/admin.css"); }
     //END CSS SECTION
     
     //START JS SECTION
     @Route.File(path = "/import.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
     public InputStream importJs() { return Resource.Companion.get("scripts/import.js"); }
+
+    @Route.File(path = "/admin.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
+    public InputStream adminJs() { return Resource.Companion.get("scripts/admin.js"); }
     //END JS SECTION
 
     private DatabaseLayer getDatabase() {
