@@ -41,6 +41,9 @@ public class RootController extends Implementation {
     @Route.File(path = "/accessibility.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream accessibilityHtml() { return Resource.Companion.get("pages/accessibility.html"); }
 
+    @Route.File(path = "/AdminNavbar.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
+    public InputStream AdminNavbar() { return Resource.Companion.get("Admin/AdminNavbar.html"); }
+    
     @Route.File(path = "/roles", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream roles() { return Resource.Companion.get("pages/roles.html"); }
     //END HTML SECTION
@@ -103,6 +106,12 @@ public class RootController extends Implementation {
     @Route.File(path = "/login.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
     public InputStream loginCss() { return Resource.Companion.get("pages/login.css"); }
 
+    @Route.File(path = "/AdminNavbar.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream AdminNavbarCss() { return Resource.Companion.get("Admin/AdminNavbar.css"); }
+
+    @Route.File(path = "/admin.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream AdminCss() { return Resource.Companion.get("pages/admin.css"); }
+    
     @Route.File(path = "/roles.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
     public InputStream rolesCss() { return Resource.Companion.get("pages/roles.css"); }
     //END CSS SECTION
@@ -111,6 +120,9 @@ public class RootController extends Implementation {
     @Route.File(path = "/import.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
     public InputStream importJs() { return Resource.Companion.get("scripts/import.js"); }
 
+    @Route.File(path = "/admin.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
+    public InputStream adminJs() { return Resource.Companion.get("scripts/admin.js"); }
+    
     @Route.File(path = "/login.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
     public InputStream loginJs() { return Resource.Companion.get("scripts/login.js"); }
     //END JS SECTION
