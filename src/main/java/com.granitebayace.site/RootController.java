@@ -43,41 +43,45 @@ public class RootController extends Implementation {
 
     @Route.File(path = "/AdminNavbar.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream AdminNavbar() { return Resource.Companion.get("Admin/AdminNavbar.html"); }
+    
+    @Route.File(path = "/roles", contentType = Route.ContentType.HTML, cacheControl = "no-store")
+    public InputStream roles() { return Resource.Companion.get("pages/roles.html"); }
     //END HTML SECTION
 
 
     //START IMAGE SECTION
-    @Route.File(path = "/images/page01.webp", contentType = Route.ContentType.WEBP,
-            cacheControl = "public, max-age=31536000")
-    public InputStream img01() { return Resource.Companion.get("images/page01.webp"); }
+    //Put cacheControl of each image to no-cache so client can update the images frequently
+    @Route.File(path = "/images/page01.png", contentType = Route.ContentType.PNG,
+            cacheControl = "public, no-cache")
+    public InputStream img01() { return Resource.Companion.get("images/page01.png"); }
 
-    @Route.File(path = "/images/page02.webp", contentType = Route.ContentType.WEBP,
-            cacheControl = "public, max-age=31536000")
-    public InputStream img02() { return Resource.Companion.get("images/page02.webp"); }
+    @Route.File(path = "/images/page02.png", contentType = Route.ContentType.PNG,
+            cacheControl = "public, no-cache")
+    public InputStream img02() { return Resource.Companion.get("images/page02.png"); }
 
-    @Route.File(path = "/images/page03.webp", contentType = Route.ContentType.WEBP,
-            cacheControl = "public, max-age=31536000")
-    public InputStream img03() { return Resource.Companion.get("images/page03.webp"); }
+    @Route.File(path = "/images/page03.png", contentType = Route.ContentType.PNG,
+            cacheControl = "public, no-cache")
+    public InputStream img03() { return Resource.Companion.get("images/page03.png"); }
 
-    @Route.File(path = "/images/page04.webp", contentType = Route.ContentType.WEBP,
-            cacheControl = "public, max-age=31536000")
-    public InputStream img04() { return Resource.Companion.get("images/page04.webp"); }
+    @Route.File(path = "/images/page04.png", contentType = Route.ContentType.PNG,
+            cacheControl = "public, no-cache")
+    public InputStream img04() { return Resource.Companion.get("images/page04.png"); }
 
-    @Route.File(path = "/images/page05.webp", contentType = Route.ContentType.WEBP,
-            cacheControl = "public, max-age=31536000")
-    public InputStream img05() { return Resource.Companion.get("images/page05.webp"); }
+    @Route.File(path = "/images/page05.png", contentType = Route.ContentType.PNG,
+            cacheControl = "public, no-cache")
+    public InputStream img05() { return Resource.Companion.get("images/page05.png"); }
 
-    @Route.File(path = "/images/page06.webp", contentType = Route.ContentType.WEBP,
-            cacheControl = "public, max-age=31536000")
-    public InputStream img06() { return Resource.Companion.get("images/page06.webp"); }
+    @Route.File(path = "/images/page06.png", contentType = Route.ContentType.PNG,
+            cacheControl = "public, no-cache")
+    public InputStream img06() { return Resource.Companion.get("images/page06.png"); }
 
-    @Route.File(path = "/images/page07.webp", contentType = Route.ContentType.WEBP,
-            cacheControl = "public, max-age=31536000")
-    public InputStream img07() { return Resource.Companion.get("images/page07.webp"); }
+    @Route.File(path = "/images/page07.png", contentType = Route.ContentType.PNG,
+            cacheControl = "public, no-cache")
+    public InputStream img07() { return Resource.Companion.get("images/page07.png"); }
 
-    @Route.File(path = "/images/page08.webp", contentType = Route.ContentType.WEBP,
-            cacheControl = "public, max-age=31536000")
-    public InputStream img08() { return Resource.Companion.get("images/page08.webp"); }
+    @Route.File(path = "/images/page08.png", contentType = Route.ContentType.PNG,
+            cacheControl = "public, no-cache")
+    public InputStream img08() { return Resource.Companion.get("images/page08.png"); }
     //END IMAGE SECTION
 
     //START CSS SECTION
@@ -107,6 +111,9 @@ public class RootController extends Implementation {
 
     @Route.File(path = "/admin.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
     public InputStream AdminCss() { return Resource.Companion.get("pages/admin.css"); }
+    
+    @Route.File(path = "/roles.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream rolesCss() { return Resource.Companion.get("pages/roles.css"); }
     //END CSS SECTION
     
     //START JS SECTION
@@ -115,15 +122,12 @@ public class RootController extends Implementation {
 
     @Route.File(path = "/admin.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
     public InputStream adminJs() { return Resource.Companion.get("scripts/admin.js"); }
+    
+    @Route.File(path = "/login.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
+    public InputStream loginJs() { return Resource.Companion.get("scripts/login.js"); }
     //END JS SECTION
 
     private DatabaseLayer getDatabase() {
         return getService(DatabaseLayer.class);
     }
-
-    @Route.File(path = "/roles", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream roles() { return Resource.Companion.get("pages/roles.html"); }
-
-    @Route.File(path = "/roles.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
-    public InputStream rolesCss() { return Resource.Companion.get("pages/roles.css"); }
 }
