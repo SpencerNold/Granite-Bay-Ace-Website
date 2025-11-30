@@ -14,7 +14,7 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 - Build a visually consistent, professional front end
 - Support easy expansion as store count increases
   
-### Front End Solution
+### 🖥️ Front End Solution
 - Reorganized all existing content into separate, clearly defined pages to improve navigation and readability.​
 - Implemented a responsive navigation bar for consistent access to pages across all screen sizes.​
 - Added dropdown menus to display detailed information in a clean, compact format.​
@@ -22,7 +22,7 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 - Added designated spaces for advertisements on the homepage, allowing them to be easily added, edited, or updated as needed.​
 - Enhanced the overall user interface and visual hierarchy, aligning the website with modern web design standards and improving accessibility.
 
-### Back End Solution
+### 🛠️ Back End Solution
 - Allow existing admins to control user roles and permissions more efficiently​
 - Allow admins to manage advertisement​
 - Storing admin related info in a database
@@ -31,7 +31,8 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 *(Insert images when added to repo)*
 
 ## Tech Stack
-- IDE
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-%231B72BE.svg?style=for-the-badge&logo=intellij-idea&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) 
+- IDE 
   - IntelliJ 
 - Frontend​
   - Java, Javascript​
@@ -82,8 +83,8 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 ## Developer Setup (Placeholder for CSC 191)
 ```
 git clone <repo>
-cd project
-npm install
+cd <project>
+./gradlew run
 ```
 
 ## Testing (Placeholder)
@@ -95,12 +96,17 @@ To be completed in CSC 191.
 
 
 ## Team
-- Matthew Farr (Lead)
-- Spencer Nold
-- Daniel Balolong
-- Alyssa Jimenez
-- Arsal Mahmood
-- Timothy Talampas
-- William Yap
+<a href="https://github.com/SpencerNold/Granite-Bay-Ace-Website/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=SpencerNold/Granite-Bay-Ace-Website" />
+</a> 
+<p></p>
+
+* Matthew Farr (Lead)
+* Spencer Nold
+* Daniel Balolong
+* Alyssa Jimenez
+* Arsal Mahmood
+* Timothy Talampas
+* William Yap
 
 Client: Greg Werner
