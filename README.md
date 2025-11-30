@@ -5,7 +5,7 @@
 # Bitwise Bandits — Ace Hardware Multi-Store Website Redesign
 
 ## Overview
-Bitwise Bandits is redesigning and modernizing the multi-store website for Ace Hardware locations owned by our client, Greg Werner. The current site is outdated, difficult to maintain, visually inconsistent, and extremely expensive to host. Our mission is to deliver a modern, fast, clean, and cost-efficient website that provides accurate store information while reducing long term hosting burden.
+Bitwise Bandits is redesigning and modernizing the multi-store website for Ace Hardware locations owned by our client, Greg Werner. Their <a href="https://granitebayace.com/"> current Ace Hardware website <a/> is outdated, difficult to maintain, visually inconsistent, and extremely expensive to host. Our mission is to deliver a modern, fast, clean, and cost-efficient website that provides accurate store information while reducing long term hosting burden.
 
 ## Project Synopsis
 This project rebuilds Ace Hardware’s multi-location website from scratch using modern web practices. We aim to:
@@ -27,7 +27,7 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 - Allow admins to manage advertisement​
 - Storing admin related info in a database
 
-## Visual Assets
+## Current Website
 *(Insert images when added to repo)*
 
 ## Tech Stack
@@ -52,22 +52,6 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 
 ## Application Flow
 ![ace-flow](https://github.com/user-attachments/assets/f1d317e7-5fe5-4ce4-a4c4-3ace6313f377)
-
-
-
-## Current Features (CSC 190)
-- Redesigned UI
-- Store cards and layouts
-- Updated store images
-- Multi-page structure
-- CSS Grid responsive design
-
-## Planned Features (CSC 191)
-- Backend + API
-- Database integration
-- Admin editing tools
-- Deployment pipeline
-- Full testing suite
 
 ## Timeline (CSC 191 Based on JIRA)
 
@@ -108,6 +92,8 @@ To be completed in CSC 191.
 ## Deployment (Placeholder)
 To be completed in CSC 191.
 
+
+
 ## Team
 - Matthew Farr (Lead)
 - Spencer Nold
@@ -118,13 +104,3 @@ To be completed in CSC 191.
 - William Yap
 
 Client: Greg Werner
-
-# Granite-Bay-Ace-Website
-Matthew Farr, 
-Spencer Nold, 
-Tim Talampas, 
-Nguyen Ho, 
-William Yap, 
-Daniel Balolong, 
-Alyssa Jimenez, 
-Arsal Mahmood, 
