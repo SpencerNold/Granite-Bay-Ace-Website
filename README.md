@@ -1,3 +1,7 @@
+<p align="center">
+<img width="490" height="270" alt="Ace-Logo" src="https://github.com/user-attachments/assets/1ea4f2fc-309f-461b-a3f5-5924f603d8ce" />
+</p>
+
 # Bitwise Bandits — Ace Hardware Multi-Store Website Redesign
 
 ## Overview
@@ -9,15 +13,47 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 - Create modular store components
 - Build a visually consistent, professional front end
 - Support easy expansion as store count increases
+  
+### Front End Solution
+- Reorganized all existing content into separate, clearly defined pages to improve navigation and readability.​
+- Implemented a responsive navigation bar for consistent access to pages across all screen sizes.​
+- Added dropdown menus to display detailed information in a clean, compact format.​
+- Redesigned headers and footers to create a modern, cohesive look throughout the site.​
+- Added designated spaces for advertisements on the homepage, allowing them to be easily added, edited, or updated as needed.​
+- Enhanced the overall user interface and visual hierarchy, aligning the website with modern web design standards and improving accessibility.
+
+### Back End Solution
+- Allow existing admins to control user roles and permissions more efficiently​
+- Allow admins to manage advertisement​
+- Storing admin related info in a database
 
 ## Visual Assets
 *(Insert images when added to repo)*
 
 ## Tech Stack
-- HTML, CSS, JavaScript
-- Node.js (optional dev server)
-- Git + GitHub
-- JIRA Software
+- IDE
+  - IntelliJ 
+- Frontend​
+  - Java, Javascript​
+- Backend​
+  - SQLite ​
+- API’s ​
+  - N/A​
+- Version Control​
+  - Git/Github​
+- Servers​/Server Cost
+  - Estimated cost for Amazon Lightsail:​
+  - Domain cost: $10-20/year​
+  - Backend/DB cost: $0.0047/hour ($3.50/mo)​
+  - Frontend hosting: Free tier
+ 
+## Prototype With Figma
+![ace-prototype](https://github.com/user-attachments/assets/339b8f31-461a-4d4f-b04c-23144588b99b)
+
+## Application Flow
+![ace-flow](https://github.com/user-attachments/assets/f1d317e7-5fe5-4ce4-a4c4-3ace6313f377)
+
+
 
 ## Current Features (CSC 190)
 - Redesigned UI
@@ -34,6 +70,7 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 - Full testing suite
 
 ## Timeline (CSC 191 Based on JIRA)
+
 ### Week 1
 - Repo prep and environment setup
 
@@ -83,11 +120,11 @@ To be completed in CSC 191.
 Client: Greg Werner
 
 # Granite-Bay-Ace-Website
-Matthew Farr
-Spencer Nold
-Tim Talampas
-Nguyen Ho
-William Yap
-Daniel Balolong
-Alyssa Jimenez
-Arsal Mahmood
+Matthew Farr, 
+Spencer Nold, 
+Tim Talampas, 
+Nguyen Ho, 
+William Yap, 
+Daniel Balolong, 
+Alyssa Jimenez, 
+Arsal Mahmood, 
