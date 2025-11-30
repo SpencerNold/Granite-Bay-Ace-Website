@@ -35,7 +35,9 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 - IDE 
   - IntelliJ 
 - Frontend​
-  - Java, Javascript​
+  - HTML, CSS, Javascript​
+- Framework
+  - Java
 - Backend​
   - SQLite ​
 - API’s ​
@@ -46,7 +48,7 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
   - Estimated cost for Amazon Lightsail:​
   - Domain cost: $10-20/year​
   - Backend/DB cost: $0.0047/hour ($3.50/mo)​
-  - Frontend hosting: Free tier
+  - Framework hosting: Amazon Lightsail deployed with Docker Images
  
 ## Prototype With Figma
 ![ace-prototype](https://github.com/user-attachments/assets/339b8f31-461a-4d4f-b04c-23144588b99b)
@@ -82,10 +84,16 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 
 ## Developer Setup (Placeholder for CSC 191)
 ```
-git clone <repo>
-cd <project>
+git clone https://github.com/SpencerNold/Granite-Bay-Ace-Website.git
+cd Granite-Bay-Ace-Website
+
+# For Powershell, ZShell, Bash, and other POSIX shells
 ./gradlew run
+
+# For Windows Command Prompt
+./gradlew.bat run
 ```
+
 
 ## Testing (Placeholder)
 To be completed in CSC 191.
