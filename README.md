@@ -5,7 +5,7 @@
 # Bitwise Bandits — Ace Hardware Multi-Store Website Redesign
 
 ## Overview
-Bitwise Bandits is redesigning and modernizing the multi-store website for Ace Hardware locations owned by our client, Greg Werner. Their <a href="https://granitebayace.com/"> current Ace Hardware website <a/> is outdated, difficult to maintain, visually inconsistent, and extremely expensive to host. Our mission is to deliver a modern, fast, clean, and cost-efficient website that provides accurate store information while reducing long term hosting burden.
+Bitwise Bandits is redesigning and modernizing the multi-store website for Ace Hardware locations owned by our client, Greg Werner. Their <a href="https://granitebayace.com/"> current Ace Hardware website <a/> is outdated, difficult to maintain, visually inconsistent, and extremely expensive to host. Our mission is to deliver a modern, fast, clean, and cost-efficient website that provides accurate store information while reducing long-term hosting burden.
 
 ## Project Synopsis
 This project rebuilds Ace Hardware’s multi-location website from scratch using modern web practices. We aim to:
@@ -13,7 +13,13 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 - Create modular store components
 - Build a visually consistent, professional front end
 - Support easy expansion as store count increases
-  
+
+### How we Rebuilt the Website
+- Identified outdated layout patterns, inconsistent styling, and navigation gaps, such as only Facebook is the official social media account, and customers have to click on a link to see a PDF file for Specials
+- Mapped all existing pages, images, and content while talking to the client via Zoom to understand what they needed preserved
+- Reviewed the performance issues and hosting limitations of the legacy site
+- Designed a prototype using Figma and showed it to the client for approval.
+
 ### 🖥️ Front End Solution
 - Reorganized all existing content into separate, clearly defined pages to improve navigation and readability.​
 - Implemented a responsive navigation bar for consistent access to pages across all screen sizes.​
@@ -24,18 +30,27 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 
 ### 🛠️ Back End Solution
 - Allow existing admins to control user roles and permissions more efficiently​
-- Allow admins to manage advertisement​
-- Storing admin related info in a database
+- Allow admins to manage advertisements​
+- Storing admin-related info in a database
 
 ## Current Website
-*(Insert images when added to repo)*
+<img width="1910" height="1032" alt="Screenshot 2025-11-30 145008" src="https://github.com/user-attachments/assets/4d51fe88-aa1e-44ac-8026-90c071ecf1b4" />
+*Home Page*
+<img width="1918" height="831" alt="image" src="https://github.com/user-attachments/assets/cf19f793-011c-432f-9569-81319c5b1e81" />
+*About Page*
+<img width="1917" height="936" alt="image" src="https://github.com/user-attachments/assets/7d48cabd-b6bb-4975-a346-9ea36de743ec" />
+*Location Page*
+<img width="1917" height="942" alt="image" src="https://github.com/user-attachments/assets/432cad5e-d139-4a53-8b91-5ff9cc0d5be9" />
+*Admin Page*
+<img width="1917" height="940" alt="image" src="https://github.com/user-attachments/assets/ac92065a-e554-4312-a228-e53d80db495e" />
+*Admin Login Page*
 
 ## Tech Stack
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-%231B72BE.svg?style=for-the-badge&logo=intellij-idea&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) 
 - IDE 
   - IntelliJ 
 - Frontend​
-  - HTML, CSS, Javascript​
+  - HTML, CSS, JavaScript​
 - Framework
   - Java
 - Backend​
@@ -87,7 +102,7 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 git clone https://github.com/SpencerNold/Granite-Bay-Ace-Website.git
 cd Granite-Bay-Ace-Website
 
-# For Powershell, ZShell, Bash, and other POSIX shells
+# For PowerShell, ZShell, Bash, and other POSIX shells
 ./gradlew run
 
 # For Windows Command Prompt
