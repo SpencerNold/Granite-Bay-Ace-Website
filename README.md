@@ -116,5 +116,6 @@ To be completed in CSC 191.
 * Arsal Mahmood
 * Timothy Talampas
 * William Yap
+* Nguyen Ho
 
 Client: Greg Werner
