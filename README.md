@@ -33,17 +33,24 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 - Allow admins to manage advertisements​
 - Storing admin-related info in a database
 
-## Current Website
+## Current Website:
+
+# We decided to divide the original site into pages so each page only needs to carry one functionality.
+
 <img width="1910" height="1032" alt="Screenshot 2025-11-30 145008" src="https://github.com/user-attachments/assets/4d51fe88-aa1e-44ac-8026-90c071ecf1b4" />
-*Home Page*
+*Home Page: We brought the advertisements to the website interface rather than having customers open a PDF file. In Spring 2026, we will develop a functionality that lets the owner dynamically change the advertisements*
+
 <img width="1918" height="831" alt="image" src="https://github.com/user-attachments/assets/cf19f793-011c-432f-9569-81319c5b1e81" />
-*About Page*
+*About Page: We preferred to put the content in the middle of the page rather than at the page's bottom like the original page*
+
 <img width="1917" height="936" alt="image" src="https://github.com/user-attachments/assets/7d48cabd-b6bb-4975-a346-9ea36de743ec" />
-*Location Page*
+*Location Page: Will have locations, their addresses, phone numbers, and opening hours*
+
 <img width="1917" height="942" alt="image" src="https://github.com/user-attachments/assets/432cad5e-d139-4a53-8b91-5ff9cc0d5be9" />
-*Admin Page*
+*Admin Page: Has more functionalities to manage employees' accounts and dynamically update advertisements*
+
 <img width="1917" height="940" alt="image" src="https://github.com/user-attachments/assets/ac92065a-e554-4312-a228-e53d80db495e" />
-*Admin Login Page*
+*Admin Login Page: A basic style login page where the admins will log in for extended functionalities*
 
 ## Tech Stack
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-%231B72BE.svg?style=for-the-badge&logo=intellij-idea&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) 
