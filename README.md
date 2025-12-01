@@ -79,30 +79,18 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 ![ace-flow](https://github.com/user-attachments/assets/f1d317e7-5fe5-4ce4-a4c4-3ace6313f377)
 
 ## Timeline (CSC 191 Based on JIRA)
+- Sprint 00: Sprint 00 consisted of creating a team and Jira account.
 
-### Week 1
-- Repo prep and environment setup
+- Sprint 01: Sprint 01 finding a client and drafting a project proposal.
 
-### Week 2
-- Backend architecture and API design
+- Sprint 02: Sprint 02 consisted of foundational work for the Ace Hardware website. Key accomplishments include navigation and UI components (main navbar, footer, button navbars for Location, Home, Login, About Us, and Ace Hardware logo integration), page development (Admin Page, Login Page, About Us static page, and style guide), database and backend setup (database infrastructure, role-based permissions, and location information display), content and media (location pictures and advertisement components), comprehensive footer elements (standard, copyright, contact details, accessibility, and privacy/security footers), and accessibility improvements (converting PDF content to web page format)
+  <img width="605" height="488" alt="image" src="https://github.com/user-attachments/assets/a6ddb0eb-e74f-4567-b3f2-3ea6364def40" />
 
-### Week 3
-- Frontend to backend integration
+- Sprint 03: Sprint 03 consisted of 11 completed tasks for the Ace Hardware website. Key accomplishments include backend work (database creation), content pages (About Us static page, Pictures of Locations), location features (dropdown menu and information display), user functionality (Login page, accessibility improvements), and administrative features (Advertisement, Role-based permission, Admin Page).
+<img width="626" height="191" alt="image" src="https://github.com/user-attachments/assets/45cafa3d-c270-4056-b87f-f50eefdd8513" />
 
-### Week 4
-- Admin tools and authentication
-
-### Week 5
-- Deployment prep and CI/CD
-
-### Week 6
-- Testing (unit, integration, load)
-
-### Week 7
-- Client review, polish
-
-### Week 8
-- Final deployment + handoff
+- Sprint 04: Sprint 03 consisted of 7 completed tasks for the Ace Hardware website. Key accomplishments include full-stack user authentication (back end, front end, and business layer implementations), administrative features (Admin Portal), UI enhancements (Footer update, Advertisement improvements), and location page updates (dropdown menu refinement).
+<img width="627" height="125" alt="image" src="https://github.com/user-attachments/assets/fc358734-6648-42b5-88ae-d918dea1e3f5" />
 
 ## Developer Setup (Placeholder for CSC 191)
 ```
