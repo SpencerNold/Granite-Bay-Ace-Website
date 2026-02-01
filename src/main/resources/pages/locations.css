@@ -15,28 +15,27 @@
     gap: 20px;                 /*space between boxes */
     flex-wrap: wrap;           /* wrap on small screens */
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: auto;         /* vertical scroll if needed */
 }
 
-.location-box {
-    display: flex;             /* use flexbox layout */
-    flex-direction: column; /* stack image above details */
-    /*align-items: stretch;   /* children fill width */
-    flex: 0 0 320px
-     /*width: 320px;*/
-    padding: 20px;             /* space around the box */
+.location-box{
+    width: 220px;               /* same as .more-card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;        /* centers image + button */
+    gap: 0;                     /* optional */
+    padding: 20px;
 }
-.location-box > .store-photo {
+
+.location-box > .store-photo{
+    width: 100%;                /* fills the 220px box */
+    height: 160px;              /* consistent height */
+    object-fit: cover;          /* crops instead of stretching */
     display: block;
-    width: 200px;
-    height: 160px;         
-    object-fit: cover;
     border-radius: 10px 10px 0 0;
-    border-bottom: 1px solid #e5e7eb;
-    background: #f6f7f9;
 }
 .more-card {
-    width: 220px;
+    width: 100%;
     background-color: #ececec;
     border: 1px solid #ccc;
     border-radius: 10px;
