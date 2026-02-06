@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,59 +8,80 @@
     <link rel="stylesheet" href="locations.css">
 </head>
 <script>
-    document.addEventListener('DOMContentLoaded', () => initMoreCards());           //Add event listener to initialize the "more cards" once the DOM content is loaded
-    function initMoreCards(root = document) {
-        root.querySelectorAll('.more-card').forEach(details => {
-            if (details.__moreInit) return;
-            details.__moreInit = true;
+document.addEventListener('DOMContentLoaded', () => initMoreCards());
 
-            const content = details.querySelector('.more-content');
-            if (!content) return;
+function initMoreCards(root = document) {
+  root.querySelectorAll('.more-card').forEach(details => {
+    if (details.__moreInit) return;
+    details.__moreInit = true;
 
-            // Store the current transitionend handler so we can remove it when toggling again
-            let currentTransitionHandler = null;
+    const summary = details.querySelector('summary');
+    const content = details.querySelector('.more-content');
+    if (!summary || !content) return;
 
-            details.addEventListener('toggle', () => {
-                // remove any previous handler to avoid duplicate side effects
-                if (currentTransitionHandler) {
-                    content.removeEventListener('transitionend', currentTransitionHandler);
-                    currentTransitionHandler = null;
-                }
+    let onEnd = null;
 
-                if (details.open) {
-                    // OPENING: set numeric maxHeight so transition runs, then allow natural height
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                    content.style.opacity = '1';            //Fade in the content by setting opacity to 1 when opening
+    // OPEN animation (after it opens/clicking summary)
+    details.addEventListener('toggle', () => {
+      // only handle OPEN here
+      if (!details.open) return;
 
-                    currentTransitionHandler = (ev) => {
-                        // wait specifically for max-height end and ensure details is still open
-                        if (ev.propertyName !== 'max-height') return;           // ignore opacity transition
-                        if (details.open) {
-                            content.style.maxHeight = 'none'; // allow content to resize naturally
-                        }
+      // remove old handler if any to avoid duplicates functioning
+      if (onEnd) {
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      }
 
-                        // cleanup this handler since it's no longer needed until the next toggle
-                        content.removeEventListener('transitionend', currentTransitionHandler);
-                        currentTransitionHandler = null;
-                    };
-                    content.addEventListener('transitionend', currentTransitionHandler);
-                } else {
-                    // CLOSING: if currently maxHeight is 'none', set it to measured px height first,
-                    // force reflow, then collapse to 0 so animation runs every time.
-                    if (getComputedStyle(content).maxHeight === 'none') {
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                    } else {
-                        // make sure we start from the latest size
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                    }
-                    // force reflow so browser notices the starting value
-                    void content.offsetHeight;
-                    content.style.maxHeight = '0px';
-                    content.style.opacity = '0';
-                }
-            });
-        });
-    }
+      // animate open: 0 -> scrollHeight
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.style.opacity = '1';
+
+      // after open finishes, set maxHeight none (natural resizing)
+      onEnd = (ev) => {
+        if (ev.propertyName !== 'max-height') return;
+        if (details.open) content.style.maxHeight = 'none';
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      };
+      content.addEventListener('transitionend', onEnd);
+    });
+
+    // CLOSE animation (before it closes)
+    summary.addEventListener('click', (e) => {
+      if (!details.open) return; // if closed, let browser open it normally
+
+      // it's OPEN and user clicked summary => it's about to close
+      e.preventDefault(); // stop the instant close
+
+      // remove old handler if any
+      if (onEnd) {
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      }
+
+      // start from current visible height
+      const currentHeight = content.getBoundingClientRect().height;
+      content.style.maxHeight = currentHeight + 'px';
+      content.style.opacity = '1';
+
+      // force reflow so animation starts correctly
+      void content.offsetHeight;
+
+      // animate to closed
+      content.style.maxHeight = '0px';
+      content.style.opacity = '0';
+
+      // after animation, actually close the <details>
+      onEnd = (ev) => {
+        if (ev.propertyName !== 'max-height') return;
+        details.removeAttribute('open'); // now close for real
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      };
+      content.addEventListener('transitionend', onEnd);
+    });
+  });
+}
 </script>
 
 <body>
