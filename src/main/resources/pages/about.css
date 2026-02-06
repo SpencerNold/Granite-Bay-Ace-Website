@@ -5,6 +5,7 @@
 .about-us * {
     box-sizing: border-box;
 }
+
 .about-us {
     color: #000000;
     text-align: center;
@@ -25,24 +26,25 @@
 
 }
 
-.ace-red-title{
-    color: #ff0000;
-}
-
-.ace-red-subheading{
-    color: #ff0000;
-    font-weight:700;
-}
-
 .about-us-body {
     color: #000000;
     font-family: "Inter-ExtraLightItalic", sans-serif;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 200;
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 50px;
 
+}
+
+.ace-red-title{
+    color: #ff0000;
+    font-style: italic;
+}
+
+.ace-red-subheading{
+    color: #ff0000;
+    font-weight:700;
 }
 
 .contact-us{
