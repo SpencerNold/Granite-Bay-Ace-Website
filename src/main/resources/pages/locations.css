@@ -1,5 +1,3 @@
-
-
 .locations-header {
     color: #000000;
     text-align: center;
@@ -10,30 +8,42 @@
 }
 
 .locations-container {
-    display: flex;             /* boxes horizontal */
-    justify-content: center;   /* centered */
-    gap: 20px;                 /*space between boxes */
-    flex-wrap: wrap;           /* wrap on small screens */
+    display: flex;
+    /* boxes horizontal */
+    justify-content: center;
+    /* centered */
+    gap: 20px;
+    /*space between boxes */
+    flex-wrap: wrap;
+    /* wrap on small screens */
     height: 100vh;
-    overflow-y: auto;         /* vertical scroll if needed */
+    overflow-y: auto;
+    /* vertical scroll if needed */
 }
 
-.location-box{
-    width: 220px;               /* same as .more-card */
+.location-box {
+    width: 220px;
+    /* same as .more-card */
     display: flex;
     flex-direction: column;
-    align-items: center;        /* centers image + button */
-    gap: 0;                     /* optional */
+    align-items: center;
+    /* centers image + button */
+    gap: 0;
+    /* optional */
     padding: 20px;
 }
 
-.location-box > .store-photo{
-    width: 100%;                /* fills the 220px box */
-    height: 160px;              /* consistent height */
-    object-fit: cover;          /* crops instead of stretching */
+.location-box>.store-photo {
+    width: 100%;
+    /* fills the 220px box */
+    height: 160px;
+    /* consistent height */
+    object-fit: cover;
+    /* crops instead of stretching */
     display: block;
     border-radius: 10px 10px 0 0;
 }
+
 .more-card {
     width: 100%;
     background-color: #ececec;
@@ -48,18 +58,10 @@
 }
 
 .more-card summary {
-    cursor: pointer; /* pointer cursor on hover */
-    display: block;         
+    cursor: pointer;
+    /* pointer cursor on hover */
+    display: block;
     text-align: center;
-}
-
-/* changing label when opened/closed */
-.more-card .label::before {
-    content: "More Details";
-}
-
-.more-card[open] .label::before {
-    content: "Less Details";
 }
 
 /* content */
@@ -86,6 +88,29 @@
     text-decoration: underline;
 }
 
+/* Slide + fade base */
+.more-card .more-content {
+    max-height: 0;
+    /* collapsed */
+    opacity: 0;                                             /* start invisible to fade in when opening*/
+    overflow: hidden;
+    transition: max-height 1s ease, opacity 1s ease;        /* animate both max-height and opacity for smooth slide + fade */
+}
+
+/* visible state: JS will set numeric max-height inline to drive the slide */
+.more-card[open] .more-content {
+    opacity: 1;
+}
+
+/* preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .more-card .more-content {
+        transition: none !important;
+        max-height: none !important;
+        opacity: 1 !important;
+    }
+}
+
 /* Storefront image grid */
 .store-grid {
     display: grid;
@@ -101,7 +126,7 @@
     border: 1px solid #e5e7eb;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     text-align: center;
 }
 
@@ -109,7 +134,8 @@
     display: block;
     width: 100%;
     height: 180px;
-    object-fit: cover;      /* keep images nicely cropped */
+    object-fit: cover;
+    /* keep images nicely cropped */
 }
 
 .store-card figcaption {
