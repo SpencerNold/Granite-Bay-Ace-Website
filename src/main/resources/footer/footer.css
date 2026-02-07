@@ -22,13 +22,13 @@ footer a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 28px;
+  gap: 30px;
   margin: 0 auto;
 }
 
 .social-icons a {
   color: #FFFFFF;
-  font-size: 26px;
+  font-size: 44px;
 }
 
 .footer_logo {
