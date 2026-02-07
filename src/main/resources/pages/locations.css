@@ -14,8 +14,8 @@
     justify-content: center;   /* centered */
     gap: 20px;                 /*space between boxes */
     flex-wrap: wrap;           /* wrap on small screens */
-    height: 100vh;
-    overflow-y: auto;
+    min-height: auto;
+    padding-bottom: 50px;
 }
 
 .location-box {

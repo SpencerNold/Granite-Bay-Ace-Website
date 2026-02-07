@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", importAll);
 
 async function importAll() {
+    const existingContent = Array.from(document.body.childNodes);
+
+    const mainWrapper = document.createElement("main");
+    existingContent.forEach(node => mainWrapper.appendChild(node));
+    document.body.appendChild(mainWrapper);
+
     await importItem("navbar", (element) => {
         document.body.prepend(element)
     })
