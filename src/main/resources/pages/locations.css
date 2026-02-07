@@ -1,7 +1,8 @@
-
+for the css:
+/* stuff left: needs to include photos of stores */
 
 .locations-header {
-    color: #000000;
+    color: #1F2A44;
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
     font-size: 50px;
@@ -14,44 +15,36 @@
     justify-content: center;   /* centered */
     gap: 20px;                 /*space between boxes */
     flex-wrap: wrap;           /* wrap on small screens */
-    height: 100vh;
-    overflow-y: auto;
 }
 
 .location-box {
     display: flex;             /* use flexbox layout */
-    flex-direction: column; /* stack image above details */
-    /*align-items: stretch;   /* children fill width */
-    flex: 0 0 320px
-     /*width: 320px;*/
+    justify-content: center;   /* centers horizontally */
     padding: 20px;             /* space around the box */
 }
-.location-box > .store-photo {
-    display: block;
-    width: 200px;
-    height: 160px;         
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
-    border-bottom: 1px solid #e5e7eb;
-    background: #f6f7f9;
-}
+
 .more-card {
     width: 220px;
-    background-color: #ececec;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
+    background-color: #FFFFFF;
+    border: 2px solid #1F2A44;
+    border-radius: 12px;
+    padding: 12px;
     font-family: "Inter-ExtraLightItalic", sans-serif;
     font-size: 18px;
     font-weight: 700;
-    color: #000000;
+    color: #1F2A44;
     text-align: center;
+    box-shadow: 0 6px 18px rgba(31,42,68,0.18);
 }
 
 .more-card summary {
     cursor: pointer; /* pointer cursor on hover */
-    display: block;         
-    text-align: center;
+    color: #E41E26;
+}
+
+.more-card:hover {
+    border-color: #E41E26;
+    box-shadow: 0 10px 26px rgba(31,42,68,0.24);
 }
 
 /* changing label when opened/closed */
@@ -66,11 +59,12 @@
 /* content */
 .more-content {
     margin-top: 10px;
-    border-top: 1px solid #d8d8d8;
+    border-top: 1px solid rgba(31,42,68,0.18);
     padding-top: 10px;
     font-weight: 400;
     text-align: left;
     font-size: 16px;
+    color: #222222;
 }
 
 .more-content p {
@@ -79,42 +73,11 @@
 
 /* for links */
 .more-content a {
-    color: #1f57ff;
-    text-decoration: none;
+    color: #1a0dab;
+    text-decoration: underline;
+    font-weight: 400;
 }
 
 .more-content a:hover {
-    text-decoration: underline;
-}
-
-/* Storefront image grid */
-.store-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    padding: 0 16px 24px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.store-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    text-align: center;
-}
-
-.store-photo {
-    display: block;
-    width: 100%;
-    height: 180px;
-    object-fit: cover;      /* keep images nicely cropped */
-}
-
-.store-card figcaption {
-    font-size: 0.95rem;
-    padding: 8px 12px;
-    color: #374151;
+    color: #0c47b7;
 }
