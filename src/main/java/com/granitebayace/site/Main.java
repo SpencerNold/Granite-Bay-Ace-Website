@@ -1,5 +1,9 @@
 package com.granitebayace.site;
 
+import com.granitebayace.site.services.LoginController;
+import com.granitebayace.site.services.RootController;
+import com.granitebayace.site.services.ScriptController;
+import com.granitebayace.site.services.StyleController;
 import me.spencernold.kwaf.Protocol;
 import me.spencernold.kwaf.WebServer;
 
@@ -11,7 +15,7 @@ public class Main {
         WebServer server = new WebServer.Builder(
                 Protocol.HTTP,
                 80,
-                new Class[]{ DatabaseLayer.class, RootController.class, LoginController.class },
+                new Class[]{DatabaseLayer.class, RootController.class, StyleController.class, ScriptController.class, LoginController.class},
                 Executors.newCachedThreadPool(),
                 false).build();
         server.start();
