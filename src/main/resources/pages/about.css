@@ -67,3 +67,19 @@
     display: block;
     border-radius: 12px;
 }
+.left-half,
+.right-half {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+}
+.right-half {
+    margin-left: 0 !important;
+}
+.left-half { padding-right: 20px; }
+.right-half { padding-left: 20px; }
+.right-half::after {
+    content: "";
+    display: table;
+    clear: both;
+}
