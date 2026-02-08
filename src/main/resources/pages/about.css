@@ -54,3 +54,16 @@
     font-weight: 200;
     padding: 25px 50px 50px;
 }
+/* Right-side image column */
+.about-images {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.about-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
