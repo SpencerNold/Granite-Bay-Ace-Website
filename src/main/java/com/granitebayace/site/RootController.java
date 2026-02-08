@@ -82,6 +82,10 @@ public class RootController extends Implementation {
     @Route.File(path = "/images/page08.png", contentType = Route.ContentType.PNG,
             cacheControl = "public, no-cache")
     public InputStream img08() { return Resource.Companion.get("images/page08.png"); }
+
+    @Route.File(path = "/images/accessibility_image.jpg", contentType = Route.ContentType.PNG,
+            cacheControl = "public, no-cache")
+    public InputStream accessibilityImage() { return Resource.Companion.get("images/accessibility_image.jpg"); }
     //END IMAGE SECTION
 
     //START CSS SECTION

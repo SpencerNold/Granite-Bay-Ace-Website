@@ -31,3 +31,13 @@
     display: block;
     width: 100%;
 }
+
+.image{
+    display: flex;
+    justify-content: center; /* horizontal */
+    align-items: center;
+}
+
+.image img {
+    width: 450px;
+}
