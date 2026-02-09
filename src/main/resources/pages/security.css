@@ -1,24 +1,23 @@
-.accessibility-header {
+.security-header {
     color: #000000;
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
     font-size: 50px;
     font-weight: 700;
-    padding-bottom: 32px;
+    padding-bottom: 10px;
 }
 
-.accessibility-subheading{
+.security-subheading{
     color: #000000;
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
-    font-size: 32px;
-    padding-bottom: 32px;
+    font-size: 18px;
 }
 
-.accessibility-body {
+.security-body {
     color: #000000;
     font-family: "Inter-ExtraLightItalic", sans-serif;
-    font-size: 32px;
+    font-size: 16px;
     font-weight: 200;
     padding-left: 50px;
     padding-right: 50px;
@@ -27,17 +26,4 @@
 
 .ace-red-subheading{
     color: #ff0000;
-    text-align: center;
-    display: block;
-    width: 100%;
-}
-
-.image{
-    display: flex;
-    justify-content: center; /* horizontal */
-    align-items: center;
-}
-
-.image img {
-    width: 450px;
 }

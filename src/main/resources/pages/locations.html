@@ -1,12 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Location</title>
     <link rel="stylesheet" href="locations.css">
 </head>
-<body>
+<script>
+document.addEventListener('DOMContentLoaded', () => initMoreCards());
+
+function initMoreCards(root = document) {
+  root.querySelectorAll('.more-card').forEach(details => {
+    if (details.__moreInit) return;
+    details.__moreInit = true;
+
+    const summary = details.querySelector('summary');
+    const content = details.querySelector('.more-content');
+    if (!summary || !content) return;
+
+    let onEnd = null;
+
+    // OPEN animation (after it opens/clicking summary)
+    details.addEventListener('toggle', () => {
+      // only handle OPEN here
+      if (!details.open) return;
+
+      // remove old handler if any to avoid duplicates functioning
+      if (onEnd) {
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      }
+
+      // animate open: 0 -> scrollHeight
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.style.opacity = '1';
+
+      // after open finishes, set maxHeight none (natural resizing)
+      onEnd = (ev) => {
+        if (ev.propertyName !== 'max-height') return;
+        if (details.open) content.style.maxHeight = 'none';
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      };
+      content.addEventListener('transitionend', onEnd);
+    });
+
+    // CLOSE animation (before it closes)
+    summary.addEventListener('click', (e) => {
+      if (!details.open) return; // if closed, let browser open it normally
+
+      // it's OPEN and user clicked summary => it's about to close
+      e.preventDefault(); // stop the instant close
+
+      // remove old handler if any
+      if (onEnd) {
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      }
+
+      // start from current visible height
+      const currentHeight = content.getBoundingClientRect().height;
+      content.style.maxHeight = currentHeight + 'px';
+      content.style.opacity = '1';
+
+      // force reflow so animation starts correctly
+      void content.offsetHeight;
+
+      // animate to closed
+      content.style.maxHeight = '0px';
+      content.style.opacity = '0';
+
+      // after animation, actually close the <details>
+      onEnd = (ev) => {
+        if (ev.propertyName !== 'max-height') return;
+        details.removeAttribute('open'); // now close for real
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      };
+      content.addEventListener('transitionend', onEnd);
+    });
+  });
+}
+</script>
 
 <div class="locations-container">
     <!-- store 1 -->
@@ -95,5 +171,7 @@
 </div>
 
 <script src="/import.js"></script>
+<script src="/footer.js"></script>
 </body>
+
 </html>
