@@ -3,7 +3,6 @@ package com.granitebayace.site;
 import com.granitebayace.site.objects.Session;
 import com.granitebayace.site.objects.UserData;
 
-import java.sql.*;
 import java.time.LocalDateTime;
 import java.security.SecureRandom;
 import java.util.Base64;

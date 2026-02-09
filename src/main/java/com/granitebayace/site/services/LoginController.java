@@ -1,8 +1,9 @@
-package com.granitebayace.site;
+package com.granitebayace.site.services;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import com.granitebayace.site.DatabaseLayer;
 import com.granitebayace.site.objects.Hashing;
 import me.spencernold.kwaf.Http;
 import me.spencernold.kwaf.Route;
