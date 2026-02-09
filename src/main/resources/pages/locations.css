@@ -1,12 +1,22 @@
-
+for the css:
+/* stuff left: needs to include photos of stores */
 
 .locations-header {
-    color: #000000;
+    color: #1F2A44;
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
     font-size: 50px;
     font-weight: 700;
     padding-bottom: 20px;
+/* ========== Layout wrapper ========== */
+.locations-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  height: 100vh;
+  overflow-y: auto;
+  padding-top: 1em;
 }
 
 .locations-container {
@@ -14,15 +24,41 @@
     justify-content: center;   /* centered */
     gap: 20px;                 /*space between boxes */
     flex-wrap: wrap;           /* wrap on small screens */
-    height: 100vh;
-    overflow-y: auto;
+    min-height: auto;
+    padding-bottom: 50px;
 }
 
 .location-box {
     display: flex;             /* use flexbox layout */
+    justify-content: center;   /* centers horizontally */
+    padding: 20px;             /* space around the box */
+}
+
+.more-card {
+    width: 220px;
+    background-color: #FFFFFF;
+    border: 2px solid #1F2A44;
+    border-radius: 12px;
+    padding: 12px;
+    font-family: "Inter-ExtraLightItalic", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1F2A44;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(31,42,68,0.18);
+}
+
+.more-card summary {
+    cursor: pointer; /* pointer cursor on hover */
+    color: #E41E26;
+}
+
+.more-card:hover {
+    border-color: #E41E26;
+    box-shadow: 0 10px 26px rgba(31,42,68,0.24);
     flex-direction: column; /* stack image above details */
     /*align-items: stretch;   /* children fill width */
-    flex: 0 0 320px
+    flex: 0 0 320px;
      /*width: 320px;*/
     padding: 20px;             /* space around the box */
 }
@@ -35,86 +71,132 @@
     border-bottom: 1px solid #e5e7eb;
     background: #f6f7f9;
 }
+
+/* ========== Details / Explore panel ========== */
 .more-card {
-    width: 220px;
+  width: 100%;
+  background-color: #ececec;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+
+  font-family: "Inter-ExtraLightItalic", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+}
+
+/* Make summary clickable */
+.more-card > summary {
+  cursor: pointer;
+  display: block;
+  text-align: center;
+}
+.more-card:hover {
+    background-color: #d3d3d3;
+    transition: all 0.5s ease;
+}
+.more-card[open]:hover {
     background-color: #ececec;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
-    font-family: "Inter-ExtraLightItalic", sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: #000000;
-    text-align: center;
 }
 
-.more-card summary {
-    cursor: pointer; /* pointer cursor on hover */
-    display: block;         
-    text-align: center;
+/* Optional: bold summary when open */
+.more-card[open] > summary {
+  font-weight: 700;
 }
 
-/* changing label when opened/closed */
-.more-card .label::before {
-    content: "More Details";
-}
+/* ========== Panel content (slide + fade) ========== */
+.more-card .more-content {
+  margin-top: 10px;
+  border-top: 1px solid #d8d8d8;
+  padding-top: 10px;
 
-.more-card[open] .label::before {
-    content: "Less Details";
+  font-weight: 400;
+  text-align: left;
+  font-size: 16px;
+
+  /* animation states */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 700ms ease, opacity 700ms ease;
 }
 
 /* content */
 .more-content {
     margin-top: 10px;
-    border-top: 1px solid #d8d8d8;
+    border-top: 1px solid rgba(31,42,68,0.18);
     padding-top: 10px;
     font-weight: 400;
     text-align: left;
     font-size: 16px;
+    color: #222222;
+/* open state */
+.more-card[open] .more-content {
+  opacity: 1;
 }
 
+/* spacing inside content */
 .more-content p {
-    margin: 0 0 10px;
+  margin: 0 0 10px;
 }
 
-/* for links */
+/* links */
 .more-content a {
-    color: #1f57ff;
-    text-decoration: none;
+    color: #1a0dab;
+    text-decoration: underline;
+    font-weight: 400;
 }
 
 .more-content a:hover {
-    text-decoration: underline;
+    color: #0c47b7;
+}
+  color: #1f57ff;
+  text-decoration: none;
 }
 
-/* Storefront image grid */
+.more-content a:hover {
+  text-decoration: underline;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .more-card .more-content {
+    transition: none !important;
+    max-height: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ========== Storefront image grid (separate section) ========== */
 .store-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    padding: 0 16px 24px;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 0 16px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .store-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    text-align: center;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  text-align: center;
 }
 
-.store-photo {
-    display: block;
-    width: 100%;
-    height: 180px;
-    object-fit: cover;      /* keep images nicely cropped */
+.store-card .store-photo {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
 
 .store-card figcaption {
-    font-size: 0.95rem;
-    padding: 8px 12px;
-    color: #374151;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  color: #374151;
 }

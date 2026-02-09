@@ -1,120 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Location</title>
     <link rel="stylesheet" href="locations.css">
 </head>
-<body>
+<script>
+document.addEventListener('DOMContentLoaded', () => initMoreCards());
 
-<div class="locations-header"> Locations </div> <!-- header -->
+function initMoreCards(root = document) {
+  root.querySelectorAll('.more-card').forEach(details => {
+    if (details.__moreInit) return;
+    details.__moreInit = true;
 
-<!-- wrapper -->
-<div class = "locations-container">
-    <!-- store  1 -->
-    <div class = "location-box">
+    const summary = details.querySelector('summary');
+    const content = details.querySelector('.more-content');
+    if (!summary || !content) return;
 
-     <img class="store-photo" src="/images/locgranite.jpg" alt="Granite Bay">    
-        
-        <details class = "more-card">
-            <summary><span class="label"></span></summary> <!-- identifier/label -->
-            <!-- text that displays when clicked -->
+    let onEnd = null;
+
+    // OPEN animation (after it opens/clicking summary)
+    details.addEventListener('toggle', () => {
+      // only handle OPEN here
+      if (!details.open) return;
+
+      // remove old handler if any to avoid duplicates functioning
+      if (onEnd) {
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      }
+
+      // animate open: 0 -> scrollHeight
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.style.opacity = '1';
+
+      // after open finishes, set maxHeight none (natural resizing)
+      onEnd = (ev) => {
+        if (ev.propertyName !== 'max-height') return;
+        if (details.open) content.style.maxHeight = 'none';
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      };
+      content.addEventListener('transitionend', onEnd);
+    });
+
+    // CLOSE animation (before it closes)
+    summary.addEventListener('click', (e) => {
+      if (!details.open) return; // if closed, let browser open it normally
+
+      // it's OPEN and user clicked summary => it's about to close
+      e.preventDefault(); // stop the instant close
+
+      // remove old handler if any
+      if (onEnd) {
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      }
+
+      // start from current visible height
+      const currentHeight = content.getBoundingClientRect().height;
+      content.style.maxHeight = currentHeight + 'px';
+      content.style.opacity = '1';
+
+      // force reflow so animation starts correctly
+      void content.offsetHeight;
+
+      // animate to closed
+      content.style.maxHeight = '0px';
+      content.style.opacity = '0';
+
+      // after animation, actually close the <details>
+      onEnd = (ev) => {
+        if (ev.propertyName !== 'max-height') return;
+        details.removeAttribute('open'); // now close for real
+        content.removeEventListener('transitionend', onEnd);
+        onEnd = null;
+      };
+      content.addEventListener('transitionend', onEnd);
+    });
+  });
+}
+</script>
+
+<div class="locations-container">
+    <!-- store 1 -->
+    <div class="location-box">
+        <details class="more-card">
+            <summary>Granite Bay</summary>
             <div class="more-content">
                 <p><strong>Granite Bay ACE</strong><br>
-                8665 Auburn Folsom Rd. <br>
-                Granite Bay, CA 95746</p>
+                    8665 Auburn Folsom Rd. <br>
+                    Granite Bay, CA 95746</p>
 
                 <p><strong>Store Hours</strong><br>
-                Mon - Fri: 8:00am - 7:00pm<br>
-                Sat: 8:00am - 7:00pm<br>
-                Sun: 8:00am - 6:00pm<br></p>
+                    Mon - Fri: 8:00am - 7:00pm<br>
+                    Sat: 8:00am - 7:00pm<br>
+                    Sun: 8:00am - 6:00pm</p>
 
-                <p><strong>Phone:</strong> (916) 797-3993<br></p>
+                <p><strong>Phone:</strong> (916) 797-3993</p>
                 <p><strong>Email:</strong> <a href="mailto:granitebayace@yahoo.com">granitebayace@yahoo.com</a></p>
                 <p><strong>Corporate:</strong> <a href="https://www.acehardware.com/store-details/11720">Granite Bay ACE Hardware Store Details</a></p>
             </div>
         </details>
     </div>
 
-    <!-- store  2 -->
-    <div class = "location-box">
-
-    <img class="store-photo" src="/images/loclake.jpg" alt="Lake of the Pines">
-        
-        <details class = "more-card">
-            <summary><span class="label"></span></summary> <!-- identifier/label -->
-            <!-- text that displays when clicked -->
+    <!-- store 2 -->
+    <div class="location-box">
+        <details class="more-card">
+            <summary>Lake of the Pines</summary>
             <div class="more-content">
                 <p><strong>Lake of the Pines ACE</strong><br>
-                8665 Auburn Folsom Rd. <br>
-                Granite Bay, CA 95746</p>
+                    8665 Auburn Folsom Rd. <br>
+                    Granite Bay, CA 95746</p>
 
                 <p><strong>Store Hours</strong><br>
-                Mon - Fri: 8:00am - 7:00pm<br>
-                Sat: 8:00am - 7:00pm<br>
-                Sun: 8:00am - 6:00pm<br></p>
+                    Mon - Fri: 8:00am - 7:00pm<br>
+                    Sat: 8:00am - 7:00pm<br>
+                    Sun: 8:00am - 6:00pm</p>
 
-                <p><strong>Phone:</strong> (916) 797-3993<br></p>
+                <p><strong>Phone:</strong> (916) 797-3993</p>
                 <p><strong>Email:</strong> <a href="mailto:granitebayace@yahoo.com">granitebayace@yahoo.com</a></p>
                 <p><strong>Corporate:</strong> <a href="https://www.acehardware.com/store-details/10206">Lake of the Pines ACE Hardware Store Details</a></p>
             </div>
         </details>
     </div>
 
-    <!-- store  3 -->
-    <div class = "location-box">
-
-    <img class="store-photo" src="/images/loccapitol.jpg" alt="Capitol">
-        
-        <details class = "more-card">
-            <summary><span class="label"></span></summary> <!-- identifier/label -->
-            <!-- text that displays when clicked -->
+    <!-- store 3 -->
+    <div class="location-box">
+        <details class="more-card">
+            <summary>Capitol</summary>
             <div class="more-content">
                 <p><strong>Capitol ACE</strong><br>
-                8665 Auburn Folsom Rd. <br>
-                Granite Bay, CA 95746</p>
+                    8665 Auburn Folsom Rd. <br>
+                    Granite Bay, CA 95746</p>
 
                 <p><strong>Store Hours</strong><br>
-                Mon - Fri: 8:00am - 7:00pm<br>
-                Sat: 8:00am - 7:00pm<br>
-                Sun: 8:00am - 6:00pm<br></p>
+                    Mon - Fri: 8:00am - 7:00pm<br>
+                    Sat: 8:00am - 7:00pm<br>
+                    Sun: 8:00am - 6:00pm</p>
 
-                <p><strong>Phone:</strong> (916) 797-3993<br></p>
+                <p><strong>Phone:</strong> (916) 797-3993</p>
                 <p><strong>Email:</strong> <a href="mailto:granitebayace@yahoo.com">granitebayace@yahoo.com</a></p>
                 <p><strong>Corporate:</strong> <a href="https://www.acehardware.com/store-details/17614">Capitol ACE Hardware Store Details</a></p>
             </div>
         </details>
     </div>
 
-    <!-- store  4 -->
-    <div class = "location-box">
-
-        <img class="store-photo" src="/images/loceastsac.jpg" alt="East Sac">
-        
-        <details class = "more-card">
-            <summary><span class="label"></span></summary> <!-- identifier/label -->
-            <!-- text that displays when clicked -->
+    <!-- store 4 -->
+    <div class="location-box">
+        <details class="more-card">
+            <summary>East Sac</summary>
             <div class="more-content">
                 <p><strong>East Sac ACE</strong><br>
-                8665 Auburn Folsom Rd. <br>
-                Granite Bay, CA 95746</p>
+                    8665 Auburn Folsom Rd. <br>
+                    Granite Bay, CA 95746</p>
 
-                <p><strong>Store Hours</strong> <br>
-                Mon - Fri: 8:00am - 7:00pm<br>
-                Sat: 8:00am - 7:00pm<br>
-                Sun: 8:00am - 6:00pm<br></p>
+                <p><strong>Store Hours</strong><br>
+                    Mon - Fri: 8:00am - 7:00pm<br>
+                    Sat: 8:00am - 7:00pm<br>
+                    Sun: 8:00am - 6:00pm</p>
 
-                <p><strong>Phone:</strong> (916) 797-3993<br></p>
+                <p><strong>Phone:</strong> (916) 797-3993</p>
                 <p><strong>Email:</strong> <a href="mailto:granitebayace@yahoo.com">granitebayace@yahoo.com</a></p>
                 <p><strong>Corporate:</strong> <a href="https://www.acehardware.com/store-details/18150">East Sac ACE Hardware Store Details</a></p>
             </div>
         </details>
     </div>
-
 </div>
 
-
 <script src="/import.js"></script>
+<script src="/footer.js"></script>
 </body>
+
 </html>

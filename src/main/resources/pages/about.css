@@ -5,6 +5,7 @@
 .about-us * {
     box-sizing: border-box;
 }
+
 .about-us {
     color: #000000;
     text-align: center;
@@ -19,30 +20,31 @@
     color: #000000;
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: 700;
     padding-bottom: 30px;
 
 }
 
-.ace-red-title{
-    color: #ff0000;
-}
-
-.ace-red-subheading{
-    color: #ff0000;
-    font-weight:700;
-}
-
 .about-us-body {
     color: #000000;
     font-family: "Inter-ExtraLightItalic", sans-serif;
-    font-size: 16px;
+    font-size: 25px;
     font-weight: 200;
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 50px;
 
+}
+
+.ace-red-title{
+    color: #ff0000;
+    font-style: italic;
+}
+
+.ace-red-subheading{
+    color: #ff0000;
+    font-weight:700;
 }
 
 .contact-us{
@@ -51,4 +53,33 @@
     font-size: 16px;
     font-weight: 200;
     padding: 25px 50px 50px;
+}
+/* Right-side image column */
+.about-images {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.about-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+.left-half,
+.right-half {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+}
+.right-half {
+    margin-left: 0 !important;
+}
+.left-half { padding-right: 20px; }
+.right-half { padding-left: 20px; }
+.right-half::after {
+    content: "";
+    display: table;
+    clear: both;
 }
