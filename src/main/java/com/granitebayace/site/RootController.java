@@ -82,6 +82,27 @@ public class RootController extends Implementation {
     @Route.File(path = "/images/page08.png", contentType = Route.ContentType.PNG,
             cacheControl = "public, no-cache")
     public InputStream img08() { return Resource.Companion.get("images/page08.png"); }
+
+    @Route.File(path = "/images/capitol.jpg", contentType = Route.ContentType.JPEG,
+            cacheControl = "public, no-cache")
+    public InputStream capitol() {return Resource.Companion.get("images/capitol.jpg");}
+
+    @Route.File(path = "/images/east.jpg", contentType = Route.ContentType.JPEG,
+            cacheControl = "public, no-cache")
+    public InputStream east() {return Resource.Companion.get("images/east.jpg");}
+
+    @Route.File(path = "/images/granite.jpg", contentType = Route.ContentType.JPEG,
+            cacheControl = "public, no-cache")
+    public InputStream granite(){return Resource.Companion.get("images/granite.jpg");}
+
+    @Route.File(path = "/images/pine.jpg", contentType = Route.ContentType.JPEG,
+            cacheControl = "public, no-cache")
+    public InputStream pine(){return Resource.Companion.get("images/pine.jpg");}
+
+    @Route.File(path = "/images/accessibility_image.jpg", contentType = Route.ContentType.JPEG,
+            cacheControl = "public, no-cache")
+    public InputStream accessibilityImage() { return Resource.Companion.get("images/accessibility_image.jpg"); }
+
     //END IMAGE SECTION
 
     //START CSS SECTION
