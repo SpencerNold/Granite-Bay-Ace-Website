@@ -1,3 +1,13 @@
+for the css:
+/* stuff left: needs to include photos of stores */
+
+.locations-header {
+    color: #1F2A44;
+    text-align: center;
+    font-family: "Inter-Italic", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    padding-bottom: 20px;
 /* ========== Layout wrapper ========== */
 .locations-container {
   display: flex;
@@ -20,6 +30,32 @@
 
 .location-box {
     display: flex;             /* use flexbox layout */
+    justify-content: center;   /* centers horizontally */
+    padding: 20px;             /* space around the box */
+}
+
+.more-card {
+    width: 220px;
+    background-color: #FFFFFF;
+    border: 2px solid #1F2A44;
+    border-radius: 12px;
+    padding: 12px;
+    font-family: "Inter-ExtraLightItalic", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1F2A44;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(31,42,68,0.18);
+}
+
+.more-card summary {
+    cursor: pointer; /* pointer cursor on hover */
+    color: #E41E26;
+}
+
+.more-card:hover {
+    border-color: #E41E26;
+    box-shadow: 0 10px 26px rgba(31,42,68,0.24);
     flex-direction: column; /* stack image above details */
     /*align-items: stretch;   /* children fill width */
     flex: 0 0 320px;
@@ -87,6 +123,15 @@
   transition: max-height 700ms ease, opacity 700ms ease;
 }
 
+/* content */
+.more-content {
+    margin-top: 10px;
+    border-top: 1px solid rgba(31,42,68,0.18);
+    padding-top: 10px;
+    font-weight: 400;
+    text-align: left;
+    font-size: 16px;
+    color: #222222;
 /* open state */
 .more-card[open] .more-content {
   opacity: 1;
@@ -99,6 +144,14 @@
 
 /* links */
 .more-content a {
+    color: #1a0dab;
+    text-decoration: underline;
+    font-weight: 400;
+}
+
+.more-content a:hover {
+    color: #0c47b7;
+}
   color: #1f57ff;
   text-decoration: none;
 }
