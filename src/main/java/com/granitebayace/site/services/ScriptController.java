@@ -23,4 +23,7 @@ public class ScriptController {
     public InputStream loginJs() {
         return Resource.Companion.get("scripts/login.js");
     }
+
+    @Route.File(path = "/footer.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
+    public InputStream footerJs() { return Resource.Companion.get("scripts/footer.js"); }
 }

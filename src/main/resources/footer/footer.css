@@ -101,13 +101,19 @@ footer a {
     inset: 0;
     background: rgba(0,0,0,0.6);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: flex-end;
     z-index: 2000;
 
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s ease-out;
+}
+
+.modal-content img {
+    width: 95%;
+    height: auto;
+    object-fit: contain;
 }
 
 /*open pop-up screen (state set)*/
@@ -119,27 +125,27 @@ footer a {
 /*content of pop-up screen*/
 .modal-content {
     /*set content window size*/
-    width: 500px;
+    width: 200px;
     height: 650px;
-    background: #ffffff;
+    background: none;
     border-radius: 15px;
 
     /*alignment of the actual content*/
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     gap: 16px;
 
     /*transition effect*/
-    transform: translateY(100vh);
+    transform: translateX(100%);
     opacity: 0;
     transition: transform 0.6s ease-out, opacity 0.33s ease-out;
 }
 
 /*linking open window window with content*/
 .modal.show .modal-content {
-    transform: translateY(0);
+    transform: translateX(0);
     opacity: 1;
 }
 
@@ -149,14 +155,14 @@ footer a {
     align-items: center;
     justify-content: center;
 
-    width: 475px;
+    width: 200px;
     height: 200px;
 
     font-size: 70px;
     line-height: 1;
 
     color: white;
-    border-radius: 10px;
+    border-radius: 15px;
     text-decoration: none;
     cursor: pointer;
 
@@ -178,8 +184,8 @@ footer a {
 }
 
 .Gmail:HOVER {
-    background-color: #D53F2F;
     transform: translateY(-5px);
+    background-color: #ffffff;
 }
 
 .Outlook {
@@ -187,8 +193,8 @@ footer a {
 }
 
 .Outlook:HOVER {
-    background-color: #006CB3;
     transform: translateY(-5px);
+    background-color: #ffffff;
 }
 
 .Yahoo {
@@ -196,6 +202,6 @@ footer a {
 }
 
 .Yahoo:HOVER {
-    background-color: #35027A;
     transform: translateY(-5px);
+    background-color: #ffffff;
 }

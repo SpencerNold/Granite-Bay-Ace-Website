@@ -60,4 +60,16 @@ public class MediaController {
 
     @Route.File(path = "/images/pine.jpg", contentType = Route.ContentType.JPEG, cacheControl = "public, no-cache")
     public InputStream pine() { return Resource.Companion.get("images/pine.jpg"); }
+
+    @Route.File(path = "/images/accessibility_image.jpg", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream accessibilityImage() { return Resource.Companion.get("images/accessibility_image.jpg"); }
+
+    @Route.File(path = "/images/gmail.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream gmail() { return Resource.Companion.get("images/gmail.png"); }
+
+    @Route.File(path = "/images/yahoo.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream yahoo() { return Resource.Companion.get("images/yahoo.png"); }
+
+    @Route.File(path = "/images/outlook.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream outlook() { return Resource.Companion.get("images/outlook.png"); }
 }
