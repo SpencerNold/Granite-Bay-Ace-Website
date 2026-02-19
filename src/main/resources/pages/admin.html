@@ -9,6 +9,17 @@
 </head>
 
 <body>
+    <button onclick="logout()" class="admin-logout", id="admin-logout">
+        Logout
+    </button>
+
+    <script>
+        function logout() {
+            localStorage.removeItem("sessionKey")
+            window.lcoation.href = "/"
+        }
+    </script>
+
     <script src="/admin.js"></script>
 </body>
 </html>
