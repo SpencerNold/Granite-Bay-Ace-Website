@@ -39,6 +39,16 @@ public class StyleController {
         return Resource.Companion.get("pages/accessibility.css");
     }
 
+    @Route.File(path = "/privacy.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream privacyCss() {
+        return Resource.Companion.get("pages/privacy.css");
+    }
+
+    @Route.File(path = "/security.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream securityCss() {
+        return Resource.Companion.get("pages/security.css");
+    }
+
     @Route.File(path = "/login.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
     public InputStream loginCss() {
         return Resource.Companion.get("pages/login.css");

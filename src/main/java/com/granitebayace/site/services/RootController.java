@@ -21,11 +21,6 @@ public class RootController extends Implementation {
         return Resource.Companion.get("pages/about.html");
     }
 
-    @Route.File(path = "/locations", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream locations() {
-        return Resource.Companion.get("pages/locations.html");
-    }
-
     @Route.File(path = "/locations.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream locationsHtml() {
         return Resource.Companion.get("pages/locations.html");
@@ -54,6 +49,16 @@ public class RootController extends Implementation {
     @Route.File(path = "/accessibility.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream accessibilityHtml() {
         return Resource.Companion.get("pages/accessibility.html");
+    }
+
+    @Route.File(path = "/privacy.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
+    public InputStream privacyHtml() {
+        return Resource.Companion.get("pages/privacy.html");
+    }
+
+    @Route.File(path = "/security.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
+    public InputStream securityHtml() {
+        return Resource.Companion.get("pages/security.html");
     }
 
     @Route.File(path = "/AdminNavbar.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
