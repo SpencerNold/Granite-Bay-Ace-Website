@@ -51,11 +51,6 @@ public class RootController extends Implementation {
         return Resource.Companion.get("navbar/navbar.html");
     }
 
-    @Route.File(path = "/advertisement.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream advertisementHtml() {
-        return Resource.Companion.get("pages/advertisement.html");
-    }
-
     @Route.File(path = "/accessibility.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream accessibilityHtml() {
         return Resource.Companion.get("pages/accessibility.html");
