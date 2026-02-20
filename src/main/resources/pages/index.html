@@ -7,134 +7,133 @@
     <title>Advertisement</title>
 
     <link rel="stylesheet" href="/advertisement.css" />
+
+    <!-- Load navbar/footer scripts AFTER DOM is parsed -->
+    <script src="/import.js" defer></script>
+    <script src="/footer.js" defer></script>
 </head>
 
 <body>
     <div class="advertisement_banner"></div>
 
     <section class="ad-gallery" aria-label="Ace ad gallery">
-        <!-- Big preview -->
         <div class="viewer" aria-label="Main ad preview">
-            <button class="nav prev" aria-label="Previous ad">‹</button>
 
-            <figure class="main-frame" id="mainFrame">
-                <img id="mainAd" src="../images/page01.png?v=2" alt="Ace Advertisement Page 01" />
-            </figure>
+            <!-- Vertical thumbnails (LEFT) -->
+            <div class="thumbs" aria-label="Ad thumbnails">
+                <div class="thumb-rail" id="thumbRail" role="listbox" aria-label="Choose an ad page">
+                    <button class="thumb active" data-src="/images/page01.png?v=2" data-alt="Ace Advertisement Page 01"
+                        aria-selected="true">
+                        <img src="/images/page01.png?v=2" alt="Page 01 thumbnail" />
+                        <span>01</span>
+                    </button>
 
-            <button class="nav next" aria-label="Next ad">›</button>
-        </div>
+                    <button class="thumb" data-src="/images/page02.png" data-alt="Ace Advertisement Page 02"
+                        aria-selected="false">
+                        <img src="/images/page02.png" alt="Page 02 thumbnail" />
+                        <span>02</span>
+                    </button>
 
-        <!-- Horizontal thumbnails -->
-        <div class="thumbs" aria-label="Ad thumbnails">
-            <button class="thumb-scroll left" aria-label="Scroll thumbnails left">‹</button>
+                    <button class="thumb" data-src="/images/page03.png" data-alt="Ace Advertisement Page 03"
+                        aria-selected="false">
+                        <img src="/images/page03.png" alt="Page 03 thumbnail" />
+                        <span>03</span>
+                    </button>
 
-            <div class="thumb-rail" id="thumbRail" role="listbox" aria-label="Choose an ad page">
-                <button class="thumb active" data-src="../images/page01.png?v=2" data-alt="Ace Advertisement Page 01"
-                    aria-selected="true">
-                    <img src="../images/page01.png?v=2" alt="Page 01 thumbnail" />
-                    <span>01</span>
-                </button>
+                    <button class="thumb" data-src="/images/page04.png" data-alt="Ace Advertisement Page 04"
+                        aria-selected="false">
+                        <img src="/images/page04.png" alt="Page 04 thumbnail" />
+                        <span>04</span>
+                    </button>
 
-                <button class="thumb" data-src="../images/page02.png" data-alt="Ace Advertisement Page 02"
-                    aria-selected="false">
-                    <img src="../images/page02.png" alt="Page 02 thumbnail" />
-                    <span>02</span>
-                </button>
+                    <button class="thumb" data-src="/images/page05.png" data-alt="Ace Advertisement Page 05"
+                        aria-selected="false">
+                        <img src="/images/page05.png" alt="Page 05 thumbnail" />
+                        <span>05</span>
+                    </button>
 
-                <button class="thumb" data-src="../images/page03.png" data-alt="Ace Advertisement Page 03"
-                    aria-selected="false">
-                    <img src="../images/page03.png" alt="Page 03 thumbnail" />
-                    <span>03</span>
-                </button>
+                    <button class="thumb" data-src="/images/page06.png" data-alt="Ace Advertisement Page 06"
+                        aria-selected="false">
+                        <img src="/images/page06.png" alt="Page 06 thumbnail" />
+                        <span>06</span>
+                    </button>
 
-                <button class="thumb" data-src="../images/page04.png" data-alt="Ace Advertisement Page 04"
-                    aria-selected="false">
-                    <img src="../images/page04.png" alt="Page 04 thumbnail" />
-                    <span>04</span>
-                </button>
+                    <button class="thumb" data-src="/images/page07.png" data-alt="Ace Advertisement Page 07"
+                        aria-selected="false">
+                        <img src="/images/page07.png" alt="Page 07 thumbnail" />
+                        <span>07</span>
+                    </button>
 
-                <button class="thumb" data-src="../images/page05.png" data-alt="Ace Advertisement Page 05"
-                    aria-selected="false">
-                    <img src="../images/page05.png" alt="Page 05 thumbnail" />
-                    <span>05</span>
-                </button>
-
-                <button class="thumb" data-src="../images/page06.png" data-alt="Ace Advertisement Page 06"
-                    aria-selected="false">
-                    <img src="../images/page06.png" alt="Page 06 thumbnail" />
-                    <span>06</span>
-                </button>
-
-                <button class="thumb" data-src="../images/page07.png" data-alt="Ace Advertisement Page 07"
-                    aria-selected="false">
-                    <img src="../images/page07.png" alt="Page 07 thumbnail" />
-                    <span>07</span>
-                </button>
-
-                <button class="thumb" data-src="../images/page08.png" data-alt="Ace Advertisement Page 08"
-                    aria-selected="false">
-                    <img src="../images/page08.png" alt="Page 08 thumbnail" />
-                    <span>08</span>
-                </button>
+                    <button class="thumb" data-src="/images/page08.png" data-alt="Ace Advertisement Page 08"
+                        aria-selected="false">
+                        <img src="/images/page08.png" alt="Page 08 thumbnail" />
+                        <span>08</span>
+                    </button>
+                </div>
             </div>
 
-            <button class="thumb-scroll right" aria-label="Scroll thumbnails right">›</button>
+            <!-- Main preview -->
+            <figure class="main-frame" id="mainFrame">
+                <img id="mainAd" src="/images/page01.png?v=2" alt="Ace Advertisement Page 01" />
+            </figure>
+
+            <!-- Nav buttons (RIGHT) -->
+            <div class="nav-col" aria-label="Page navigation">
+                <button class="nav prev" aria-label="Previous ad">‹</button>
+                <button class="nav next" aria-label="Next ad">›</button>
+            </div>
+
         </div>
 
         <script>
-            // Gallery (NO ZOOM)
-            const mainImg = document.getElementById("mainAd");                      // Main preview image element
-            const thumbs = Array.from(document.querySelectorAll(".thumb"));         // List of thumbnail buttons
-            const rail = document.getElementById("thumbRail");                      // Container for thumbnail buttons
+            // ======================
+            // Gallery logic
+            // ======================
+            const mainImg = document.getElementById("mainAd");
+            const thumbs = Array.from(document.querySelectorAll(".thumb"));
+            const rail = document.getElementById("thumbRail");
+            const prevBtn = document.querySelector(".nav.prev");
+            const nextBtn = document.querySelector(".nav.next");
+
             let activeIndex = 0;
 
-            // Sets the active thumbnail and updates the main preview image
+            // Set active thumb + main image
             function setActive(index, { scrollIntoView = true } = {}) {
-                activeIndex = (index + thumbs.length) % thumbs.length;              // Wrap around index, allowing negative values
+                activeIndex = (index + thumbs.length) % thumbs.length;
 
+                // Update thumb states
                 thumbs.forEach((t, i) => {
                     const isActive = i === activeIndex;
                     t.classList.toggle("active", isActive);
-                    t.setAttribute("aria-selected", isActive ? "true" : "false"); 
+                    t.setAttribute("aria-selected", isActive ? "true" : "false");
                 });
 
+                // Update main image
                 const active = thumbs[activeIndex];
                 mainImg.src = active.dataset.src;
                 mainImg.alt = active.dataset.alt;
 
                 if (scrollIntoView) {
-                    active.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+                    // Works for vertical rail too
+                    active.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
                 }
             }
 
-            // Add event listeners to thumbnails
+            // Hover/click/focus on thumbs
             thumbs.forEach((btn, i) => {
                 btn.addEventListener("mouseenter", () => setActive(i));
                 btn.addEventListener("click", () => setActive(i));
                 btn.addEventListener("focus", () => setActive(i));
             });
 
-            document.querySelector(".nav.prev").addEventListener("click", () => setActive(activeIndex - 1));
-            document.querySelector(".nav.next").addEventListener("click", () => setActive(activeIndex + 1));
+            // Prev/Next buttons
+            prevBtn.addEventListener("click", () => setActive(activeIndex - 1));
+            nextBtn.addEventListener("click", () => setActive(activeIndex + 1));
 
-            // Scroll thumbnail rail when clicking scroll buttons
-            document.querySelector(".thumb-scroll.left").addEventListener("click", () => {
-                rail.scrollBy({ left: -320, behavior: "smooth" });
-            });
-            document.querySelector(".thumb-scroll.right").addEventListener("click", () => {
-                rail.scrollBy({ left: 320, behavior: "smooth" });
-            });
-
-            // Add keyboard navigation for left/right arrows
-            window.addEventListener("keydown", (e) => {
-                if (e.key === "ArrowLeft") setActive(activeIndex - 1);
-                if (e.key === "ArrowRight") setActive(activeIndex + 1);
-            });
-
+            // Init
             setActive(0, { scrollIntoView: false });
         </script>
     </section>
-    <script src="/import.js"></script>
-    <script src="/footer.js"></script>
 </body>
+
 </html>
