@@ -377,4 +377,14 @@ public class DatabaseLayer extends SQLiteDatabase {
         }
     }
 
+    // Delete a user from user_data.
+    public void deleteUser(String username) {
+        String query = "DELETE FROM user_data WHERE username = ?";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setString(1, username);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            error(e);
+        }
+    }
 }
