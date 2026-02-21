@@ -22,14 +22,13 @@
     font-weight: 200;
     padding-left: 50px;
     padding-right: 50px;
-
 }
 
 .ace-red-subheading{
     color: #ff0000;
-    text-align: center;
     display: block;
     width: 100%;
+    text-decoration: underline;
 }
 
 .image{
