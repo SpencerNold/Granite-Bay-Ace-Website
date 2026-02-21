@@ -2,136 +2,138 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advertisement</title>
 
-    <style>
-        /* Base + reset */
-        * {
-            box-sizing: border-box;
-        }
+    <link rel="stylesheet" href="/advertisement.css" />
 
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-        }
-
-        figure {
-            margin: 0;
-        }
-
-        .grid {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 40px;
-            background: #f8f8f8;
-
-            overflow-x: auto;
-            /* auto is fine; will show scrollbar as needed */
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-
-            min-height: 80vh;
-            padding: 40px 20px;
-        }
-
-        .card {
-            position: relative;
-            height: 50vh;
-            flex-shrink: 0;
-            background: #000;
-            border-radius: 16px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, .1);
-            padding: 25px;
-
-            /* makes each card snap while scrolling */
-            scroll-snap-align: center;
-        }
-
-        .card img {
-            display: block;
-            height: 100%;
-            width: 100%;
-            object-fit: contain;
-        }
-
-        .card figcaption {
-            margin-top: 10px;
-            padding-bottom: 5px;
-            font-size: 14px;
-            color: #333;
-        }
-
-        .remove-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 28px;
-            height: 28px;
-            border: 0;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, .65);
-            color: #fff;
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .remove-btn:hover {
-            background: rgba(255, 0, 0, .85);
-        }
-    </style>
+    <!-- Load navbar/footer scripts AFTER DOM is parsed -->
+    <script src="/import.js" defer></script>
+    <script src="/footer.js" defer></script>
 </head>
 
 <body>
-    <div class="grid">
-        <figure class="card">
-            <!--Resolve cache issue with image 1-->
-            <img src="../images/page01.png?v=2" alt="Advertisement 1">
-            <figcaption>Advertisement 1</figcaption>
-            <button class="remove-btn">X</button>
-        </figure>
-        <figure class="card">
-            <img src="../images/page02.png" alt="Advertisement 2">
-            <figcaption>Advertisement 2</figcaption>
-            <button class="remove-btn">X</button>
-        </figure>
-        <figure class="card">
-            <img src="../images/page03.png" alt="Advertisement 3">
-            <figcaption>Advertisement 3</figcaption>
-            <button class="remove-btn">X</button>
-        </figure>
-        <figure class="card">
-            <img src="../images/page04.png" alt="Advertisement 4">
-            <figcaption>Advertisement 4</figcaption>
-            <button class="remove-btn">X</button>
-        </figure>
-        <figure class="card">
-            <img src="../images/page05.png" alt="Advertisement 5">
-            <figcaption>Advertisement 5</figcaption>
-            <button class="remove-btn">X</button>
-        </figure>
-        <figure class="card">
-            <img src="../images/page06.png" alt="Advertisement 6">
-            <figcaption>Advertisement 6</figcaption>
-            <button class="remove-btn">X</button>
-        </figure>
-        <figure class="card">
-            <img src="../images/page07.png" alt="Advertisement 7">
-            <figcaption>Advertisement 7</figcaption>
-            <button class="remove-btn">X</button>
-        </figure>
-        <figure class="card">
-            <img src="../images/page08.png" alt="Advertisement 8">
-            <figcaption>Advertisement 8</figcaption>
-            <button class="remove-btn">X</button>
-        </figure>
-    </div>
-    <script src="/import.js"></script>
-    <script src="/footer.js"></script>
+    <div class="advertisement_banner"></div>
+
+    <section class="ad-gallery" aria-label="Ace ad gallery">
+        <div class="viewer" aria-label="Main ad preview">
+
+            <!-- Vertical thumbnails (LEFT) -->
+            <div class="thumbs" aria-label="Ad thumbnails">
+                <div class="thumb-rail" id="thumbRail" role="listbox" aria-label="Choose an ad page">
+                    <button class="thumb active" data-src="/images/page01.png?v=2" data-alt="Ace Advertisement Page 01"
+                        aria-selected="true">
+                        <img src="/images/page01.png?v=2" alt="Page 01 thumbnail" />
+                        <span>01</span>
+                    </button>
+
+                    <button class="thumb" data-src="/images/page02.png" data-alt="Ace Advertisement Page 02"
+                        aria-selected="false">
+                        <img src="/images/page02.png" alt="Page 02 thumbnail" />
+                        <span>02</span>
+                    </button>
+
+                    <button class="thumb" data-src="/images/page03.png" data-alt="Ace Advertisement Page 03"
+                        aria-selected="false">
+                        <img src="/images/page03.png" alt="Page 03 thumbnail" />
+                        <span>03</span>
+                    </button>
+
+                    <button class="thumb" data-src="/images/page04.png" data-alt="Ace Advertisement Page 04"
+                        aria-selected="false">
+                        <img src="/images/page04.png" alt="Page 04 thumbnail" />
+                        <span>04</span>
+                    </button>
+
+                    <button class="thumb" data-src="/images/page05.png" data-alt="Ace Advertisement Page 05"
+                        aria-selected="false">
+                        <img src="/images/page05.png" alt="Page 05 thumbnail" />
+                        <span>05</span>
+                    </button>
+
+                    <button class="thumb" data-src="/images/page06.png" data-alt="Ace Advertisement Page 06"
+                        aria-selected="false">
+                        <img src="/images/page06.png" alt="Page 06 thumbnail" />
+                        <span>06</span>
+                    </button>
+
+                    <button class="thumb" data-src="/images/page07.png" data-alt="Ace Advertisement Page 07"
+                        aria-selected="false">
+                        <img src="/images/page07.png" alt="Page 07 thumbnail" />
+                        <span>07</span>
+                    </button>
+
+                    <button class="thumb" data-src="/images/page08.png" data-alt="Ace Advertisement Page 08"
+                        aria-selected="false">
+                        <img src="/images/page08.png" alt="Page 08 thumbnail" />
+                        <span>08</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main preview -->
+            <figure class="main-frame" id="mainFrame">
+                <img id="mainAd" src="/images/page01.png?v=2" alt="Ace Advertisement Page 01" />
+            </figure>
+
+            <!-- Nav buttons (RIGHT) -->
+            <div class="nav-col" aria-label="Page navigation">
+                <button class="nav prev" aria-label="Previous ad">‹</button>
+                <button class="nav next" aria-label="Next ad">›</button>
+            </div>
+
+        </div>
+
+        <script>
+            // ======================
+            // Gallery logic
+            // ======================
+            const mainImg = document.getElementById("mainAd");
+            const thumbs = Array.from(document.querySelectorAll(".thumb"));
+            const rail = document.getElementById("thumbRail");
+            const prevBtn = document.querySelector(".nav.prev");
+            const nextBtn = document.querySelector(".nav.next");
+
+            let activeIndex = 0;
+
+            // Set active thumb + main image
+            function setActive(index, { scrollIntoView = true } = {}) {
+                activeIndex = (index + thumbs.length) % thumbs.length;
+
+                // Update thumb states
+                thumbs.forEach((t, i) => {
+                    const isActive = i === activeIndex;
+                    t.classList.toggle("active", isActive);
+                    t.setAttribute("aria-selected", isActive ? "true" : "false");
+                });
+
+                // Update main image
+                const active = thumbs[activeIndex];
+                mainImg.src = active.dataset.src;
+                mainImg.alt = active.dataset.alt;
+
+                if (scrollIntoView) {
+                    // Works for vertical rail too
+                    active.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+                }
+            }
+
+            // Hover/click/focus on thumbs
+            thumbs.forEach((btn, i) => {
+                btn.addEventListener("mouseenter", () => setActive(i));
+                btn.addEventListener("click", () => setActive(i));
+                btn.addEventListener("focus", () => setActive(i));
+            });
+
+            // Prev/Next buttons
+            prevBtn.addEventListener("click", () => setActive(activeIndex - 1));
+            nextBtn.addEventListener("click", () => setActive(activeIndex + 1));
+
+            // Init
+            setActive(0, { scrollIntoView: false });
+        </script>
+    </section>
 </body>
 
 </html>
