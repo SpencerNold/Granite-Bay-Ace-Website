@@ -1,5 +1,5 @@
 package com.granitebayace.site;
-
+import com.granitebayace.site.commands.impl.CredentialCommand;
 import com.granitebayace.site.commands.CommandRegistry;
 import com.granitebayace.site.commands.Executor;
 import com.granitebayace.site.services.*;
@@ -23,6 +23,7 @@ public class Main {
                 false).build();
         // Register Commands
         CommandRegistry commands = CommandRegistry.get();
+        commands.register(new CredentialCommand(server));
         // Handle stdin
         try (ExecutorService service = Executors.newSingleThreadExecutor()) {
             service.execute(() -> {
