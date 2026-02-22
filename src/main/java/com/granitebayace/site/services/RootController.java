@@ -46,19 +46,9 @@ public class RootController extends Implementation {
         return Resource.Companion.get("navbar/navbar.html");
     }
 
-    @Route.File(path = "/accessibility.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream accessibilityHtml() {
-        return Resource.Companion.get("pages/accessibility.html");
-    }
-
-    @Route.File(path = "/privacy.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream privacyHtml() {
-        return Resource.Companion.get("pages/privacy.html");
-    }
-
-    @Route.File(path = "/security.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream securityHtml() {
-        return Resource.Companion.get("pages/security.html");
+    @Route.File(path = "/statements.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
+    public InputStream statementsHtml() {
+        return Resource.Companion.get("pages/statements.html");
     }
 
     @Route.File(path = "/AdminNavbar.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
