@@ -8,74 +8,36 @@
 </head>
 <body>
 <div class="container">
-    <div class="header">
-        <h1>Role Management</h1>
-        <p class="subtitle">Assign user or admin role to account</p>
-    </div>
+    <div class="roles-container">
+        <div class="header">
+            <h1>Role Management</h1>
+            <p class="subtitle" id="targetInfo">User role information</p>
+        </div>
 
-    <!-- Search Bar -->
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="Search by name or username...">
-    </div>
-
-    <div class="users-grid">
-        <div class="user-card">
-            <h3 class="user-title">User #1</h3>
+        <div class="roles-card">
+            <h3 id="displayUsername">Username</h3>
             <div class="permissions-section">
-                <p class="permissions-label">ROLES</p>
+                <p class="permissions-label">ASSIGN ROLE</p>
                 <div class="permission-list">
                     <label class="permission-item">
-                        <input type="checkbox" class="permission-checkbox">
-                        <span>User Account</span>
+                        <input type="radio" name="roleSelect" value="1" id="roleManager">
+                        <span>Manager Account</span>
                     </label>
                     <label class="permission-item">
-                        <input type="checkbox" class="permission-checkbox">
+                        <input type="radio" name="roleSelect" value="0" id="roleAdmin">
                         <span>Admin Account</span>
                     </label>
                 </div>
             </div>
-        </div>
-
-        <div class="user-card">
-            <h3 class="user-title">User #2</h3>
-            <div class="permissions-section">
-                <p class="permissions-label">ROLES</p>
-                <div class="permission-list">
-                    <label class="permission-item">
-                        <input type="checkbox" class="permission-checkbox">
-                        <span>User Account</span>
-                    </label>
-                    <label class="permission-item">
-                        <input type="checkbox" class="permission-checkbox">
-                        <span>Admin Account</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="user-card">
-            <h3 class="user-title">User #3</h3>
-            <div class="permissions-section">
-                <p class="permissions-label">ROLES</p>
-                <div class="permission-list">
-                    <label class="permission-item">
-                        <input type="checkbox" class="permission-checkbox">
-                        <span>User Account</span>
-                    </label>
-                    <label class="permission-item">
-                        <input type="checkbox" class="permission-checkbox">
-                        <span>Admin Account</span>
-                    </label>
-                </div>
+            <div class="save-button-container">
+                <button class="save-button" id="btnSave">Save Changes</button>
+                <button class="btn-cancel" onclick="history.back()">Back</button>
             </div>
         </div>
     </div>
-
-    <div class="save-button-container">
-        <button class="save-button">Save Changes</button>
-    </div>
-
-    <script src="/import.js"></script>
 </div>
+    <script src="/roles.js"></script>
+    <script src="/admin.js"></script>
+
 </body>
 </html>

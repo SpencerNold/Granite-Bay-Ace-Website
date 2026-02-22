@@ -71,6 +71,11 @@ public class RootController extends Implementation {
         return Resource.Companion.get("pages/roles.html");
     }
 
+    @Route.File(path = "/manage-account", contentType = Route.ContentType.HTML, cacheControl = "no-store")
+    public InputStream manageAccount() {
+        return Resource.Companion.get("pages/manage-account.html");
+    }
+
     private DatabaseLayer getDatabase() {
         return getService(DatabaseLayer.class);
     }
