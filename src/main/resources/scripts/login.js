@@ -17,12 +17,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await response.json();
 
-             if (!response.ok) {
+             if (data.ok === false || data.key === "error") {
                 alert(data.message || "Invalid username or password");
                 return;
             }
 
-            localStorage.setItem("sessionKey", data.sessionKey);
+            localStorage.setItem("sessionKey", data.key);
+            window.location.href = "/admin";
+
+            //for navbar
+            localStorage.setItem("role", username === "admin" ? "admin" : "user");
+
             window.location.href = "/admin";
 
         } catch (error) {
