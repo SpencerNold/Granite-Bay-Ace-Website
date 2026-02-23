@@ -1,4 +1,6 @@
 package com.granitebayace.site;
+
+import com.granitebayace.site.services.*;
 import com.granitebayace.site.commands.impl.CredentialCommand;
 import com.granitebayace.site.commands.CommandRegistry;
 import com.granitebayace.site.commands.Executor;
@@ -18,7 +20,7 @@ public class Main {
         WebServer server = new WebServer.Builder(
                 Protocol.HTTP,
                 80,
-                new Class[]{DatabaseLayer.class, RootController.class, StyleController.class, ScriptController.class, LoginController.class, MediaController.class},
+                new Class[]{DatabaseLayer.class, RootController.class, StyleController.class, ScriptController.class, LoginController.class, AccountManagementController.class, SecurePageController.class, MediaController.class},
                 Executors.newCachedThreadPool(),
                 false).build();
         // Register Commands

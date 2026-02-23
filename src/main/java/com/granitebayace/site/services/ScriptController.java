@@ -26,4 +26,10 @@ public class ScriptController {
 
     @Route.File(path = "/footer.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
     public InputStream footerJs() { return Resource.Companion.get("scripts/footer.js"); }
+
+    @Route.File(path = "/roles.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
+    public InputStream rolesJs() { return Resource.Companion.get("scripts/roles.js"); }
+
+    @Route.File(path = "/manage-account.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
+    public InputStream manageAccountJs() { return Resource.Companion.get("scripts/manage-account.js"); }
 }

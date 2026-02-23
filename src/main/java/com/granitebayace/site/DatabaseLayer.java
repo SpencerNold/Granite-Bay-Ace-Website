@@ -319,4 +319,72 @@ public class DatabaseLayer extends SQLiteDatabase {
     private void error(Throwable e) {
         Logger.Companion.getSystemLogger().error(e.getMessage());
     }
+
+    // Look up a user by their current session id (sessionKey).
+    // Returns null if no user has that session id.
+    public UserData queryUserDataBySession(String sessionId) {
+        String query = """
+                SELECT
+                    u.username,
+                    u.passhash,
+                    u.salt,
+                    r.id AS role_id,
+                    r.name AS role_name,
+                    r.inheritance AS role_inheritance,
+                    s.id AS session_id,
+                    s.expiration AS session_expiration
+                FROM user_data u
+                JOIN roles r ON u.role_id = r.id
+                LEFT JOIN sessions s ON u.session_id = s.id
+                WHERE u.session_id = ?
+                """;
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setString(1, sessionId);
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    String username = result.getString("username");
+                    String passhash = result.getString("passhash");
+                    String salt = result.getString("salt");
+                    int roleId = result.getInt("role_id");
+                    String roleName = result.getString("role_name");
+                    int inheritance = result.getInt("role_inheritance");
+                    Role role = new Role(roleId, roleName, inheritance);
+
+                    String sid = result.getString("session_id");
+                    String expiration = result.getString("session_expiration");
+                    Session session = null;
+                    if (sid != null && expiration != null) {
+                        session = new Session(sid, LocalDateTime.parse(expiration.replace(' ', 'T')));
+                    }
+                    return new UserData(username, passhash, salt, session, role);
+                }
+            }
+        } catch (SQLException e) {
+            error(e);
+        }
+        return null;
+    }
+
+    //Update the role_id for an existing user.
+    public void setUserRole(String username, int roleId) {
+        String query = "UPDATE user_data SET role_id = ? WHERE username = ?";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setInt(1, roleId);
+            statement.setString(2, username);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            error(e);
+        }
+    }
+
+    // Delete a user from user_data.
+    public void deleteUser(String username) {
+        String query = "DELETE FROM user_data WHERE username = ?";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setString(1, username);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            error(e);
+        }
+    }
 }
