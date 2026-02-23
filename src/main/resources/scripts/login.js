@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".login-form");
 
+    //Checks if user presses login button
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
+        //Gets username and password from login form
         const username = document.getElementById("username").value.trim();
         const password = document.getElementById("password").value.trim();
 
