@@ -19,11 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await response.json();
 
+            //invalid login
              if (data.key === "error") {
                 alert(data.message || "Invalid username or password");
                 return;
             }
 
+             //stores session key and username for use
             localStorage.setItem("sessionKey", data.key);
             localStorage.setItem("username", data.username);
             window.location.href = "/admin";
