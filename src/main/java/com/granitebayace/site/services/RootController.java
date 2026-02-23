@@ -1,12 +1,17 @@
 package com.granitebayace.site.services;
 
 import com.granitebayace.site.DatabaseLayer;
+import me.spencernold.kwaf.Http;
 import me.spencernold.kwaf.Resource;
 import me.spencernold.kwaf.Route;
+import me.spencernold.kwaf.http.HttpRequest;
 import me.spencernold.kwaf.services.Implementation;
 import me.spencernold.kwaf.services.Service;
+import me.spencernold.kwaf.util.InputStreams;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 @Service.Controller
 public class RootController extends Implementation {
@@ -36,11 +41,6 @@ public class RootController extends Implementation {
         return Resource.Companion.get("pages/login.html");
     }
 
-    @Route.File(path = "/admin", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream admin() {
-        return Resource.Companion.get("pages/admin.html");
-    }
-
     @Route.File(path = "/footer.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream footerHtml() {
         return Resource.Companion.get("footer/footer.html");
@@ -59,21 +59,6 @@ public class RootController extends Implementation {
     @Route.File(path = "/accessibility.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream accessibilityHtml() {
         return Resource.Companion.get("pages/accessibility.html");
-    }
-
-    @Route.File(path = "/AdminNavbar.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream AdminNavbar() {
-        return Resource.Companion.get("Admin/AdminNavbar.html");
-    }
-
-    @Route.File(path = "/roles", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream roles() {
-        return Resource.Companion.get("pages/roles.html");
-    }
-
-    @Route.File(path = "/manage-account", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream manageAccount() {
-        return Resource.Companion.get("pages/manage-account.html");
     }
 
     private DatabaseLayer getDatabase() {
