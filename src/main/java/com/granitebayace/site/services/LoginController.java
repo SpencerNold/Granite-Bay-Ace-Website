@@ -82,5 +82,6 @@ public class LoginController extends Implementation {
     private DatabaseLayer getDatabase() {
         return getService(DatabaseLayer.class);
     }
+
 }
 

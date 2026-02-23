@@ -24,16 +24,16 @@ footer a {
 }
 
 .social-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30%;
+    margin: 0 auto;
 }
 
 .social-icons a {
   color: #FFFFFF;
-  font-size: 44px;
+  font-size: 550%;
 }
 
 .footer_logo {
