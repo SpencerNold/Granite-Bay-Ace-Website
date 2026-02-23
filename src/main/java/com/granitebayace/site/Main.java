@@ -27,31 +27,31 @@ public class Main {
         CommandRegistry commands = CommandRegistry.get();
         commands.register(new CredentialCommand(server));
         // Handle stdin
-        try (ExecutorService service = Executors.newSingleThreadExecutor()) {
-            service.execute(() -> {
-                Scanner scanner = new Scanner(System.in);
-                while (scanner.hasNextLine()) {
-                    String in = scanner.nextLine();
-                    Executor.Result result = commands.execute(in.split(" "));
-                    Logger logger = Logger.Companion.getSystemLogger();
-                    switch (result) {
-                        case UNKNOWN -> {
-                            logger.error("Unknown command!");
-                        }
-                        case MALFORMED -> {
-                            logger.error("Command is missing proper arguments!");
-                            break;
-                        }
-                        case UNAUTHORIZED -> {
-                            logger.error("You are not authorized to use this command!");
-                            break;
-                        }
-                        case SUCCESS -> {
-                        }
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(() -> {
+            Scanner scanner = new Scanner(System.in);
+            while (scanner.hasNextLine()) {
+                String in = scanner.nextLine();
+                Executor.Result result = commands.execute(in.split(" "));
+                Logger logger = Logger.Companion.getSystemLogger();
+                switch (result) {
+                    case UNKNOWN -> {
+                        logger.error("Unknown command!");
+                    }
+                    case MALFORMED -> {
+                        logger.error("Command is missing proper arguments!");
+                        break;
+                    }
+                    case UNAUTHORIZED -> {
+                        logger.error("You are not authorized to use this command!");
+                        break;
+                    }
+                    case SUCCESS -> {
                     }
                 }
-            });
-        }
+            }
+        });
         server.start();
+        service.close();
     }
 }

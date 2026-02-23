@@ -91,12 +91,6 @@ public class DatabaseLayer extends SQLiteDatabase {
 
             insertRole(new Role(0, "admin", 1));
             insertRole(new Role(1, "manager", 2));
-
-            //admin stuff for testing
-            String seedPassword = "12345";
-            String adminSalt = generateSalt();
-            String adminHash = hashPassword(adminSalt, seedPassword);
-            insertUserData(new UserData("admin", adminHash, adminSalt, null, queryRole(0)));
         } catch (SQLException e) {
             error(e);
         }
