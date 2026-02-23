@@ -10,14 +10,14 @@
         <a href="../../ManageAd.html">Manage Advertisement</a>
     </div>
 
-    <button onclick="logout()" class="admin-logout", id="admin-logout">
+    <button onclick="logout()" class="admin-logout" id="admin-logout">
         Logout
     </button>
 
     <script>
         function logout() {
             localStorage.removeItem("sessionKey")
-            window.lcoation.href = "/"
+            window.location.href = "/"
         }
     </script>
 </nav>
