@@ -20,15 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await response.json();
 
-            //invalid login
-             if (data.key === "error") {
+             if (data.ok === false || data.key === "error") {
                 alert(data.message || "Invalid username or password");
                 return;
             }
 
-             //stores session key and username for use
             localStorage.setItem("sessionKey", data.key);
-            localStorage.setItem("username", data.username);
+            window.location.href = "/admin";
+
+            //for navbar
+            localStorage.setItem("role", username === "admin" ? "admin" : "user");
+
             window.location.href = "/admin";
 
         } catch (error) {

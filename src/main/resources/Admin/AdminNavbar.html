@@ -9,4 +9,15 @@
         <a href="/manage-account.html">Manage Accounts</a>
         <a href="/manage-ad.html">Manage Advertisement</a>
     </div>
+
+    <button onclick="logout()" class="admin-logout" id="admin-logout">
+        Logout
+    </button>
+
+    <script>
+        function logout() {
+            localStorage.removeItem("sessionKey")
+            window.location.href = "/"
+        }
+    </script>
 </nav>

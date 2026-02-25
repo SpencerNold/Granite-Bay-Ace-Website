@@ -7,12 +7,58 @@ async function importAll() {
     existingContent.forEach(node => mainWrapper.appendChild(node));
     document.body.appendChild(mainWrapper);
 
-    await importItem("navbar", (element) => {
+    //choose navbar
+    const navbarName = await chooseNavbarName();
+
+    await importItem(navbarName, (element) => {
         document.body.prepend(element)
     })
+
     await importItem("footer", (element) => {
         document.body.append(element)
     })
+}
+
+//check if admin is logged in to display admin navbar
+async function chooseNavbarName() {
+    //for easy persistence across pages
+    const role = localStorage.getItem("role");
+    if(role === "admin") {
+        return "AdminNavbar"
+    }
+    if (role && role !== "admin") {
+        return "navbar";
+    }
+
+    //server verified persistent behavior
+    const key = localStorage.getItem("sessionKey");
+    if(!key) {
+        return "navbar";
+    }
+
+    try {
+        const res = await fetch("/api/session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ key })
+        });
+        if (!res.ok) {
+            return "navbar";
+        }
+            const data = await res.json();
+
+            //field names; expects { ok: true, role: admin }
+            if (data && data.ok === true && data.role === "admin") {
+                localStorage.setItem("role", "admin");
+                return "AdminNavbar";
+            }
+        } catch (e) {
+            console.warn("Session check failed: ", e);
+
+        }
+        return "navbar";
+
+
 }
 
 function importItem(name, func) {
