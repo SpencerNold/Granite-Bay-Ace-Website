@@ -1,47 +1,207 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    background-color: #f8f8f8;
-}
-
-.grid {
+/* =========================
+   Advertisement Gallery
+========================= */
+.ad-gallery{
+  padding: 14px 0;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 40px;
-  background: #f8f8f8;
-
-  overflow-x: scroll;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  height: auto;
-  min-height: 80vh;
-  padding: 40px 20px;
-  box-sizing: border-box;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.card {
-  position: relative;
-  height: 62.5vh;
-  flex-shrink: 0;
-  background: rgb(255, 50, 55);
+/* =========================
+   Viewer layout:
+   [vertical thumbs] [main image] [nav buttons]
+========================= */
+.viewer{
+  display: grid;
+  grid-template-columns: 120px auto 52px; /* left thumbs, middle image, right nav */
+  gap: 14px;
+  align-items: start;
+  justify-content: center;
+}
+
+/* =========================
+   Navigation buttons (right side)
+========================= */
+.nav{
+  height: 44px;
+  width: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(16,17,20,.12);
+  background: rgba(255,255,255,.95);
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 1;
+  box-shadow: 0 10px 18px rgba(10,14,24,.10);
+}
+
+.nav:active{
+  transform: translateY(1px);
+}
+
+/* If your HTML keeps prev/next as siblings around main-frame,
+   they will appear at left and right. If you move them into a wrapper,
+   you can stack them. (Optional) */
+.viewer .nav.prev{
+  align-self: start;
+}
+.viewer .nav.next{
+  align-self: start;
+}
+
+/* =========================
+   Main preview frame (fits image)
+========================= */
+.main-frame{
+  margin: 0;
+  background: #fff;
+  border: 1px solid rgba(16,17,20,.12);
   border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.1);
-  padding: 20px;
+  box-shadow: 0 12px 30px rgba(10,14,24,.14);
+  padding: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 0;
 }
 
-.card img {
+/* Main image: scale to fit, but don't exceed 70% of viewport */
+.main-frame img{
   display: block;
-  height: 62.5vh;
-  width: 100%;
+  width: auto;
+  height: auto;
+
+  max-width: min(900px, 70vw);
+  max-height: 70vh;
+
   object-fit: contain;
 }
 
-.card figcaption {
-  margin-top: 10px;
-  padding-bottom: 5px;
-  font-size: 14px;
-  color: #333;
+/* =========================
+   Thumbnails: vertical rail on left
+========================= */
+.thumbs{
+  display: flex;
+  align-items: start;
+  justify-content: center;
 }
 
+/* Hide horizontal thumb scroll buttons for vertical layout */
+.thumb-scroll{
+  display: none;
+}
 
+/* Vertical rail */
+.thumb-rail{
+  width: 110px;
+  max-height: 70vh;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 6px 4px;
+  margin: 0;
+
+  scroll-behavior: smooth;
+  scrollbar-color: rgba(0,0,0,.20) transparent;
+}
+
+/* scrollbar (webkit) */
+.thumb-rail::-webkit-scrollbar{ width: 10px; }
+.thumb-rail::-webkit-scrollbar-thumb{
+  background: rgba(0,0,0,.18);
+  border-radius: 999px;
+}
+
+/* Thumb buttons */
+.thumb{
+  position: relative;
+  border: 2px solid transparent;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+
+  width: 100%;
+  min-width: 0;
+
+  box-shadow: 0 10px 18px rgba(10,14,24,.08);
+  transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+}
+
+/* Thumb images */
+.thumb img{
+  width: 100%;
+  height: 64px;          
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Badge */
+.thumb span{
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-weight: 900;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(0,0,0,.55);
+  padding: 4px 8px;
+  border-radius: 999px;
+}
+
+/* Hover/active/focus */
+.thumb:hover{
+  transform: translateY(-2px);
+}
+
+.thumb.active{
+  border-color: #e11b22;
+  box-shadow: 0 14px 28px rgba(225,27,34,.18);
+}
+
+.thumb:focus{
+  outline: none;
+  border-color: #e11b22;
+}
+
+/* =========================
+   Responsive: on small screens, fall back to horizontal thumbs
+========================= */
+@media (max-width: 820px){
+  .viewer{
+    grid-template-columns: 44px 1fr 44px;  /* back to arrows on sides */
+    align-items: center;
+  }
+
+  .thumbs{
+    order: 2;
+    justify-content: center;
+  }
+
+  .thumb-scroll{
+    display: inline-flex; /* bring back if you want */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .thumb-rail{
+    width: fit-content;
+    max-width: 85vw;
+    max-height: none;
+
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .thumb-rail::-webkit-scrollbar{ height: 10px; width: auto; }
+  .thumb img{ height: 86px; }
+}

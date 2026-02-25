@@ -62,7 +62,7 @@ public final class Hashing {
 
         //reuse existing sesion
         Session session = user.session();
-        if (!SessionManager.isSessionValid(db, session.id())) {
+        if (session == null || !SessionManager.isSessionValid(db, session.id())) {
             // create new session
             session = SessionManager.createSession(db, username);
         }

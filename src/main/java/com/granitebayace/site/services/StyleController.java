@@ -34,9 +34,9 @@ public class StyleController {
         return Resource.Companion.get("pages/locations.css");
     }
 
-    @Route.File(path = "/accessibility.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
-    public InputStream accessibilityCss() {
-        return Resource.Companion.get("pages/accessibility.css");
+    @Route.File(path = "/statements.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream statementsCss() {
+        return Resource.Companion.get("pages/statements.css");
     }
 
     @Route.File(path = "/login.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
@@ -57,5 +57,10 @@ public class StyleController {
     @Route.File(path = "/roles.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
     public InputStream rolesCss() {
         return Resource.Companion.get("pages/roles.css");
+    }
+
+    @Route.File(path = "/manage-account.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream manageAccountCss() {
+        return Resource.Companion.get("pages/manage-account.css");
     }
 }

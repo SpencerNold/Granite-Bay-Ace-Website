@@ -11,14 +11,14 @@
 }
 
 .nav-body {
-    background-color: #D9D9D9;
-    color: #222;
+    background-color: #F2F2F2;
+    color: #333333;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: clamp(0.5rem, 1vw + 0.25rem, 1rem) clamp(1rem, 3vw, 2rem);
     font-family: sans-serif;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #E41E26;
     position: sticky;
     top: 0;
     z-index: 1000;
