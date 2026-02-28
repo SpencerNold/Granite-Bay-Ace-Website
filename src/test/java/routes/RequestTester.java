@@ -16,7 +16,7 @@ interface RequestTester {
                 .Builder(method, "http://localhost:80" + path, new HashMap<>(), new HashMap<>(), new byte[0])
                 .parameters(parameters)
                 .headers(headers)
-                .body(body.toString().getBytes(StandardCharsets.UTF_8))
+                .body(body == null ? new byte[0] : body.toString().getBytes(StandardCharsets.UTF_8))
                 .build();
         return HttpClient.Companion.send(request);
     }

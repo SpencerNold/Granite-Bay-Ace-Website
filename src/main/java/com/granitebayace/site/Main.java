@@ -1,9 +1,8 @@
 package com.granitebayace.site;
 
-import com.granitebayace.site.services.*;
-import com.granitebayace.site.commands.impl.CredentialCommand;
 import com.granitebayace.site.commands.CommandRegistry;
 import com.granitebayace.site.commands.Executor;
+import com.granitebayace.site.commands.impl.CredentialCommand;
 import com.granitebayace.site.services.*;
 import me.spencernold.kwaf.Protocol;
 import me.spencernold.kwaf.WebServer;
@@ -17,12 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Build WebServer
-        WebServer server = new WebServer.Builder(
-                Protocol.HTTP,
-                80,
-                new Class[]{DatabaseLayer.class, RootController.class, StyleController.class, ScriptController.class, LoginController.class, AccountManagementController.class, SecurePageController.class, MediaController.class},
-                Executors.newCachedThreadPool(),
-                false).build();
+        WebServer server = buildServer();
         // Register Commands
         CommandRegistry commands = CommandRegistry.get();
         commands.register(new CredentialCommand(server));
@@ -53,5 +47,14 @@ public class Main {
         });
         server.start();
         service.close();
+    }
+
+    public static WebServer buildServer() {
+        return new WebServer.Builder(
+                Protocol.HTTP,
+                80,
+                new Class[]{DatabaseLayer.class, RootController.class, StyleController.class, ScriptController.class, LoginController.class, AccountManagementController.class, SecurePageController.class, MediaController.class},
+                Executors.newCachedThreadPool(),
+                false).build();
     }
 }
