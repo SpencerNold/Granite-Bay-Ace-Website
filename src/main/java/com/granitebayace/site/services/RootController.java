@@ -26,11 +26,6 @@ public class RootController extends Implementation {
         return Resource.Companion.get("pages/about.html");
     }
 
-    @Route.File(path = "/locations.html", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream locationsHtml() {
-        return Resource.Companion.get("pages/locations.html");
-    }
-
     @Route.File(path = "/login", contentType = Route.ContentType.HTML, cacheControl = "no-store")
     public InputStream login() {
         return Resource.Companion.get("pages/login.html");

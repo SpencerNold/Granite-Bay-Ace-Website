@@ -28,12 +28,7 @@ public class StyleController {
     public InputStream aboutCss() {
         return Resource.Companion.get("pages/about.css");
     }
-
-    @Route.File(path = "/locations.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
-    public InputStream locationsCss() {
-        return Resource.Companion.get("pages/locations.css");
-    }
-
+    
     @Route.File(path = "/statements.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
     public InputStream statementsCss() {
         return Resource.Companion.get("pages/statements.css");

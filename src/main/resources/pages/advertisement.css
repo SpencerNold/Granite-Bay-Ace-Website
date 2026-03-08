@@ -1,119 +1,122 @@
 /* =========================
    Advertisement Gallery
 ========================= */
+
+/* Controls: 4 thumbs wide */
+:root{
+  --thumb-w: 110px;
+  --thumb-gap: 10px;
+  --thumb-pad-x: 2px;   /* thumb-rail left/right padding */
+  --frame-pad: 18px;    /* main-frame padding */
+
+  /* 4 thumbs + 3 gaps + rail padding (L+R) */
+  --rail-w: calc((4 * var(--thumb-w)) + (3 * var(--thumb-gap)) + (2 * var(--thumb-pad-x)));
+
+  /* main frame = rail width + left/right frame padding */
+  --gallery-w: calc(var(--rail-w) + (2 * var(--frame-pad)));
+}
+
+/* Outer gallery container */
 .ad-gallery{
-  padding: 14px 0;
+  padding: 14px 0 14px;
+  padding-left: 2%;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding-bottom: 1.5%;
 }
 
 /* =========================
    Viewer layout:
-   [vertical thumbs] [main image] [nav buttons]
+   Row 1: main image
+   Row 2: thumbs (bottom)
+   Left-aligned, shrink-wrap to content
 ========================= */
 .viewer{
   display: grid;
-  grid-template-columns: 120px auto 52px; /* left thumbs, middle image, right nav */
-  gap: 14px;
-  align-items: start;
-  justify-content: center;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto;
+  gap: 6px;
+
+  justify-content: start;
+  justify-items: start;
+
+  width: fit-content;
+  max-width: 100%;
 }
+
+/* Place items */
+.viewer .main-frame{ grid-column: 1; grid-row: 1; }
+.viewer .thumbs{ grid-column: 1; grid-row: 2; }
 
 /* =========================
-   Navigation buttons (right side)
-========================= */
-.nav{
-  height: 44px;
-  width: 44px;
-  border-radius: 12px;
-  border: 1px solid rgba(16,17,20,.12);
-  background: rgba(255,255,255,.95);
-  cursor: pointer;
-  font-size: 28px;
-  line-height: 1;
-  box-shadow: 0 10px 18px rgba(10,14,24,.10);
-}
-
-.nav:active{
-  transform: translateY(1px);
-}
-
-/* If your HTML keeps prev/next as siblings around main-frame,
-   they will appear at left and right. If you move them into a wrapper,
-   you can stack them. (Optional) */
-.viewer .nav.prev{
-  align-self: start;
-}
-.viewer .nav.next{
-  align-self: start;
-}
-
-/* =========================
-   Main preview frame (fits image)
+   Main preview frame
 ========================= */
 .main-frame{
   margin: 0;
   background: #fff;
   border: 1px solid rgba(16,17,20,.12);
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: 0 12px 30px rgba(10,14,24,.14);
-  padding: 14px;
 
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
-  min-height: 0;
+  /* big image width = 4 thumbs width */
+  width: min(var(--gallery-w), 92vw);
+  max-width: 100%;
 }
 
-/* Main image: scale to fit, but don't exceed 70% of viewport */
+/* Main image */
 .main-frame img{
   display: block;
-  width: auto;
+  width: 100%;
   height: auto;
-
-  max-width: min(900px, 70vw);
-  max-height: 70vh;
-
+  max-height: 90vh;
   object-fit: contain;
+  transition: opacity .3s ease;
 }
 
 /* =========================
-   Thumbnails: vertical rail on left
+   Thumbnails: horizontal rail (bottom)
+   Rail matches 4 thumbs width
 ========================= */
 .thumbs{
   display: flex;
-  align-items: start;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: min(var(--gallery-w), 92vw);
+  max-width: 100%;
 }
 
-/* Hide horizontal thumb scroll buttons for vertical layout */
-.thumb-scroll{
-  display: none;
-}
+/* Hide old scroll buttons */
+.thumb-scroll{ display: none; }
 
-/* Vertical rail */
+/* Horizontal rail */
 .thumb-rail{
-  width: 110px;
-  max-height: 70vh;
-
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row;
+  gap: var(--thumb-gap);
+  align-items: flex-start;
+  justify-content: flex-start;
 
-  overflow-y: auto;
-  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 
-  padding: 6px 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin: 0;
 
   scroll-behavior: smooth;
   scrollbar-color: rgba(0,0,0,.20) transparent;
+
+  padding-top: 4.5%;
 }
 
-/* scrollbar (webkit) */
-.thumb-rail::-webkit-scrollbar{ width: 10px; }
+/* Webkit scrollbar (horizontal) */
+.thumb-rail::-webkit-scrollbar{ height: 10px; }
 .thumb-rail::-webkit-scrollbar-thumb{
   background: rgba(0,0,0,.18);
   border-radius: 999px;
@@ -125,20 +128,25 @@
   border: 2px solid transparent;
   background: #fff;
   border-radius: 12px;
-  padding: 8px;
   cursor: pointer;
 
-  width: 100%;
-  min-width: 0;
+  width: var(--thumb-w);
+  min-width: var(--thumb-w);
+  flex: 0 0 auto;
 
   box-shadow: 0 10px 18px rgba(10,14,24,.08);
   transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+
+  will-change: transform;
+  transform: translateZ(0);
+  overflow: hidden;
+  padding: 0;
 }
 
 /* Thumb images */
 .thumb img{
   width: 100%;
-  height: 64px;          
+  height: 100px;
   object-fit: cover;
   border-radius: 10px;
   display: block;
@@ -162,46 +170,120 @@
   transform: translateY(-2px);
 }
 
+/* Active state: red border + stronger shadow */
 .thumb.active{
   border-color: #e11b22;
   box-shadow: 0 14px 28px rgba(225,27,34,.18);
 }
 
+/* Remove focus outline for better aesthetics when playing the next img */
 .thumb:focus{
   outline: none;
-  border-color: #e11b22;
 }
 
 /* =========================
-   Responsive: on small screens, fall back to horizontal thumbs
+   Store info box (right side)
+    Fixed width, full height of gallery
+========================= */
+.gallery-layout{
+  display: grid;
+  grid-template-columns: auto 420px; /* gallery width + fixed info box */
+  gap: 28px;
+
+  justify-content: start;  
+  align-items: start;
+
+  width: fit-content;      
+  max-width: 100%;
+}
+
+/* Store info box */
+.store-box{
+  /*width based on screen size, but maxes out at 420px for readability */
+  width: min(90vw, 420px);
+  max-width: 420px;
+
+  /*height based on screen size, but fills the gallery height on larger screens */
+  height: min(88vh, 100%);
+  align-self: stretch;   /* make sure it stretches */
+
+  background: #fff;
+  border: 1px solid rgba(16,17,20,.12);
+  border-radius: 14px;
+  padding-top: 18px;
+  padding-left: 18px;
+  padding-right: 18px;
+  box-shadow: 0 12px 30px rgba(10,14,24,.10);
+  overflow: hidden;
+
+  display: flex;         /* lets you distribute content */
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Store name */
+.store-box h2{
+  margin: 0 0 12px;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+/* Store details */
+.store-box p{
+  margin: 0;
+  padding: 12px 0;
+  line-height: 1.6;
+  color: rgba(16,17,20,.85);
+  border-top: 1px solid rgba(16,17,20,.08);
+  font-size: 30px;
+}
+
+/* remove divider above first line */
+.store-box p:first-of-type{
+  border-top: none;
+  padding-top: 0;
+}
+
+/* subtle label feel using pseudo-icons */
+#storeAddr::before{ content:"📍 "; }
+#storeHour::before{ content:"🕒 "; }
+#storePhone::before{ content:"📞 "; }
+#storeEmail::before{ content:"✉️ "; }
+
+/* make email + phone stand out a bit */
+#storePhone, #storeEmail{
+  font-weight: 600;
+}
+
+/* =========================
+   Responsive tweaks
 ========================= */
 @media (max-width: 820px){
+  .gallery-layout{
+    grid-template-columns: 1fr;  /* stack */
+    gap: 18px;
+    width: 100%;
+  }
+
   .viewer{
-    grid-template-columns: 44px 1fr 44px;  /* back to arrows on sides */
-    align-items: center;
+    width: 100%;
   }
 
+  .main-frame,
   .thumbs{
-    order: 2;
-    justify-content: center;
+    width: 92vw;       
+    max-width: 92vw;
   }
 
-  .thumb-scroll{
-    display: inline-flex; /* bring back if you want */
-    align-items: center;
-    justify-content: center;
+  .store-box{
+    width: 92vw;        /* full-width card */
+    max-width: 92vw;
+    height: auto;       
   }
 
   .thumb-rail{
-    width: fit-content;
-    max-width: 85vw;
-    max-height: none;
-
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
+    padding-left: 0;
+    padding-right: 0;
   }
-
-  .thumb-rail::-webkit-scrollbar{ height: 10px; width: auto; }
-  .thumb img{ height: 86px; }
 }
