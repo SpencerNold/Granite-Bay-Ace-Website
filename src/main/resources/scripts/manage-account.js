@@ -16,6 +16,8 @@ async function loadTable() {
         });
 
         const { users, callerRole, message } = await res.json();
+
+
         if (message !== "ok") { return; }
 
         const isAdmin = callerRole === 0;
@@ -25,44 +27,91 @@ async function loadTable() {
 
         users.forEach(user => {
             const row = document.createElement('tr');
+            row.setAttribute('data-username', user.username);
 
-            // Logic: Admins see active delete checkboxes, Managers see disabled ones.
+            // Admins see active delete checkboxes, Managers see disabled ones.
             row.innerHTML = `
                 <td>${user.username}</td>
-                <td><span class="role-badge">${user.roleId === 0 ? 'Admin' : 'Manager'}</span></td>
                 <td>
-                    <input type="checkbox" 
-                           ${isAdmin ? '' : 'disabled'} 
-                           onchange="if(this.checked) confirmDelete('${user.username}', this)">
+                    <input type="checkbox" class="delete-checkbox" ${isAdmin ? '' : 'disabled'}>
                 </td>
                 <td>
-                    <a href="/roles.html?user=${user.username}" class="edit-link">Edit Role →</a>
+                    <select class="role-select" ${isAdmin ? '' : 'disabled'}>
+                        <option value="0" ${user.roleId === 0 ? 'selected' : ''}>Admin</option>
+                        <option value="1" ${user.roleId === 1 ? 'selected' : ''}>Manager</option>
+                    </select>
                 </td>
             `;
             tbody.appendChild(row);
         });
     } catch (e) {
-        console.error("Failed to load user table", e);
+        console.error("Could not load user table", e);
     }
 }
 
-async function confirmDelete(username, checkbox) {
-    if (confirm(`Are you sure you want to delete ${username}?`)) {
-        const res = await fetch('/api/accounts/delete', {
+// Saves changes in table
+async function saveAllChanges() {
+    const rows = document.querySelectorAll('#userTableBody tr');
+
+    for(const row of rows) {
+        const username = row.getAttribute('data-username');
+        const isMarkedDelete = row.querySelector('.delete-checkbox').checked;
+        const selectedRole = row.querySelector('.role-select').value;
+
+        //save delete account
+        if (isMarkedDelete) {
+            await fetch('/api/accounts/delete', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ sessionKey: SESSION_KEY, username: username })
+            });
+            continue;
+        }
+
+        //save updated roles
+        await fetch ('/api/accounts/add', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ sessionKey: SESSION_KEY, username: username })
+            body: JSON.stringify({
+                sessionKey: SESSION_KEY,
+                username: username,
+                roleId: parseInt(selectedRole)
+            })
         });
-        const result = await res.json();
-        if (result.message === "ok") {
-            await loadTable();
-        } else {
-            alert("Error: " + result.message);
-            checkbox.checked = false;
-        }
-    } else {
-        checkbox.checked = false;
+    }
+
+    loadTable();
+}
+
+// Add account toggle form
+function toggleAddForm() {
+    document.getElementById('addAccountForm').classList.toggle('hidden');
+}
+
+// Save account in add account form
+async function saveNewAccount() {
+    const username = document.getElementById('newUsername').value;
+    const password = document.getElementById('newPassword').value;
+    const roleId = document.getElementById('newRole').value;
+
+    if(!username || !password) return alert("Please fill in all fields");
+
+    const res = await fetch('/api/accounts/add', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            sessionKey: SESSION_KEY,
+            username,
+            password,
+            roleId: parseInt(roleId)
+        })
+    });
+
+    if ((await res.json()).message === "ok") {
+        toggleAddForm();
+        loadTable()
     }
 }
 
+document.getElementById('btnSaveAll').addEventListener('click', saveAllChanges);
 document.addEventListener('DOMContentLoaded', loadTable);

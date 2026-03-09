@@ -34,16 +34,6 @@ public class SecurePageControllerTest extends AbstractRouteTest {
     }
 
     @Test
-    public void testRolesPageValid() {
-        testPageValid("/roles", "pages/roles.html");
-    }
-
-    @Test
-    public void testRolesPageInvalid() {
-        testPageInvalid("/roles");
-    }
-
-    @Test
     public void testManageAccountValid() {
         testPageValid("/manage-account", "pages/manage-account.html");
     }

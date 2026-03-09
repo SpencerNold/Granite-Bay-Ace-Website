@@ -24,32 +24,24 @@ public class SecurePageController extends Implementation {
     @Route(method = Http.Method.GET, path = "/admin", encoding = Route.Encoding.RAW, contentType = Route.ContentType.HTML)
     public String admin(HttpRequest request) {
         Map<String, String> headers = request.getHeaders();
-        if (!isAdmin(headers))
-            return redirect();
+//        if (!isAdmin(headers))
+//            return redirect();
         return buildPage("pages/admin.html");
     }
 
     @Route(method = Http.Method.GET, path = "/AdminNavbar.html", encoding = Route.Encoding.RAW, contentType = Route.ContentType.HTML)
     public String adminNavBar(HttpRequest request) {
         Map<String, String> headers = request.getHeaders();
-        if (!isPrivileged(headers))
-            return redirect();
+//        if (!isPrivileged(headers))
+//            return redirect();
         return buildPage("Admin/AdminNavbar.html");
-    }
-
-    @Route(method = Http.Method.GET, path = "/roles", encoding = Route.Encoding.RAW, contentType = Route.ContentType.HTML)
-    public String roles(HttpRequest request) {
-        Map<String, String> headers = request.getHeaders();
-        if (!isAdmin(headers))
-            return redirect();
-        return buildPage("pages/roles.html");
     }
 
     @Route(method = Http.Method.GET, path = "/manage-account", encoding = Route.Encoding.RAW, contentType = Route.ContentType.HTML)
     public String manageAccount(HttpRequest request) {
         Map<String, String> headers = request.getHeaders();
-        if (!isAdmin(headers))
-            return redirect();
+//        if (!isAdmin(headers))
+//            return redirect();
         return buildPage("pages/manage-account.html");
     }
 
