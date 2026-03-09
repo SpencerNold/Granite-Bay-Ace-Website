@@ -27,13 +27,13 @@ footer a {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30%;
+    gap: 30px;
     margin: 0 auto;
 }
 
 .social-icons a {
   color: #FFFFFF;
-  font-size: 550%;
+  font-size: 200%;
 }
 
 .footer_logo {
@@ -49,6 +49,7 @@ footer a {
   padding: 10px 0;
 }
 
+
 .footer_left,
 .footer_center,
 .footer_right {
@@ -60,14 +61,40 @@ footer a {
   text-align: left;
 }
 
+.footer-brands{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-brands img{
+    vertical-align: middle;
+    width: 100px;
+    height: auto;
+}
+
+.footer-tagline{
+    font-family: Franklin Gothic Heavy, serif;
+    font-size: 25px;
+}
 .footer_center {
   text-align: center;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .footer_right {
   text-align: right;
+}
+
+.footer_right img{
+    width:100px;
+    height:auto;
+    text-align: center;
 }
 
 .footer_bottom {
