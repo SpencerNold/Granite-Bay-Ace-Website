@@ -1,5 +1,6 @@
 package com.granitebayace.site.services;
 
+import com.google.gson.JsonObject;
 import com.granitebayace.site.DatabaseLayer;
 import com.granitebayace.site.SessionManager;
 import com.granitebayace.site.objects.UserData;
@@ -19,12 +20,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service.Controller
-public class SecurePageController extends Implementation {
+public class SecurePageController extends Implementation implements SecureService {
 
     @Route(method = Http.Method.GET, path = "/admin", encoding = Route.Encoding.RAW, contentType = Route.ContentType.HTML)
     public String admin(HttpRequest request) {
         Map<String, String> headers = request.getHeaders();
-        if (!isAdmin(headers))
+        if (!isAdmin(getDatabase(), headers))
             return redirect();
         return buildPage("pages/admin.html");
     }
@@ -32,7 +33,7 @@ public class SecurePageController extends Implementation {
     @Route(method = Http.Method.GET, path = "/AdminNavbar.html", encoding = Route.Encoding.RAW, contentType = Route.ContentType.HTML)
     public String adminNavBar(HttpRequest request) {
         Map<String, String> headers = request.getHeaders();
-        if (!isPrivileged(headers))
+        if (!isPrivileged(getDatabase(), headers))
             return redirect();
         return buildPage("Admin/AdminNavbar.html");
     }
@@ -40,7 +41,7 @@ public class SecurePageController extends Implementation {
     @Route(method = Http.Method.GET, path = "/roles", encoding = Route.Encoding.RAW, contentType = Route.ContentType.HTML)
     public String roles(HttpRequest request) {
         Map<String, String> headers = request.getHeaders();
-        if (!isAdmin(headers))
+        if (!isAdmin(getDatabase(), headers))
             return redirect();
         return buildPage("pages/roles.html");
     }
@@ -48,37 +49,17 @@ public class SecurePageController extends Implementation {
     @Route(method = Http.Method.GET, path = "/manage-account", encoding = Route.Encoding.RAW, contentType = Route.ContentType.HTML)
     public String manageAccount(HttpRequest request) {
         Map<String, String> headers = request.getHeaders();
-        if (!isAdmin(headers))
+        if (!isAdmin(getDatabase(), headers))
             return redirect();
         return buildPage("pages/manage-account.html");
     }
 
-    private boolean isAdmin(Map<String, String> headers) {
-        return getRolePermissionLevel(headers) == 0;
-    }
-
-    private boolean isPrivileged(Map<String, String> headers) {
-        return getRolePermissionLevel(headers) <= 1;
-    }
-
-    private int getRolePermissionLevel(Map<String, String> headers) {
-        if (!headers.containsKey("Cookie"))
-            return Integer.MAX_VALUE;
-        String cookiesString = headers.get("Cookie");
-        Pattern pattern = Pattern.compile("([^;\\s]+?)=([^;\\s]+?)(?=;|$)"); // matches key=value;
-        Matcher matcher = pattern.matcher(cookiesString);
-        Map<String, String> cookies = new HashMap<>();
-        while (matcher.find())
-            cookies.put(matcher.group(1), matcher.group(2));
-        if (!cookies.containsKey("session"))
-            return Integer.MAX_VALUE;
-        DatabaseLayer database = getDatabase();
-        UserData data = database.queryUserDataBySession(cookies.get("session"));
-        if (data == null)
-            return Integer.MAX_VALUE;
-        if (data.session() == null || !SessionManager.isSessionValid(database, data.session().id()))
-            return Integer.MAX_VALUE;
-        return data.role().id();
+    @Route(method = Http.Method.GET, path = "/get-role-value", encoding = Route.Encoding.JSON)
+    public JsonObject role(HttpRequest request) {
+        JsonObject object = new JsonObject();
+        int level = getRolePermissionLevel(getDatabase(), request.getHeaders());
+        object.addProperty("level", level);
+        return object;
     }
 
     private String redirect() {

@@ -1,18 +1,10 @@
 // retrieves sesison key from local storage
-const SESSION_KEY = localStorage.getItem('key');
-
 async function loadTable() {
-    // uncomment when session keys can actually be created
-    /*if (!SESSION_KEY) {
-        window.location.href = "/login.html";
-        return;
-    } */
-
     try {
         const res = await fetch('/api/accounts/list', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ sessionKey: SESSION_KEY })
+            body: JSON.stringify({})
         });
 
         const { users, callerRole, message } = await res.json();
@@ -51,7 +43,7 @@ async function confirmDelete(username, checkbox) {
         const res = await fetch('/api/accounts/delete', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ sessionKey: SESSION_KEY, username: username })
+            body: JSON.stringify({ username: username })
         });
         const result = await res.json();
         if (result.message === "ok") {

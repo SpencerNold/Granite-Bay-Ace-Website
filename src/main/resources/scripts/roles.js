@@ -1,4 +1,3 @@
-const SESSION_KEY = localStorage.getItem('key');
 const urlParams = new URLSearchParams(window.location.search);
 const targetUser = urlParams.get('user');
 
@@ -15,7 +14,7 @@ async function init() {
     const res = await fetch('/api/accounts/list', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ sessionKey: SESSION_KEY })
+        body: JSON.stringify({})
     });
 
     const { users, callerRole, message } = await res.json();
@@ -52,7 +51,6 @@ async function saveChanges() {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            sessionKey: SESSION_KEY,
             username: targetUser,
             roleId: selectedRole
         })

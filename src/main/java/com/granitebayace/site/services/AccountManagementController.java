@@ -1,26 +1,33 @@
 package com.granitebayace.site.services;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonArray;
+import com.google.gson.*;
 import com.granitebayace.site.DatabaseLayer;
 import com.granitebayace.site.objects.UserData;
 import me.spencernold.kwaf.Http;
 import me.spencernold.kwaf.Route;
+import me.spencernold.kwaf.http.HttpRequest;
 import me.spencernold.kwaf.services.Implementation;
 import me.spencernold.kwaf.services.Service;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Map;
+
 @Service.Controller(path = "/api/accounts")
-public class AccountManagementController extends Implementation {
+public class AccountManagementController extends Implementation implements SecureService {
+
+    private static final Gson GSON = new GsonBuilder().create();
 
     // Give an existing account manager access (admin can only use this), can also update user role
     @Route(method = Http.Method.POST, path = "/add", input = true, encoding = Route.Encoding.JSON)
-    public JsonObject addManager(JsonElement element) {
+    public JsonObject addManager(HttpRequest request) {
         JsonObject out = new JsonObject();
 
-        JsonObject input = element.getAsJsonObject();
-        String sessionKey = requireString(input, "sessionKey", out);
+        JsonObject input = getFromRequest(request, out);
+        if (input == null)
+            return out;
+        String sessionKey = getExtractedSessionToken(request.getHeaders());
         String username = requireString(input, "username", out);
         int targetRoleId = input.has("roleId") ? input.get("roleId").getAsInt() : 1;
 
@@ -42,13 +49,13 @@ public class AccountManagementController extends Implementation {
 
     // Delete/remove an account from having manager privileges (admin only can use this).
     @Route(method = Http.Method.POST, path = "/delete", input = true, encoding = Route.Encoding.JSON)
-    public JsonObject deleteManager(JsonElement element) {
+    public JsonObject deleteManager(HttpRequest request) {
         JsonObject out = new JsonObject();
 
-        JsonObject input = requireObject(element, out);
+        JsonObject input = getFromRequest(request, out);
         if (input == null) return out;
 
-        String sessionKey = requireString(input, "sessionKey", out);
+        String sessionKey = getExtractedSessionToken(request.getHeaders());
         String username = requireString(input, "username", out);
         if (sessionKey == null || username == null) return out;
 
@@ -76,9 +83,12 @@ public class AccountManagementController extends Implementation {
 
     // Lists all users for the manage account page table
     @Route(method = Http.Method.POST, path = "/list", input = true, encoding = Route.Encoding.JSON)
-    public JsonObject listAccounts(JsonElement element) {
+    public JsonObject listAccounts(HttpRequest request) {
         JsonObject out = new JsonObject();
-        String sessionKey = requireString(element.getAsJsonObject(), "sessionKey", out);
+        JsonElement element = getFromRequest(request, out);
+        if (element == null)
+            return out;
+        String sessionKey = getExtractedSessionToken(request.getHeaders());
         DatabaseLayer db = getDatabase();
 
         UserData caller = db.queryUserDataBySession(sessionKey);
@@ -102,6 +112,16 @@ public class AccountManagementController extends Implementation {
         out.addProperty("callerRole", caller.role().id());
         out.addProperty("message", "ok");
         return out;
+    }
+
+    private JsonObject getFromRequest(HttpRequest request, JsonObject out) {
+        try (InputStreamReader reader = new InputStreamReader(new ByteArrayInputStream(request.getBody()))) {
+            JsonElement element = GSON.fromJson(reader, JsonElement.class);
+            return requireObject(element, out);
+        } catch (IOException e) {
+            out.add("message", new JsonPrimitive("malformed input"));
+            return null;
+        }
     }
 
     private JsonObject forbidden(JsonObject out) {
