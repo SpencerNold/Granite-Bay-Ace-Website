@@ -3,8 +3,10 @@ package com.granitebayace.site.services;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonArray;
 import com.granitebayace.site.DatabaseLayer;
+import com.granitebayace.site.objects.Hashing;
+import com.granitebayace.site.objects.Role;
+import com.granitebayace.site.objects.Session;
 import com.granitebayace.site.objects.UserData;
 import me.spencernold.kwaf.Http;
 import me.spencernold.kwaf.Route;
@@ -14,33 +16,93 @@ import me.spencernold.kwaf.services.Service;
 @Service.Controller(path = "/api/accounts")
 public class AccountManagementController extends Implementation {
 
-    // Give an existing account manager access (admin can only use this), can also update user role
+    // Create a new manager account (admin only)
     @Route(method = Http.Method.POST, path = "/add", input = true, encoding = Route.Encoding.JSON)
     public JsonObject addManager(JsonElement element) {
         JsonObject out = new JsonObject();
 
-        JsonObject input = element.getAsJsonObject();
+        JsonObject input = requireObject(element, out);
+        if (input == null) return out;
+
         String sessionKey = requireString(input, "sessionKey", out);
         String username = requireString(input, "username", out);
-        int targetRoleId = input.has("roleId") ? input.get("roleId").getAsInt() : 1;
+        String password = requireString(input, "password", out);
+        if (sessionKey == null || username == null || password == null) return out;
 
         DatabaseLayer db = getDatabase();
 
+        // Admin-only enforcement
         UserData caller = db.queryUserDataBySession(sessionKey);
         if (caller == null) return forbidden(out);
-        if (caller.role() == null || caller.role().id() != 0) return forbidden(out); // Check if admin only
+        if (caller.role() == null || caller.role().id() != 0) return forbidden(out);
+
+        // Prevent duplicates
+        if (db.containsUserData(username)) {
+            out.add("message", new JsonPrimitive("user already exists"));
+            return out;
+        }
+
+        Role managerRole = db.queryRole(1);
+        if (managerRole == null) {
+            out.add("message", new JsonPrimitive("manager role missing"));
+            return out;
+        }
+
+        // Match existing codebase hashing/salting
+        String salt = Hashing.generateSalt();
+        String passhash = Hashing.hashForStorage(salt, password);
+
+        // New account starts with no session
+        Session session = null;
+
+        UserData newManager = new UserData(username, passhash, salt, session, managerRole);
+        db.insertUserData(newManager);
+
+        out.add("message", new JsonPrimitive("ok"));
+        return out;
+    }
+
+     // Change an existing user's role (admin only)
+    @Route(method = Http.Method.POST, path = "/role", input = true, encoding = Route.Encoding.JSON)
+    public JsonObject updateRole(JsonElement element) {
+        JsonObject out = new JsonObject();
+
+        JsonObject input = requireObject(element, out);
+        if (input == null) return out;
+
+        String sessionKey = requireString(input, "sessionKey", out);
+        String username = requireString(input, "username", out);
+        if (sessionKey == null || username == null) return out;
+
+        if (!input.has("roleId") || !input.get("roleId").isJsonPrimitive()) {
+            out.add("message", new JsonPrimitive("malformed input"));
+            return out;
+        }
+
+        int roleId = input.get("roleId").getAsInt();
+        if (roleId != 0 && roleId != 1) {
+            out.add("message", new JsonPrimitive("invalid role"));
+            return out;
+        }
+
+        DatabaseLayer db = getDatabase();
+
+        // Admin only enforcement
+        UserData caller = db.queryUserDataBySession(sessionKey);
+        if (caller == null) return forbidden(out);
+        if (caller.role() == null || caller.role().id() != 0) return forbidden(out);
 
         if (!db.containsUserData(username)) {
             out.add("message", new JsonPrimitive("user not found"));
             return out;
         }
 
-        db.setUserRole(username, targetRoleId);
+        db.setUserRole(username, roleId);
         out.add("message", new JsonPrimitive("ok"));
         return out;
     }
 
-    // Delete/remove an account from having manager privileges (admin only can use this).
+    // Delete an account only if it currently has manager role (admin only)
     @Route(method = Http.Method.POST, path = "/delete", input = true, encoding = Route.Encoding.JSON)
     public JsonObject deleteManager(JsonElement element) {
         JsonObject out = new JsonObject();
@@ -56,14 +118,15 @@ public class AccountManagementController extends Implementation {
 
         UserData caller = db.queryUserDataBySession(sessionKey);
         if (caller == null) return forbidden(out);
-        if (caller.role() == null || caller.role().id() != 0) return forbidden(out); // Check if admin only
+        if (caller.role() == null || caller.role().id() != 0) return forbidden(out);
 
         UserData target = db.queryUserData(username);
         if (target == null) {
             out.add("message", new JsonPrimitive("user not found"));
             return out;
         }
-        // Only delete accounts that currently have manager privileges
+
+        // Only delete manager accounts
         if (target.role() == null || target.role().id() != 1) {
             out.add("message", new JsonPrimitive("target is not a manager"));
             return out;
@@ -78,29 +141,38 @@ public class AccountManagementController extends Implementation {
     @Route(method = Http.Method.POST, path = "/list", input = true, encoding = Route.Encoding.JSON)
     public JsonObject listAccounts(JsonElement element) {
         JsonObject out = new JsonObject();
-        String sessionKey = requireString(element.getAsJsonObject(), "sessionKey", out);
+
+        JsonObject input = requireObject(element, out);
+        if (input == null) return out;
+
+        String sessionKey = requireString(input, "sessionKey", out);
+        if (sessionKey == null) return out;
+
         DatabaseLayer db = getDatabase();
 
         UserData caller = db.queryUserDataBySession(sessionKey);
         if (caller == null) return forbidden(out);
 
         com.google.gson.JsonArray userList = new com.google.gson.JsonArray();
-        // Manual query to get all users for the management table
+
         try (java.sql.Statement stmt = db.getConnection().createStatement();
              java.sql.ResultSet rs = stmt.executeQuery("SELECT username, role_id FROM user_data")) {
+
             while (rs.next()) {
                 JsonObject u = new JsonObject();
                 u.addProperty("username", rs.getString("username"));
                 u.addProperty("roleId", rs.getInt("role_id"));
                 userList.add(u);
             }
+
         } catch (java.sql.SQLException e) {
-            out.addProperty("message", "error");
+            out.add("message", new JsonPrimitive("error"));
+            return out;
         }
 
         out.add("users", userList);
         out.addProperty("callerRole", caller.role().id());
-        out.addProperty("message", "ok");
+        out.add("message", new JsonPrimitive("ok"));
         return out;
     }
 

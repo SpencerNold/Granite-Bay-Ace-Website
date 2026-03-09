@@ -115,3 +115,22 @@ async function saveNewAccount() {
 
 document.getElementById('btnSaveAll').addEventListener('click', saveAllChanges);
 document.addEventListener('DOMContentLoaded', loadTable);
+
+// Button functionality
+document.addEventListener('DOMContentLoaded', () => {
+  loadTable();
+
+  safeOnClick('btnRefreshTable', loadTable);
+  safeOnClick('btnCancelTable', loadTable);
+  safeOnClick('btnSaveTable', loadTable);
+  safeOnClick('createBtn', createManagerAccount);
+
+  safeOnClick('logoutBtn', () => {
+    localStorage.removeItem('sessionKey');
+    window.location.href = '/login.html';
+  });
+
+  safeOnClick('recoverPassBtn', () => {
+    window.location.href = '/recovery';
+  });
+});
