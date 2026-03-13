@@ -24,15 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert(data.message || "Invalid username or password");
                 return;
             }
-
-            localStorage.setItem("sessionKey", data.key);
-            window.location.href = "/admin";
-
             //for navbar
             localStorage.setItem("role", username === "admin" ? "admin" : "user");
-
             window.location.href = "/admin";
-
         } catch (error) {
             console.error("Error sending login request:", error);
             alert("An error occurred. Please try again later.");
