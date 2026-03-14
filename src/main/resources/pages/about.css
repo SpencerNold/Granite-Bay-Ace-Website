@@ -23,7 +23,6 @@
     font-size: 25px;
     font-weight: 700;
     padding-bottom: 30px;
-
 }
 
 .about-us-body {
@@ -34,7 +33,6 @@
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 50px;
-
 }
 
 .ace-red-title{
@@ -45,6 +43,7 @@
 .ace-red-subheading{
     color: #ff0000;
     font-weight:700;
+    text-decoration: underline;
 }
 
 .contact-us{
