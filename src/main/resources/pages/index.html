@@ -16,86 +16,106 @@
 <body>
     <div class="advertisement_banner"></div>
 
+    <!--Create thumbnail for each store as a button-->
     <section class="ad-gallery" aria-label="Ace ad gallery">
-        <div class="viewer" aria-label="Main ad preview">
+        <!-- Left-side gallery viewer -->
+        <div class="gallery-layout">
+            <div class="viewer" aria-label="Main ad preview">
+                <!-- Thumbnail rail -->
+                <div class="thumbs" aria-label="Ad thumbnails">
+                    <div class="thumb-rail" id="thumbRail" role="listbox" aria-label="Choose an ad page">
+                        <!-- Each button has data attributes for the main image and store info -->
+                        <button class="thumb active" data-src="/images/granite.jpg?v=2"
+                            data-alt="Ace Advertisement Page 01" data-store="Granite Bay Ace Hardware"
+                            data-addr="8665 Auburn Folsom Rd, Granite Bay, CA 95746"
+                            data-hour="Mon-Sat: 8am-7pm <br> Sun: 8am-6pm" data-phone="(916) 797-3993"
+                            data-email="granitebayace@yahoo.com" aria-selected="true"> <img
+                                src="/images/granite.jpg?v=2" alt="Page 01 thumbnail" />
+                            <span>01</span>
+                        </button>
 
-            <!-- Vertical thumbnails (LEFT) -->
-            <div class="thumbs" aria-label="Ad thumbnails">
-                <div class="thumb-rail" id="thumbRail" role="listbox" aria-label="Choose an ad page">
-                    <button class="thumb active" data-src="/images/page01.png?v=2" data-alt="Ace Advertisement Page 01"
-                        aria-selected="true">
-                        <img src="/images/page01.png?v=2" alt="Page 01 thumbnail" />
-                        <span>01</span>
-                    </button>
+                        <button class="thumb" data-src="/images/pine.jpg" data-alt="Ace Advertisement Page 02"
+                            data-store="Lake of the Pines Ace Hardware"
+                            data-addr="10868 Combie Rd, Auburn, CA 95602"
+                            data-hour="Mon-Sat: 8am-7pm <br> Sun: 8am-6pm" data-phone="(530) 268-3484"
+                            data-email="granitebayace@yahoo.com" aria-selected="false"> <img src="/images/pine.jpg"
+                                alt="Page 02 thumbnail" />
+                            <span>02</span>
+                        </button>
 
-                    <button class="thumb" data-src="/images/page02.png" data-alt="Ace Advertisement Page 02"
-                        aria-selected="false">
-                        <img src="/images/page02.png" alt="Page 02 thumbnail" />
-                        <span>02</span>
-                    </button>
+                        <button class="thumb" data-src="/images/capitol.jpg" data-alt="Ace Advertisement Page 03"
+                            data-store="Capitol Ace Hardware" data-addr="1815 I St, Sacramento, CA 95811"
+                            data-hour="Mon-Sat: 8am-6pm <br> Sun: 9am-5pm" data-phone="(916) 446-5246"
+                            data-email="granitebayace@yahoo.com" aria-selected="false"> <img src="/images/capitol.jpg"
+                                alt="Page 03 thumbnail" />
+                            <span>03</span>
+                        </button>
 
-                    <button class="thumb" data-src="/images/page03.png" data-alt="Ace Advertisement Page 03"
-                        aria-selected="false">
-                        <img src="/images/page03.png" alt="Page 03 thumbnail" />
-                        <span>03</span>
-                    </button>
-
-                    <button class="thumb" data-src="/images/page04.png" data-alt="Ace Advertisement Page 04"
-                        aria-selected="false">
-                        <img src="/images/page04.png" alt="Page 04 thumbnail" />
-                        <span>04</span>
-                    </button>
-
-                    <button class="thumb" data-src="/images/page05.png" data-alt="Ace Advertisement Page 05"
-                        aria-selected="false">
-                        <img src="/images/page05.png" alt="Page 05 thumbnail" />
-                        <span>05</span>
-                    </button>
-
-                    <button class="thumb" data-src="/images/page06.png" data-alt="Ace Advertisement Page 06"
-                        aria-selected="false">
-                        <img src="/images/page06.png" alt="Page 06 thumbnail" />
-                        <span>06</span>
-                    </button>
-
-                    <button class="thumb" data-src="/images/page07.png" data-alt="Ace Advertisement Page 07"
-                        aria-selected="false">
-                        <img src="/images/page07.png" alt="Page 07 thumbnail" />
-                        <span>07</span>
-                    </button>
-
-                    <button class="thumb" data-src="/images/page08.png" data-alt="Ace Advertisement Page 08"
-                        aria-selected="false">
-                        <img src="/images/page08.png" alt="Page 08 thumbnail" />
-                        <span>08</span>
-                    </button>
+                        <button class="thumb" data-src="/images/east.jpg" data-alt="Ace Advertisement Page 04"
+                            data-store="East Sac Ace Hardware" data-addr="5030 Folsom Blvd, Sacramento, CA 95819"
+                            data-hour="Mon-Sat: 8am-7pm <br> Sun: 8am-6pm" data-phone="(916) 518-0606"
+                            data-email="granitebayace@yahoo.com" aria-selected="false"> <img src="/images/east.jpg"
+                                alt="Page 04 thumbnail" />
+                            <span>04</span>
+                        </button>
+                    </div>
                 </div>
+
+                <!-- Main image display -->
+                <figure class="main-frame" id="mainFrame">
+                    <img id="mainAd" src="/images/granite.jpg?v=2" alt="Ace Advertisement Page 01" />
+                </figure>
             </div>
 
-            <!-- Main preview -->
-            <figure class="main-frame" id="mainFrame">
-                <img id="mainAd" src="/images/page01.png?v=2" alt="Ace Advertisement Page 01" />
-            </figure>
+            <!-- Right-side info box (the white space) -->
+            <aside class="store-box" id="storeBox" aria-label="Store information">
+                <h2 id="storeName">Granite Bay Ace Hardware</h2>
+                <p id="storeAddr">
+                    8665 Auburn Folsom Rd, Granite Bay, CA 95746
+                </p>
+                <p id="storeHour">
+                    Mon-Sat: 8am-7pm
+                    <br>Sun: 8am-6pm
+                </p>
+                <p id="storePhone">
+                    (916) 797-3993
+                </p>
+                <p id="storeEmail">
+                    granitebayace@yahoo.com
+                </p>
+            </aside>
 
-            <!-- Nav buttons (RIGHT) -->
-            <div class="nav-col" aria-label="Page navigation">
-                <button class="nav prev" aria-label="Previous ad">‹</button>
-                <button class="nav next" aria-label="Next ad">›</button>
+            <div class="actions-sidebar">
+                <a href="/images/advertisements.pdf" class="deals-button" target="_blank" rel="noopener noreferrer">
+                    <div class="deals-bg" id="dealsBg"></div>
+
+                    <div class="deals-content">
+                        <span>Our <br>Monthly <br>Deals</span>
+                        <i class="fa-solid fa-location-arrow"></i>
+                    </div>
+                </a>
             </div>
 
         </div>
-
         <script>
             // ======================
             // Gallery logic
             // ======================
+
+            // Cache DOM elements
             const mainImg = document.getElementById("mainAd");
             const thumbs = Array.from(document.querySelectorAll(".thumb"));
             const rail = document.getElementById("thumbRail");
-            const prevBtn = document.querySelector(".nav.prev");
-            const nextBtn = document.querySelector(".nav.next");
+            const storeName = document.getElementById("storeName");
+            const storeAddr = document.getElementById("storeAddr");
+            const storeHour = document.getElementById("storeHour");
+            const storePhone = document.getElementById("storePhone");
+            const storeEmail = document.getElementById("storeEmail");
 
             let activeIndex = 0;
+
+            let autoTimer = null;
+            const AUTO_INTERVAL = 7000; // 7 seconds
 
             // Set active thumb + main image
             function setActive(index, { scrollIntoView = true } = {}) {
@@ -110,12 +130,37 @@
 
                 // Update main image
                 const active = thumbs[activeIndex];
-                mainImg.src = active.dataset.src;
-                mainImg.alt = active.dataset.alt;
+
+                // Start fade-out
+                mainImg.style.opacity = 0; 
+                storeName.style.opacity = 0;
+                storeAddr.style.opacity = 0;
+                storeHour.style.opacity = 0;
+                storePhone.style.opacity = 0;
+                storeEmail.style.opacity = 0;
+
+                // After fade-out, change image and fade back in
+                setTimeout(() => {
+                    mainImg.src = active.dataset.src;
+                    mainImg.alt = active.dataset.alt;
+                    mainImg.style.opacity = 1; // Fade back in
+
+                    // Update store info box
+                    storeName.textContent = active.dataset.store || "Store Name";
+                    storeAddr.textContent = active.dataset.addr || "Store description goes here.";
+                    storeHour.innerHTML = active.dataset.hour || "Hour goes here.";
+                    storePhone.textContent = active.dataset.phone || "Phone goes here.";
+                    storeEmail.textContent = active.dataset.email || "Email goes here.";
+                    storeName.style.opacity = 1;
+                    storeAddr.style.opacity = 1;
+                    storeHour.style.opacity = 1;
+                    storePhone.style.opacity = 1;
+                    storeEmail.style.opacity = 1;
+                }, 300); // Match CSS transition duration
 
                 if (scrollIntoView) {
                     // Works for vertical rail too
-                    active.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+                    active.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
                 }
             }
 
@@ -125,13 +170,29 @@
                 btn.addEventListener("click", () => setActive(i));
                 btn.addEventListener("focus", () => setActive(i));
             });
-
-            // Prev/Next buttons
-            prevBtn.addEventListener("click", () => setActive(activeIndex - 1));
-            nextBtn.addEventListener("click", () => setActive(activeIndex + 1));
-
             // Init
             setActive(0, { scrollIntoView: false });
+
+            // Helper functions for autoplay
+            function startAutoPlay() {
+                stopAutoPlay(); // Clear any existing timer
+                autoTimer = setInterval(() => {
+                    setActive(activeIndex + 1);
+                }, AUTO_INTERVAL);
+            }
+
+            function stopAutoPlay() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            // Start autoplay on page load
+            startAutoPlay();
+            const viewer = document.querySelector(".viewer");
+            viewer.addEventListener("mouseenter", stopAutoPlay);
+            viewer.addEventListener("mouseleave", startAutoPlay);
         </script>
     </section>
 </body>

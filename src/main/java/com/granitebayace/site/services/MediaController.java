@@ -49,6 +49,11 @@ public class MediaController {
         return Resource.Companion.get("images/page08.png");
     }
 
+    @Route.File(path = "/images/advertisements.pdf", contentType = Route.ContentType.PDF, cacheControl = "public, no-cache")
+    public InputStream advertisements() {
+        return Resource.Companion.get("images/advertisements.pdf");
+    }
+
     @Route.File(path = "/images/capitol.jpg", contentType = Route.ContentType.JPEG, cacheControl = "public, no-cache")
     public InputStream capitol() { return Resource.Companion.get("images/capitol.jpg"); }
 
