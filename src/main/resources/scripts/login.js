@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".login-form");
 
+    //forgot password button
+    const forgotBtn = document.getElementById("forgotPasswordBtn");
+    if(forgotBtn) {
+        forgotBtn.addEventListener("click", () => {
+            window.location.href = "/recover";
+        });
+    }
+
     //Checks if user presses login button
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -8,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //Gets username and password from login form
         const username = document.getElementById("username").value.trim();
         const password = document.getElementById("password").value.trim();
+
 
         try {
             // NOTE: Double check endpoint is accurate after it is written
@@ -24,6 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert(data.message || "Invalid username or password");
                 return;
             }
+
+            localStorage.setItem("sessionKey", data.key);
+
+
             //for navbar
             localStorage.setItem("role", username === "admin" ? "admin" : "user");
             window.location.href = "/admin";

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Recover Account</title>
+    <link rel="stylesheet" href="/login.css" />
+    <link rel="stylesheet" href="/recover.css" />
+    <style>
+        .recover-layout {
+            display: grid !important;
+            grid-template-columns: 420px 1fr !important;
+            gap: 60px !important;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .recover-subtitle {
+            text-align: center;
+            margin: 0 0 20px 0;
+            color: #374151;
+        }
+
+        .recover-left .login-box, .recover-left-box {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .accounts-header.twocol,
+        .accounts-row.twocol {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            align-items: center;
+        }
+
+    </style>
+</head>v
+<body>
+<script src="/import.js"></script>
+
+<main class="recover-page">
+    <section class="recover-layout">
+
+        <aside class="recover-left">
+            <div class="login-box recover-left-box">
+                <h1 class="login-title">Recover Password</h1>
+                <p class="recover-subtitle">To recover an account password, please login as Admin</p>
+
+                <form id="adminRecoverForm" class="login-form">
+                    <div class="form-group">
+                        <label for="adminUsername">Username</label>
+                        <input id="adminUsername" type="text" name="adminUsername" placeholder="Admin_Username" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input id="adminPassword" type="password" name="adminPassword" placeholder="Admin_Password" required />
+                    </div>
+
+                    <button type="submit" class="login-button">Login</button>
+                    <button type="button" id="backToLoginBtn" class="create-account-button">Back to Login</button>
+
+                    <p id="recoverMsg" class="recover-msg" aria-live="polite"></p>
+                </form>
+            </div>
+        </aside>
+
+        <section class="recover-right" aria-label="Accounts list">
+            <!-- hidden until admin logs in -->
+            <div class="login-box accounts-box hidden" id="accountsBox">
+                <div class="accounts-header twocol">
+                    <div>Username</div>
+                    <div>New Password</div>
+                </div>
+
+                <div id="accountsList" class="accounts-body" role="region" aria-live="polite">
+                </div>
+            </div>
+        </section>
+
+    </section>
+</main>
+
+<script src="/recover.js"></script>
+</body>
+</html>

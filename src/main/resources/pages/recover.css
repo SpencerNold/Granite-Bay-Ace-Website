@@ -1,0 +1,163 @@
+:root {
+    --panel-height: 520px; /* box height */
+    --left-col-width: 420px; /* box width */
+    --gap: 20px;
+}
+
+/* page padding */
+.recover-page {
+    padding: 100px 16px 140px;
+    background: #f5f5f5;
+}
+
+/* layout */
+.recover-layout {
+    margin-top: 40px;
+    margin-bottom: 120px;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: var(--left-col-width) 1fr;
+    gap: var(--gap);
+    align-items: start;
+}
+
+.recover-subtitle {
+    text-align: center;
+    margin: 0 0 20px 0;
+    color: #374151;
+}
+
+.recover-left-box {
+    height: var(--panel-height);
+    overflow: auto;
+}
+
+.recover-left-box .login-button {
+    margin-bottom: 16px;
+}
+
+.recover-left-box .create-account-button {
+    margin-top: 0;
+}
+
+.accounts-box {
+    height: var(--panel-height);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* two-column header */
+.accounts-header.twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 14px 18px;
+    font-weight: 700;
+    border-bottom: 1px solid #e5e7eb;
+    background: #fafafa;
+    color: #111827;
+}
+
+/* scrollable */
+.accounts-body {
+    flex: 1;
+    overflow: auto;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* two columns */
+.accounts-row.twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid #f0f0f0;
+    min-height: 48px;
+}
+
+/* style masked password cells */
+.masked-password {
+    letter-spacing: 4px;
+    color: #374151;
+    font-weight: 600;
+}
+
+.recover-left .login-box,
+.accounts-box {
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+}
+
+
+/* buttons */
+.accounts-row button {
+    padding: 8px 10px;
+    border-radius: 4px;
+    border: none;
+    background: #e82d34;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* disabled state */
+.accounts-row button[disabled] {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.accounts-box .accounts-header.twocol,
+.accounts-box .accounts-row.twocol {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+}
+
+@media (max-width: 880px) {
+    .recover-layout {
+        display: grid;
+        grid-template-columns: var(--left-col-width) 1fr;
+        gap: var(--gap);
+    }
+
+    :root {
+        --panel-height: auto;
+    }
+
+    .recover-left-box, .recover-right {
+        height: auto;
+    }
+}
+
+.pw-reset-cell {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.pw-input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.pw-btn {
+    padding: 10px 14px;
+    border-radius: 4px;
+    border: none;
+    background: #e82d34;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}

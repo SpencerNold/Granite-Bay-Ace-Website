@@ -32,4 +32,7 @@ public class ScriptController {
 
     @Route.File(path = "/manage-account.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
     public InputStream manageAccountJs() { return Resource.Companion.get("scripts/manage-account.js"); }
+
+    @Route.File(path = "/recover.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
+    public InputStream recoverJs() { return Resource.Companion.get("scripts/recover.js"); }
 }
