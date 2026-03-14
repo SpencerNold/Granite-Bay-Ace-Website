@@ -72,4 +72,43 @@ public class MediaController {
 
     @Route.File(path = "/images/outlook.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
     public InputStream outlook() { return Resource.Companion.get("images/outlook.png"); }
+
+    @Route.File(path = "/images/rewardsdownload.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream rewardsdownload() { return Resource.Companion.get("images/rewardsdownload.png"); }
+
+    @Route.File(path = "/images/milwaukee.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream milwaukee() { return Resource.Companion.get("images/milwaukee.png"); }
+
+    @Route.File(path = "/images/moore.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream moore() { return Resource.Companion.get("images/moore.png"); }
+
+    @Route.File(path = "/images/traeger.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream traeger() { return Resource.Companion.get("images/traeger.png"); }
+
+    @Route.File(path = "/images/weber.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream weber() { return Resource.Companion.get("images/weber.png"); }
+
+    @Route.File(path = "/images/yeti.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream yeti() { return Resource.Companion.get("images/yeti.png"); }
+
+    @Route.File(path = "/images/dewalt.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream dewalt() { return Resource.Companion.get("images/dewalt.png");}
+
+    @Route.File(path = "/images/egg.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream egg() { return Resource.Companion.get("images/egg.png"); }
+
+    @Route.File(path = "/images/toro.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream toro() { return Resource.Companion.get("images/toro.png"); }
+
+    @Route.File(path = "/images/scotts.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream scotts() { return Resource.Companion.get("images/scotts.png"); }
+
+    @Route.File(path = "/images/stihl.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream stihl() { return Resource.Companion.get("images/stihl.png"); }
+
+    @Route.File(path = "/images/ego.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream ego() { return Resource.Companion.get("images/ego.png"); }
+
+    @Route.File(path = "/images/craftsman.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
+    public InputStream craftsman() { return Resource.Companion.get("images/craftsman.png"); }
 }
