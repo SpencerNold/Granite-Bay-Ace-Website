@@ -2,8 +2,6 @@ package com.granitebayace.site.services;
 
 import com.google.gson.JsonObject;
 import com.granitebayace.site.DatabaseLayer;
-import com.granitebayace.site.SessionManager;
-import com.granitebayace.site.objects.UserData;
 import me.spencernold.kwaf.Http;
 import me.spencernold.kwaf.Resource;
 import me.spencernold.kwaf.Route;
@@ -14,10 +12,7 @@ import me.spencernold.kwaf.util.InputStreams;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service.Controller
 public class SecurePageController extends Implementation implements SecureService {

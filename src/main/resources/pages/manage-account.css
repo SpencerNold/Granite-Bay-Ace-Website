@@ -5,17 +5,17 @@ body {
 }
 
 .container {
-    margin: 0;
+    margin: 4em auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px;
+    max-width: 1400px;
+    padding: 0 20px;
 }
 
 .functions-container {
-    margin: 4em;
-    width: 70vw;
-    max-width: 1200px;
-    min-height: 20vh;
+    flex: 1;
     padding: 2em;
     background: white;
     border-radius: 8px;
@@ -26,10 +26,6 @@ body {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    border-bottom: 1px solid #E41E26;
-}
-.subtitle {
-    color: darkgray;
 }
 
 .table-container {
@@ -45,6 +41,7 @@ th {
     width: 25%;
     text-align: left;
     padding: 12px;
+    border-top: 1px solid #E41E26;
     border-bottom: 1px solid #E41E26;
     color: #64748b;
 }
@@ -59,35 +56,99 @@ button {
     border-radius: 4px;
     border: none;
     font-weight: 600;
+    transition: all 0.3s ease;
 }
-#createBtn {
-    background: #2ecc71;
+button:hover {
+    filter: brightness(0.9);
+}
+
+.header-actions { padding-bottom: 1em; }
+#addAccountBtn {
+    background: #E41E26;
     color: white;
 }
-.btn-delete {
-    background: #fee2e2;
-    color: white;
-    font-size: 0.8rem;
+
+.account-form {
+    background: #f1f5f9;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid #E41E26;
 }
-.btn-delete:hover {
-    background: lightgrey;
+
+.form-row {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+.form-row input, .form-row select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.footer-actions {
+    margin-top: 2rem;
+
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.main-buttons {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
     color: white;
+}
+
+.nav-links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 250px;
+}
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25em;
+    width: 100%;
+}
+.nav-links button {
+    width: 200px;
+    padding: 0.5em;
+}
+.nav-links #manageDealsBtn {
+    padding: 1.5em;
+    background-color: #E41E26;
+    color: white;
+}
+
+.main-buttons #btnRefresh { background-color: #E41E26;    color: white; }
+.nav-links #recoverPassBtn, .main-buttons #btnCancelTable { background-color: darkgray;     color: white;}
+.nav-links #logoutBtn { background-color: black;     color: white;}
+.main-buttons #btnSaveTable { background-color: #E41E26;    color: white;}
+
+.btn-save {
+    background: #E41E26;
+    color: white;
+}
+.btn-cancel {
+    background: darkgray;
+    color: white;
+}
+
+.select {
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid lightgrey;
 }
 
 .hidden { display: none !important; }
 
-.badge {
-    background: #e2e8f0;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-}
 
-.action-link {
-    color: #2563eb;
-    text-decoration: none;
-    font-weight: bold;
-}
-.action-link:hover {
-    text-decoration: underline;
-}

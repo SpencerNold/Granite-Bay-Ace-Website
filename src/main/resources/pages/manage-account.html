@@ -5,13 +5,31 @@
     <title>Manage Account</title>
     <link rel="stylesheet" href="manage-account.css">
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
+
 </head>
 <body>
     <div class="container">
         <div class="functions-container">
             <div class="header">
                 <h1>Account Management</h1>
-                <p class="subtitle">View users and manage roles</p>
+
+                <div class="header-actions">
+                    <button id="addAccountBtn" onclick="toggleAddForm()">Add Account</button>
+                </div>
+            </div>
+
+            <div id="addAccountForm" class="account-form hidden">
+                <div class="form-row">
+                    <input type="text" id="newUsername" placeholder="Username">
+                    <input type="text" id="newPassword" placeholder="Password">
+                    <select id="newRole">
+                        <option value="1">Manager</option>
+                        <option value="0">Admin</option>
+                    </select>
+                    <button class="btn-save" onclick="saveNewAccount()">Save</button>
+                    <button class="btn-cancel" onclick="toggleAddForm()">Cancel</button>
+                </div>
             </div>
 
             <div class="table-container">
@@ -19,15 +37,35 @@
                     <thead>
                     <tr>
                         <th>Username</th>
-                        <th>Role</th>
                         <th>Delete User</th>
-                        <th>Actions</th>
+                        <th>Role</th>
                     </tr>
                     </thead>
                     <tbody id="userTableBody">
 
                     </tbody>
                 </table>
+            </div>
+
+            <div class="footer-actions">
+                <div class="main-buttons">
+                    <button id="btnRefresh" onclick="loadTable()">
+                        <i class="fa-solid fa-rotate-right"></i> Refresh Table
+                    </button>
+                    <div class="right-group">
+                        <button id="btnCancelTable" class="btn-cancel-table" onclick="loadTable()">Cancel</button>
+                        <button id="btnSaveTable" class="btn-save-table">Save</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="nav-links-container">
+            <div class="nav-links">
+                    <button id="manageDealsBtn">Manage Monthly Deals</button>
+                    <button id="recoverPassBtn">Recover Password</button>
+                    <button id="logoutBtn">Logout</button>
             </div>
         </div>
     </div>
