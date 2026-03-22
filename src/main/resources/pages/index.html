@@ -16,11 +16,18 @@
 <body>
     <div class="advertisement_banner"></div>
 
-    <!--Create thumbnail for each store as a button-->
+    <!--Create a thumbnail for each store as a button-->
     <section class="ad-gallery" aria-label="Ace ad gallery">
+
         <!-- Left-side gallery viewer -->
         <div class="gallery-layout">
             <div class="viewer" aria-label="Main ad preview">
+
+                <!-- Main image display -->
+                <figure class="main-frame" id="mainFrame">
+                    <img id="mainAd" src="/images/granite.jpg?v=2" alt="Ace Advertisement Page 01" />
+                </figure>
+
                 <!-- Thumbnail rail -->
                 <div class="thumbs" aria-label="Ad thumbnails">
                     <div class="thumb-rail" id="thumbRail" role="listbox" aria-label="Choose an ad page">
@@ -60,11 +67,6 @@
                         </button>
                     </div>
                 </div>
-
-                <!-- Main image display -->
-                <figure class="main-frame" id="mainFrame">
-                    <img id="mainAd" src="/images/granite.jpg?v=2" alt="Ace Advertisement Page 01" />
-                </figure>
             </div>
 
             <!-- Right-side info box (the white space) -->
