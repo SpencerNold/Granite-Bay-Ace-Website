@@ -232,3 +232,10 @@ footer a {
     transform: translateY(-5px);
     background-color: #ffffff;
 }
+
+.statements:hover {
+    transform: translateY(-5px);
+    color: red;
+    background-color: white;
+    border-radius: 5px;
+}
