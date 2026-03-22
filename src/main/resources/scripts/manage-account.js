@@ -46,6 +46,9 @@ async function confirmDelete(username, checkbox) {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ username: username })
+        });
+    }
+}
 // Saves changes in table
 async function saveAllChanges() {
     const rows = document.querySelectorAll('#userTableBody tr');
@@ -108,24 +111,19 @@ async function saveNewAccount() {
     }
 }
 
-document.getElementById('btnSaveAll').addEventListener('click', saveAllChanges);
+document.getElementById('btnSaveTable')?.addEventListener('click', saveAllChanges);
 document.addEventListener('DOMContentLoaded', loadTable);
 
 // Button functionality
 document.addEventListener('DOMContentLoaded', () => {
   loadTable();
 
-  safeOnClick('btnRefreshTable', loadTable);
-  safeOnClick('btnCancelTable', loadTable);
-  safeOnClick('btnSaveTable', loadTable);
-  safeOnClick('createBtn', createManagerAccount);
-
-  safeOnClick('logoutBtn', () => {
+  document.getElementById('logoutBtn')?.addEventListener('click', () => {
     localStorage.removeItem('sessionKey');
     window.location.href = '/login.html';
   });
 
-  safeOnClick('recoverPassBtn', () => {
+  document.getElementById('recoverPassBtn')?.addEventListener('click', () => {
     window.location.href = '/recovery';
   });
 });

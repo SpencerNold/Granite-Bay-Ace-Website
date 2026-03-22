@@ -5,8 +5,7 @@
     <title>Manage Account</title>
     <link rel="stylesheet" href="manage-account.css">
     <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <div class="container">
@@ -35,15 +34,13 @@
             <div class="table-container">
                 <table>
                     <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Delete User</th>
-                        <th>Role</th>
-                    </tr>
+                        <tr>
+                            <th>Username</th>
+                            <th>Delete User</th>
+                            <th>Role</th>
+                        </tr>
                     </thead>
-                    <tbody id="userTableBody">
-
-                    </tbody>
+                    <tbody id="userTableBody"></tbody>
                 </table>
             </div>
 
@@ -57,20 +54,32 @@
                         <button id="btnSaveTable" class="btn-save-table">Save</button>
                     </div>
                 </div>
-
             </div>
         </div>
 
         <div class="nav-links-container">
             <div class="nav-links">
-                    <button id="manageDealsBtn">Manage Monthly Deals</button>
-                    <button id="recoverPassBtn">Recover Password</button>
-                    <button id="logoutBtn">Logout</button>
+                <button id="manageDealsBtn">Manage Monthly Deals</button>
+                <button id="recoverPassBtn">Recover Password</button>
+                <button id="logoutBtn">Logout</button>
             </div>
         </div>
     </div>
-    <script src="manage-account.js"></script>
 
+    <div id="dealsModal" class="deals-modal is-hidden">
+        <div class="deals-modal-content">
+            <h2>Manage Monthly Deals</h2>
+            <input type="file" id="dealPdf" accept=".pdf,application/pdf">
+
+            <div class="modal-actions">
+                <button id="saveDealsModal">Upload</button>
+                <button id="closeDealsModal">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/manage-account.js"></script>
     <script src="/admin.js"></script>
+    <script src="/manage-deals.js"></script>
 </body>
 </html>
