@@ -40,12 +40,6 @@ async function loadTable() {
     }
 }
 
-async function confirmDelete(username, checkbox) {
-    if (confirm(`Are you sure you want to delete ${username}?`)) {
-        const res = await fetch('/api/accounts/delete', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ username: username })
 // Saves changes in table
 async function saveAllChanges() {
     const rows = document.querySelectorAll('#userTableBody tr');
@@ -108,8 +102,8 @@ async function saveNewAccount() {
     }
 }
 
-document.getElementById('btnSaveAll').addEventListener('click', saveAllChanges);
-document.addEventListener('DOMContentLoaded', loadTable);
+//document.getElementById('btnSaveAll').addEventListener('click', saveAllChanges);
+document.getElementById('btnSaveTable').addEventListener('click', saveAllChanges);
 
 // Button functionality
 document.addEventListener('DOMContentLoaded', () => {
@@ -118,7 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
   safeOnClick('btnRefreshTable', loadTable);
   safeOnClick('btnCancelTable', loadTable);
   safeOnClick('btnSaveTable', loadTable);
-  safeOnClick('createBtn', createManagerAccount);
+  safeOnClick('btn-save', saveNewAccount());
+  //safeOnClick('createBtn', createManagerAccount);
 
   safeOnClick('logoutBtn', () => {
     localStorage.removeItem('sessionKey');
