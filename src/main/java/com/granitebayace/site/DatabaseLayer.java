@@ -191,6 +191,24 @@ public class DatabaseLayer extends SQLiteDatabase {
         return null;
     }
 
+    public Integer getUserRoleId(String username) {
+        String query = "SELECT role_id FROM user_data WHERE username = ?";
+
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setString(1, username);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    return result.getInt("role_id");
+                }
+            }
+        } catch (SQLException e) {
+            error(e);
+        }
+
+        return null;
+    }
+
     public boolean containsUserData(String username) {
         String query = "SELECT 1 FROM user_data WHERE username = ? LIMIT 1";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
