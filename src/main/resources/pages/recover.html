@@ -35,7 +35,7 @@
         }
 
     </style>
-</head>v
+</head>
 <body>
 <script src="/import.js"></script>
 
@@ -50,16 +50,18 @@
                 <form id="adminRecoverForm" class="login-form">
                     <div class="form-group">
                         <label for="adminUsername">Username</label>
-                        <input id="adminUsername" type="text" name="adminUsername" placeholder="Admin_Username" required />
+                        <input id="adminUsername" type="text" name="adminUsername" placeholder="Username" required />
                     </div>
 
                     <div class="form-group">
                         <label for="adminPassword">Password</label>
-                        <input id="adminPassword" type="password" name="adminPassword" placeholder="Admin_Password" required />
+                        <input id="adminPassword" type="password" name="adminPassword" placeholder="Password" required />
                     </div>
 
-                    <button type="submit" class="login-button">Login</button>
-                    <button type="button" id="backToLoginBtn" class="create-account-button">Back to Login</button>
+                    <div class="recover-button-group">
+                        <button type="submit" class="login-button">Login</button>
+                        <button type="button" id="backToLoginBtn" class="forgot-password-button">Back to Login</button>
+                    </div>
 
                     <p id="recoverMsg" class="recover-msg" aria-live="polite"></p>
                 </form>
