@@ -18,10 +18,10 @@
 
 /* Outer gallery container */
 .ad-gallery{
-  padding: 20px 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -31,17 +31,16 @@
    Row 2: thumbs (bottom)
    Left-aligned, shrink-wrap to content
 ========================= */
-.viewer{
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto auto;
-  gap: 6px;
+.viewer {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    justify-content: start;
+    justify-items: start;
 
-  justify-content: start;
-  justify-items: start;
-
-  width: fit-content;
-  max-width: 100%;
+    width: 100%;
+    max-width: 100%;
+    gap: 6px;
 }
 
 /* Place items */
@@ -51,20 +50,17 @@
 /* =========================
    Main preview frame
 ========================= */
-.main-frame{
-  margin: 0;
-  background: #fff;
-  border: 1px solid rgba(16,17,20,.12);
-  border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(10,14,24,.14);
+.main-frame {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
 
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  /* big image width = 4 thumbs width */
-  width: min(var(--gallery-w), 92vw);
-  max-width: 100%;
+    margin: 0;
+    background: #fff;
+    border: 1px solid rgba(16,17,20,.12);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(10,14,24,.14);
 }
 
 /* Main image */
@@ -81,13 +77,11 @@
    Thumbnails: horizontal rail (bottom)
    Rail matches 4 thumbs width
 ========================= */
-.thumbs{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  width: min(var(--gallery-w), 92vw);
-  max-width: 100%;
+.thumbs {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
 }
 
 /* Hide old scroll buttons */
@@ -184,16 +178,14 @@
    Store info box (right side)
     Fixed width, full height of gallery
 ========================= */
-.gallery-layout{
-  display: grid;
-  grid-template-columns: auto 420px 420px; /* gallery width + fixed info box + fixed ad box*/
-  gap: 40px;
+.gallery-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 420px 420px;
+    gap: 40px;
 
-  align-items: stretch;
-
-  width: fit-content;      
-  max-width: 100%;
-  margin: 0 auto;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 /* Store info box */
@@ -203,7 +195,7 @@
   max-width: 420px;
 
   /*height based on screen size, but fills the gallery height on larger screens */
-  height: min(88vh, 100%);
+  height: min(88vh, 97%);
   align-self: stretch;   /* make sure it stretches */
 
   background: #fff;
@@ -262,6 +254,13 @@
     max-width: 420px;
     height: 100%;
     padding: 0 3em;
+    gap: 10%;
+}
+
+.viewer,
+.store-box,
+.actions-sidebar {
+    min-width: 0;
 }
 
 .deals-button {
@@ -293,7 +292,7 @@
 .deals-content {
     position: relative;
     z-index: 2;
-    height: 100%;
+    height: 75%;
     padding: 30px;
     display: flex;
     justify-content: center;
@@ -308,14 +307,48 @@
     padding-right: 1em;
 }
 .deals-content i { font-size: 50px; opacity: 0.9; }
+
 .deals-button:hover {
     transform: translateY(-2px) scale(1.02);
     box-shadow: 0 15px 35px rgba(225, 27, 34, 0.4);
 }
-.deals-button:hover .deals-bg {
-    opacity: 0.5;
+
+.deals-button:hover .deals-bg { opacity: 0.5; }
+
+/*-------------------QR Code--------------------*/
+.QR-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: red;
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
 }
 
+.QR-content {
+    flex: 1;
+    font-size: 45px;
+    font-weight: 700;
+}
+
+.QR-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+
+    background-color: black;
+    padding: 7px;
+}
+
+.QR-image img {
+    width: 100px;
+    height: auto;
+    display: block;
+}
+/*---------------------------------------------*/
 
 /* =========================
    Responsive tweaks

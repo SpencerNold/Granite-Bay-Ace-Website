@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>About</title>
     <link rel="stylesheet" href="about.css">
 </head>
@@ -57,10 +58,30 @@
 
         <!--right-side of the page where images will be displayed-->
         <div class="right-half">
-            <img class="img" src = "../images/pine.jpg" alt = "Lake of the Pines">
-            <img class="img" src = "../images/capitol.jpg" alt = "Capitol">
-            <img class="img" src = "../images/granite.jpg" alt = "Granite Bay">
-            <img class="img" src = "../images/east.jpg" alt = "East Sac">
+
+            <a class="button1" href="https://www.acehardware.com" target="_blank">
+                Visit Our <br>Parent <br>Website<i class="fa-solid fa-location-arrow"></i>
+            </a>
+
+            <div class="button2">
+                <b>Contact-Us <button class = "E-Button" id="openModal">greg@granitebayace.com</button></b>
+            </div>
+
+            <div class="social-icons">
+                <a href="https://www.facebook.com/acehardware" target = "_blank" rel = "noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/acehardware/" target = "_blank" rel = "noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://twitter.com/AceHardware" target = "_blank" rel = "noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.pinterest.com/acehardware/" target = "_blank" rel = "noopener noreferrer"><i class="fa-brands fa-pinterest-p"></i></a>
+                <a href="https://www.youtube.com/user/acehardware" target = "_blank" rel = "noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <b><a class = "Gmail" href="https://mail.google.com/mail" target = "_blank" ><img src = "../images/gmail.png" alt = "Gmail"></a></b>
+                    <b><a class = "Outlook" href="https://outlook.office.com/mail" target = "_blank"><img src = "../images/outlook.png" alt = "Outlook"></a></b>
+                    <b><a class = "Yahoo" href="https://mail.yahoo.com/mail" target = "_blank"><img src = "../images/yahoo.png" alt = "Yahoo"></a></b>
+                </div>
+            </div>
         </div>
     </div>
 
