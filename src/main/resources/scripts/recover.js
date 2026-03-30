@@ -55,16 +55,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const input = row.querySelector(".pw-input");
             const btn = row.querySelector(".pw-btn");
 
+            // Disable button initially
+            btn.disabled = true;
+
+            // Enable only when user types something
+            input.addEventListener("input", () => {
+                btn.disabled = input.value.trim().length === 0;
+            });
+
             btn.addEventListener("click", async () => {
                 const newPass = input.value.trim();
 
                 if (newPass.length < 6) {
                     msg.textContent = "Password must be at least 6 characters.";
+                    msg.style.color = "red";
                     return;
                 }
 
                 // DEMO ONLY: replace with real API call later
                 msg.textContent = `Password updated for ${acct.username} (demo).`;
+                msg.style.color = "green";
                 input.value = "";
             });
 

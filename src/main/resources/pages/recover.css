@@ -32,12 +32,11 @@
     overflow: auto;
 }
 
-.recover-left-box .login-button {
-    margin-bottom: 16px;
-}
-
-.recover-left-box .create-account-button {
-    margin-top: 0;
+/* control spacing between ALL elements in the form */
+.recover-left-box .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .accounts-box {
@@ -52,12 +51,9 @@
 .accounts-header.twocol {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    column-gap: 120px;
     align-items: center;
     padding: 14px 18px;
-    font-weight: 700;
-    border-bottom: 1px solid #e5e7eb;
-    background: #fafafa;
-    color: #111827;
 }
 
 /* scrollable */
@@ -67,7 +63,7 @@
     padding: 10px 12px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 15px;
 }
 
 /* two columns */
@@ -75,9 +71,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    padding: 12px 18px;
+    padding: 18px 22px;
     border-bottom: 1px solid #f0f0f0;
-    min-height: 48px;
+    min-height: 56px;
 }
 
 /* style masked password cells */
@@ -114,6 +110,7 @@
 .accounts-box .accounts-row.twocol {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
+    column-gap: 120px;
 }
 
 @media (max-width: 880px) {
@@ -160,4 +157,17 @@
 
 .hidden {
     display: none !important;
+}
+
+.recover-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.recover-button-group .login-button,
+.recover-button-group .create-account-button {
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
 }

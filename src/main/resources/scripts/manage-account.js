@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = '/login.html';
   });
 
-  safeOnClick('recoverPassBtn', () => {
+  document.getElementById('recoverPassBtn')?.addEventListener('click', () => {
     window.location.href = '/recovery';
   });
 });

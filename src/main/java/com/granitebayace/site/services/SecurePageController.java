@@ -1,6 +1,7 @@
 package com.granitebayace.site.services;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.granitebayace.site.DatabaseLayer;
 import me.spencernold.kwaf.Http;
 import me.spencernold.kwaf.Resource;
@@ -12,6 +13,10 @@ import me.spencernold.kwaf.util.InputStreams;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Base64;
 import java.util.Map;
 
 @Service.Controller
@@ -55,6 +60,30 @@ public class SecurePageController extends Implementation implements SecureServic
         int level = getRolePermissionLevel(getDatabase(), request.getHeaders());
         object.addProperty("level", level);
         return object;
+    }
+
+    @Route(method = Http.Method.POST, path = "/api/admin/upload-advertisement", input = true, encoding = Route.Encoding.RAW)
+    public JsonObject uploadAdvertisement(HttpRequest request) {
+        JsonObject response = new JsonObject();
+
+        try {
+            String bodyText = new String(request.getBody(), StandardCharsets.UTF_8);
+            JsonObject requestJson = JsonParser.parseString(bodyText).getAsJsonObject();
+
+            String base64File = requestJson.get("fileData").getAsString();
+            byte[] pdfBytes = Base64.getDecoder().decode(base64File);
+
+            Path targetPath = Path.of("uploads/advertisements.pdf");
+            Files.createDirectories(Path.of("uploads"));
+            Files.write(targetPath, pdfBytes);
+
+            response.addProperty("message", "ok");
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.addProperty("message", "error");
+        }
+
+        return response;
     }
 
     private String redirect() {

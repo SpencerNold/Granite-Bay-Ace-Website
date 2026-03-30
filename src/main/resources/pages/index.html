@@ -5,22 +5,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Advertisement</title>
-
-    <link rel="stylesheet" href="/advertisement.css" />
+    <link rel="stylesheet" href="/advertisement.css"/>
 
     <!-- Load navbar/footer scripts AFTER DOM is parsed -->
     <script src="/import.js" defer></script>
-    <script src="/footer.js" defer></script>
 </head>
 
 <body>
     <div class="advertisement_banner"></div>
 
-    <!--Create thumbnail for each store as a button-->
+    <!--Create a thumbnail for each store as a button-->
     <section class="ad-gallery" aria-label="Ace ad gallery">
+
         <!-- Left-side gallery viewer -->
         <div class="gallery-layout">
             <div class="viewer" aria-label="Main ad preview">
+
+                <!-- Main image display -->
+                <figure class="main-frame" id="mainFrame">
+                    <img id="mainAd" src="/images/granite.jpg?v=2" alt="Ace Advertisement Page 01" />
+                </figure>
+
                 <!-- Thumbnail rail -->
                 <div class="thumbs" aria-label="Ad thumbnails">
                     <div class="thumb-rail" id="thumbRail" role="listbox" aria-label="Choose an ad page">
@@ -35,8 +40,7 @@
                         </button>
 
                         <button class="thumb" data-src="/images/pine.jpg" data-alt="Ace Advertisement Page 02"
-                            data-store="Lake of the Pines Ace Hardware"
-                            data-addr="10868 Combie Rd, Auburn, CA 95602"
+                            data-store="Lake of the Pines Ace Hardware" data-addr="10868 Combie Rd, Auburn, CA 95602"
                             data-hour="Mon-Sat: 8am-7pm <br> Sun: 8am-6pm" data-phone="(530) 268-3484"
                             data-email="granitebayace@yahoo.com" aria-selected="false"> <img src="/images/pine.jpg"
                                 alt="Page 02 thumbnail" />
@@ -60,11 +64,6 @@
                         </button>
                     </div>
                 </div>
-
-                <!-- Main image display -->
-                <figure class="main-frame" id="mainFrame">
-                    <img id="mainAd" src="/images/granite.jpg?v=2" alt="Ace Advertisement Page 01" />
-                </figure>
             </div>
 
             <!-- Right-side info box (the white space) -->
@@ -85,6 +84,7 @@
                 </p>
             </aside>
 
+            <!-- Right-side action sidebar -->
             <div class="actions-sidebar">
                 <a href="/images/advertisements.pdf" class="deals-button" target="_blank" rel="noopener noreferrer">
                     <div class="deals-bg" id="dealsBg"></div>
@@ -94,6 +94,15 @@
                         <i class="fa-solid fa-location-arrow"></i>
                     </div>
                 </a>
+
+                <div class="QR-container">
+                    <div class="QR-content">
+                        <span>Ace <br>Rewards</span>
+                    </div>
+                    <div class="QR-image">
+                        <img src="/images/rewardsdownload.png" alt="QR Code"/>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -132,7 +141,7 @@
                 const active = thumbs[activeIndex];
 
                 // Start fade-out
-                mainImg.style.opacity = 0; 
+                mainImg.style.opacity = 0;
                 storeName.style.opacity = 0;
                 storeAddr.style.opacity = 0;
                 storeHour.style.opacity = 0;
@@ -193,8 +202,21 @@
             const viewer = document.querySelector(".viewer");
             viewer.addEventListener("mouseenter", stopAutoPlay);
             viewer.addEventListener("mouseleave", startAutoPlay);
+
+            //force fresh download of the advertisement file
+            document.addEventListener("DOMContentLoaded", () => {
+                const link = document.querySelector(".deals-button");
+
+                if (!link) return;
+                // Override click to append timestamp for cache busting
+                link.addEventListener("click", (event) => {
+                    event.preventDefault();
+
+                    const freshUrl = "/uploads/advertisements.pdf?v=" + Date.now();
+                    window.open(freshUrl, "_blank");
+                });
+            });
         </script>
     </section>
 </body>
-
 </html>
