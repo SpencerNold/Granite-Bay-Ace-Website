@@ -4,7 +4,10 @@ import me.spencernold.kwaf.Resource;
 import me.spencernold.kwaf.Route;
 import me.spencernold.kwaf.services.Service;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 @Service.Controller
 public class MediaController {
@@ -49,9 +52,14 @@ public class MediaController {
         return Resource.Companion.get("images/page08.png");
     }
 
-    @Route.File(path = "/images/advertisements.pdf", contentType = Route.ContentType.PDF, cacheControl = "public, no-cache")
+    @Route.File(path = "/uploads/advertisements.pdf", contentType = Route.ContentType.PDF, cacheControl = "public, no-cache")
     public InputStream advertisements() {
-        return Resource.Companion.get("images/advertisements.pdf");
+        try {
+            return Files.newInputStream(Path.of("uploads/advertisements.pdf"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Route.File(path = "/images/capitol.jpg", contentType = Route.ContentType.JPEG, cacheControl = "public, no-cache")
