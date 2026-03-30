@@ -111,9 +111,9 @@ public class AccountManagementController extends Implementation implements Secur
         return out;
     }
 
-    // Delete an account only if it currently has manager role (admin only)
+    // Delete an account (admin only)
     @Route(method = Http.Method.POST, path = "/delete", input = true, encoding = Route.Encoding.JSON)
-    public JsonObject deleteManager(HttpRequest request) {
+    public JsonObject deleteAccount(HttpRequest request) {
         JsonObject out = new JsonObject();
 
         JsonObject input = getFromRequest(request, out);
@@ -135,9 +135,14 @@ public class AccountManagementController extends Implementation implements Secur
             return out;
         }
 
-        // Only delete manager accounts
-        if (target.role() == null || target.role().id() != 1) {
-            out.add("message", new JsonPrimitive("target is not a manager"));
+        // Admin can delete any account but themselves
+        if (target.role() == null) {
+            out.add("message", new JsonPrimitive("invalid target"));
+            return out;
+        }
+
+        if (caller.username().equals(username)) {
+            out.add("message", new JsonPrimitive("cannot delete yourself"));
             return out;
         }
 
