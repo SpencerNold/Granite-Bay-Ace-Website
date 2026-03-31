@@ -46,9 +46,6 @@ public class RootController extends Implementation {
         return Resource.Companion.get("pages/statements.html");
     }
 
-    @Route.File(path = "/recover", contentType = Route.ContentType.HTML, cacheControl = "no-store")
-    public InputStream recover() { return Resource.Companion.get("pages/recover.html"); }
-
     private DatabaseLayer getDatabase() {
         return getService(DatabaseLayer.class);
     }
