@@ -86,6 +86,7 @@
     margin-top: 30px;
     padding: 10px;
     text-decoration: none;
+    width: 85%;
 }
 .button1:hover {
     background-color: #b80909;
@@ -102,6 +103,7 @@
     cursor: pointer;
     margin-top: 30px;
     padding: 10px;
+    width: 85%;
 }
 
 /* how the email button is shown */
