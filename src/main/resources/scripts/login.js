@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             //for navbar
             localStorage.setItem("role", username === "admin" ? "admin" : "user");
-            window.location.href = "/admin";
+            window.location.href = "/manage-account";
         } catch (error) {
             console.error("Error sending login request:", error);
             alert("An error occurred. Please try again later.");
