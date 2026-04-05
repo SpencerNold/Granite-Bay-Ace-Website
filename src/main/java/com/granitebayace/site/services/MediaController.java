@@ -124,4 +124,7 @@ public class MediaController {
 
     @Route.File(path = "/images/craftsman.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
     public InputStream craftsman() { return Resource.Companion.get("images/craftsman.png"); }
+
+    @Route.File(path = "/images/comingsoon.jpg", contentType = Route.ContentType.JPEG, cacheControl = "public, no-cache")
+    public InputStream comingsoon() { return Resource.Companion.get("images/comingsoon.jpg"); }
 }
