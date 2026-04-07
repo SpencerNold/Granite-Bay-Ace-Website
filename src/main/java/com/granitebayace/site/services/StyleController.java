@@ -53,4 +53,7 @@ public class StyleController {
     public InputStream manageAccountCss() {
         return Resource.Companion.get("pages/manage-account.css");
     }
+
+    @Route.File(path = "/recover.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream recoverCss() { return Resource.Companion.get("pages/recover.css"); }
 }
