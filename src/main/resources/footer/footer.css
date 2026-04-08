@@ -68,10 +68,10 @@ footer a {
     font-size: 25px;
 }
 .footer_center {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .footer_right {
@@ -85,7 +85,26 @@ footer a {
 }
 
 .footer_bottom {
-  border-top: 1px solid rgba(255,255,255,0.4);
-  padding-top: 10px;
-  font-size: 0.9em;
+    border-top: 1px solid rgba(255,255,255,0.4);
+    padding-top: 10px;
+    font-size: 0.9em;
+}
+
+.statements {
+    display: inline;
+
+    border-radius: 5px;
+    background: none;
+    border: none;
+
+    color: white;
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+.statements:hover {
+    background-color: white;
+    color: red;
+    transform: translateY(-3px);
+    transition: transform 0.2s ease, color 0.2s ease;
 }
