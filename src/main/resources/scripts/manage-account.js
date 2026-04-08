@@ -73,9 +73,16 @@ async function saveAllChanges() {
     loadTable();
 }
 
-// Add account toggle form
-function toggleAddForm() {
-    document.getElementById('addAccountForm').classList.toggle('hidden');
+// toggles "add account" form
+function toggleAddForm() { document.getElementById('addAccountForm').classList.toggle('hidden'); }
+
+// redirects to recover page when "recover password" button is pressed
+function redirectRecoverPage() { window.location.href = '/recover'; }
+
+// successful logout when "logout" button is pressed
+function logout() {
+    localStorage.removeItem("sessionKey")
+    window.location.href = "/"
 }
 
 // Save account in add account form
@@ -99,7 +106,36 @@ async function saveNewAccount() {
     if ((await res.json()).message === "ok") {
         toggleAddForm();
         loadTable()
+        document.getElementById("newUsername").value = "";
+        document.getElementById("newPassword").value = "";
     }
+}
+
+// removes session cookie to successfully logout
+async function logout() {
+    fetch('/api/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+    })
+    .then(response => {
+        if (!response.ok) {
+            return Promise.reject('Logout failed: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Logout successful:', data);
+        localStorage.removeItem('session');
+        sessionStorage.removeItem('session');
+        localStorage.removeItem('isAdmin');
+        window.location.href = '/index.html';
+    })
+    .catch(error => {
+        console.error('Error logging out:', error);
+    });
 }
 
 //document.getElementById('btnSaveAll').addEventListener('click', saveAllChanges);
@@ -111,16 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   safeOnClick('btnRefreshTable', loadTable);
   safeOnClick('btnCancelTable', loadTable);
-  safeOnClick('btnSaveTable', loadTable);
-  safeOnClick('btn-save', saveNewAccount());
-  //safeOnClick('createBtn', createManagerAccount);
+  safeOnClick('btn-save', saveNewAccount);
+  safeOnClick('logoutBtn', logout);
 
-  safeOnClick('logoutBtn', () => {
-    localStorage.removeItem('sessionKey');
-    window.location.href = '/login.html';
-  });
-
-  document.getElementById('recoverPassBtn')?.addEventListener('click', () => {
-    window.location.href = '/recovery';
-  });
 });

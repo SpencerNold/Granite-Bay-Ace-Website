@@ -19,36 +19,44 @@ async function importAll() {
     })
 }
 
-//check if admin is logged in to display admin navbar
+//check if admin/manager is logged in to display admin navbar
 async function chooseNavbarName() {
-    const res = await fetch("/get-role-value", {
-        method: "GET"
-    })
-    if (!res.ok) {
-        return "navbar"
+    try {
+        const res = await fetch("/get-role-value", {
+            method: "GET",
+            credentials: "include",
+        });
+        if (!res.ok) {
+            return "navbar";
+        }
+        const data = await res.json();
+        const level = data.level;
+        if (level === 0 || level === 1) {   // checks for Admin or Manager role. Displays AdminNavbar if role is found.
+            localStorage.setItem('isAdmin', 'true');
+            return "AdminNavbar";
+        }
+    } catch (e) {
+        console.error("Error fetching role", e);
     }
-    const data = await res.json()
-    const level = data.level
-    if (level == "0") {
-        return "AdminNavbar"
-    }
-    return "navbar"
+
+    localStorage.setItem('isAdmin', 'false');
+    return "navbar";
 }
 
 function importItem(name, func) {
     return new Promise((resolve) => {
     if (!document.querySelector(`link[href="/${name}.css"]`)) {
-        const link = document.createElement("link")
-        link.rel = "stylesheet"
-        link.href = `/${name}.css`
-        document.head.appendChild(link)
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = `/${name}.css`;
+        document.head.appendChild(link);
     }
     fetch(`/${name}.html`)
         .then(response => response.text())
         .then(html => {
-            const element = document.createElement("div")
-            element.innerHTML = html
-            func(element)
+            const element = document.createElement("div");
+            element.innerHTML = html;
+            func(element);
             resolve();
         });
     });

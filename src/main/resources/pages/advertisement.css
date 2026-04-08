@@ -211,6 +211,8 @@
   display: flex;         /* lets you distribute content */
   flex-direction: column;
   gap: 10px;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 /* Store name */
