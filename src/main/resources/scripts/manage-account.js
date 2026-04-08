@@ -149,5 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
   safeOnClick('btnCancelTable', loadTable);
   safeOnClick('btn-save', saveNewAccount);
   safeOnClick('logoutBtn', logout);
+  safeOnClick('recoverPassBtn', redirectRecoverPage);
 
 });

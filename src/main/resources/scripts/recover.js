@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const backBtn = document.getElementById("backToLoginBtn");
     const msg = document.getElementById("recoverMsg");
     const list = document.getElementById("accountsList");
     const accountsBox = document.getElementById("accountsBox");
@@ -8,9 +7,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadAccounts();
 
 
-    backBtn.addEventListener("click", () => {
-        window.location.href = "/login";
-    });
 
 
     async function loadAccounts() {
@@ -97,13 +93,35 @@ document.addEventListener("DOMContentLoaded", async () => {
                     return;
                 }
 
-                // Demo for passwords. replace with real call to db/backend
-                msg.textContent = `Password updated for ${acct.username}.`;
-                msg.style.color = "green";
-                input.value = "";
-                input.type = "password";
-                toggleBtn.textContent = "Show";
-                btn.disabled = true;
+                // updating passwords functionality 
+                try {
+                    const response = await fetch("/api/recovery/reset", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        credentials: "include",
+                        body: JSON.stringify({
+                            username:acct.username,
+                            password: newPass
+                        })
+                    });
+                    const data = await response.json();
+
+                    if(data.status !== "ok") {
+                        msg.textContent= `Failed to update password for ${acct.username}.`;
+                        msg.style.color = "red";
+                        return;
+                    }
+
+                    msg.textContent = `Password updated for ${acct.username}.`;
+                    msg.style.color = "green";
+                    input.value = "";
+                    toggleBtn.textContent = "Show";
+                    btn.diabled = true;
+                } catch (error) {
+                    console.error("Error updating password:", error);
+                    msg.textcContent = "An error occurred while updating password.";
+                    msg.style.color = "red";
+                }
             });
 
             list.appendChild(row);

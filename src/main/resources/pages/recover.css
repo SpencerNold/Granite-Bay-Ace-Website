@@ -32,12 +32,6 @@
 }
 
 /* control spacing between ALL elements in the form */
-.recover-left-box .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
 .accounts-box {
     height: var(--panel-height);
     display: flex;
@@ -168,19 +162,3 @@
     cursor: pointer;
 }
 
-.hidden {
-    display: none !important;
-}
-
-.recover-button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.recover-button-group .login-button,
-.recover-button-group .forgot-password-button {
-    width: 100%;
-    box-sizing: border-box;
-    display: block;
-}
