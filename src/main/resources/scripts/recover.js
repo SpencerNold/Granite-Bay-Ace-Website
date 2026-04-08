@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const backBtn = document.getElementById("backToLoginBtn");
     const form = document.getElementById("adminRecoverForm");
     const msg = document.getElementById("recoverMsg");
@@ -13,27 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "/login";
     });
 
-    const demoAccounts = [
-        { username: "Username 1", status: "Ready" },
-        { username: "Username 2", status: "Ready" },
-        { username: "Username 3", status: "Ready" },
-    ];
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const u = document.getElementById("adminUsername").value.trim();
-        const p = document.getElementById("adminPassword").value.trim();
-
-        // DEMO ONLY: replace with real API call later
-        if (u !== "admin" || p !== "admin") {
-            msg.textContent = "Invalid admin credentials (demo). Try admin/admin.";
-            return;
-        }
-
-        msg.textContent = "Admin authenticated (demo).";
-        renderAccounts();
+    const response = await fetch('/api/accounts/list', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({})
     });
+    if (!response.ok) {
+        console.log(response.status)
+        return
+    }
+    let body = await response.json()
+    let accounts = body.users
+    console.log(JSON.stringify(accounts))
+
+
+    renderAccounts()
 
     function renderAccounts() {
         // show the box now that admin is authenticated
@@ -41,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         list.innerHTML = "";
 
-        demoAccounts.forEach((acct) => {
+        accounts.forEach((acct) => {
             const row = document.createElement("div");
             row.className = "accounts-row twocol";
 
@@ -72,10 +66,29 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                // DEMO ONLY: replace with real API call later
-                msg.textContent = `Password updated for ${acct.username} (demo).`;
-                msg.style.color = "green";
                 input.value = "";
+
+                let uname = acct,username
+                let pword = newPass
+                let result = await fetch("/api/recovery/reset", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        username: uname,
+                        password: pword
+                    })
+                })
+                if (!result.ok) {
+                    msg.textContent = "Failed to update password."
+                    msg.style.color = "red"
+                    return
+                }
+                let body = await result.json()
+                console.log(JSON.stringify(body))
+                msg.textContent = `Password updated for ${acct.username}.`
+                msg.style.color = "green"
             });
 
             list.appendChild(row);

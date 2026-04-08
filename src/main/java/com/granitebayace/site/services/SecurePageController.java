@@ -22,6 +22,14 @@ import java.util.Map;
 @Service.Controller
 public class SecurePageController extends Implementation implements SecureService {
 
+    @Route(method = Http.Method.GET, path = "/recover", encoding = Route.Encoding.RAW, contentType = Route.ContentType.HTML)
+    public String recover(HttpRequest request) {
+        Map<String, String> headers = request.getHeaders();
+        if (!isAdmin(getDatabase(), headers))
+            return redirect();
+        return buildPage("pages/recover.html");
+    }
+
     @Route(method = Http.Method.GET, path = "/admin", encoding = Route.Encoding.RAW, contentType = Route.ContentType.HTML)
     public String admin(HttpRequest request) {
         Map<String, String> headers = request.getHeaders();

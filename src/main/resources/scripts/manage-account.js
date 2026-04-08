@@ -73,9 +73,16 @@ async function saveAllChanges() {
     loadTable();
 }
 
-// Add account toggle form
-function toggleAddForm() {
-    document.getElementById('addAccountForm').classList.toggle('hidden');
+// toggles "add account" form
+function toggleAddForm() { document.getElementById('addAccountForm').classList.toggle('hidden'); }
+
+// redirects to recover page when "recover password" button is pressed
+function redirectRecoverPage() { window.location.href = '/recover'; }
+
+// successful logout when "logout" button is pressed
+function logout() {
+    localStorage.removeItem("sessionKey")
+    window.location.href = "/"
 }
 
 // Save account in add account form
@@ -99,6 +106,8 @@ async function saveNewAccount() {
     if ((await res.json()).message === "ok") {
         toggleAddForm();
         loadTable()
+        document.getElementById("newUsername").value = "";
+        document.getElementById("newPassword").value = "";
     }
 }
 
@@ -141,7 +150,4 @@ document.addEventListener('DOMContentLoaded', () => {
   safeOnClick('btn-save', saveNewAccount);
   safeOnClick('logoutBtn', logout);
 
-  document.getElementById('recoverPassBtn')?.addEventListener('click', () => {
-    window.location.href = '/recovery';
-  });
 });
