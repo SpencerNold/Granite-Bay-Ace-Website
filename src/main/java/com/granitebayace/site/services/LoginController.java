@@ -8,6 +8,7 @@ import com.granitebayace.site.objects.Hashing;
 import me.spencernold.kwaf.Http;
 import me.spencernold.kwaf.Route;
 import me.spencernold.kwaf.http.HttpResponse;
+import me.spencernold.kwaf.http.HttpRequest;
 import me.spencernold.kwaf.services.Implementation;
 import me.spencernold.kwaf.services.Service;
 
@@ -66,6 +67,27 @@ public class LoginController extends Implementation {
         String cookie = String.format("session=%s;", result.session().id());
         headers.put("Set-Cookie", cookie + " HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=604800"); // 7 Days
         return new HttpResponse(200, headers, object.toString().getBytes(StandardCharsets.UTF_8));
+    }
+
+    // removes necessary cookies and session to logout
+    @Route(method = Http.Method.POST, path = "/logout", input = false)
+    public HttpResponse logout(HttpRequest request) {
+        Map<String, String> responseHeaders = new HashMap<>();
+        responseHeaders.put("Content-Type", "application/json");
+
+        String cookieHeader = request.getHeaders().get("Cookie");
+        System.out.println("Cookies: " + cookieHeader);
+        if(cookieHeader != null && cookieHeader.contains("session=")) {
+            String sessionId = cookieHeader.split("session=")[1].split(";")[0];
+            getDatabase().clearSession(sessionId);
+        }
+
+        responseHeaders.put("Set-Cookie", "session=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0");
+
+        JsonObject obj = new JsonObject();
+        obj.addProperty("message", "logged out");
+
+        return new HttpResponse(200, responseHeaders, obj.toString().getBytes(StandardCharsets.UTF_8));
     }
 
     //For reuseability

@@ -111,6 +111,33 @@ async function saveNewAccount() {
     }
 }
 
+// removes session cookie to successfully logout
+async function logout() {
+    fetch('/api/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+    })
+    .then(response => {
+        if (!response.ok) {
+            return Promise.reject('Logout failed: ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Logout successful:', data);
+        localStorage.removeItem('session');
+        sessionStorage.removeItem('session');
+        localStorage.removeItem('isAdmin');
+        window.location.href = '/index.html';
+    })
+    .catch(error => {
+        console.error('Error logging out:', error);
+    });
+}
+
 //document.getElementById('btnSaveAll').addEventListener('click', saveAllChanges);
 document.getElementById('btnSaveTable').addEventListener('click', saveAllChanges);
 
@@ -120,13 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   safeOnClick('btnRefreshTable', loadTable);
   safeOnClick('btnCancelTable', loadTable);
-  safeOnClick('btnSaveTable', loadTable);
-  safeOnClick('btn-save', saveNewAccount());
-  //safeOnClick('createBtn', createManagerAccount);
-
-  safeOnClick('logoutBtn', () => {
-    localStorage.removeItem('sessionKey');
-    window.location.href = '/login.html';
-  });
+  safeOnClick('btn-save', saveNewAccount);
+  safeOnClick('logoutBtn', logout);
 
 });

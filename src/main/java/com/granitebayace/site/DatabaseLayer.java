@@ -279,6 +279,24 @@ public class DatabaseLayer extends SQLiteDatabase {
         return false;
     }
 
+    public void clearSession(String sessionId) {
+        String query = "DELETE FROM sessions WHERE id = ?";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setString(1, sessionId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            error(e);
+        }
+
+        String query2 = "UPDATE user_data SET session_id = NULL WHERE session_id = ?";
+        try (PreparedStatement statement = getConnection().prepareStatement(query2)) {
+            statement.setString(1, sessionId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            error(e);
+        }
+    }
+
     private void enableForeignKeys() throws SQLException {
         String query = "PRAGMA foreign_keys = ON";
         Statement statement = getConnection().createStatement();
