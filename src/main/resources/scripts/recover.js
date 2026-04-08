@@ -1,49 +1,23 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const backBtn = document.getElementById("backToLoginBtn");
-    const form = document.getElementById("adminRecoverForm");
     const msg = document.getElementById("recoverMsg");
     const list = document.getElementById("accountsList");
     const accountsBox = document.getElementById("accountsBox");
 
 
-    if(accountsBox) {
-        accountsBox.classList.add("hidden");
-    }
+    loadAccounts();
+
+
     backBtn.addEventListener("click", () => {
         window.location.href = "/login";
     });
 
 
-    form.addEventListener("submit", async(e) => {
-        e.preventDefault();
-
+    async function loadAccounts() {
         msg.textContent = "";
         msg.style.color = "";
 
-        const u = document.getElementById("adminUsername").value.trim();
-        const p = document.getElementById("adminPassword").value.trim();
-
         try {
-            // do a real login using backend
-            const loginResponse = await fetch("/api/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify({ username: u, password: p })
-            });
-
-            const loginData = await loginResponse.json();
-
-            if (loginData.ok === false || loginData.key === "error") {
-                msg.textContent = loginData.message || "Invalid username or password.";
-                msg.style.color = "red";
-                return;
-            }
-
-            localStorage.setItem("sessionKey", loginData.key);
-            localStorage.setItem("role", u === "admin" ? "admin" : "user");
-
-            //load real accounts
             const accountsResponse = await fetch("/api/accounts/list", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -54,26 +28,21 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await accountsResponse.json();
 
             if (data.message !== "ok" || !Array.isArray(data.users)) {
-                msg.textContent = "Logged in, but failed to load accounts.";
+                msg.textContent = "Failed to load accounts.";
                 msg.style.color = "red";
                 return;
             }
 
-            msg.textContent = "Accounts loaded.";
-            msg.style.color = "green";
             renderAccounts(data.users);
 
         } catch (error) {
-            console.error("Error during recover-page login/accounts load:", error);
-            msg.textContent = "An error occurred.";
+            console.error("Error loading accounts:", error);
+            msg.textContent = "An error occurred while loading accounts.";
             msg.style.color = "red";
         }
-    });
+    }
 
     function renderAccounts(accounts) {
-        // show the box now that admin is authenticated
-        accountsBox.classList.remove("hidden");
-
         list.innerHTML = "";
 
         accounts.forEach((acct) => {
