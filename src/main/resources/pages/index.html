@@ -62,6 +62,14 @@
                                 alt="Page 04 thumbnail" />
                             <span>04</span>
                         </button>
+
+                        <button class="thumb" data-src="/images/comingsoon.jpg" data-alt="Ace Advertisement Page 05"
+                            data-store="Roseville Ace Hardware" data-addr="Roseville, CA"
+                            data-hour="TBD" data-phone="TBD"
+                            data-email="granitebayace@yahoo.com" aria-selected="false"> <img src="/images/comingsoon.jpg"
+                                alt="Page 04 thumbnail" />
+                            <span>05</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -86,6 +94,13 @@
 
             <!-- Right-side action sidebar -->
             <div class="actions-sidebar">
+
+                <div class="map-container">
+                    <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3111.939828184065!2d-121.17109813262103!3d38.74214299703262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ae21e4464d4d5%3A0xcf8985df4a0e7acf!2sGRANITE%20BAY%20ACE%20HARDWARE!5e0!3m2!1sen!2sus!4v1775386269900!5m2!1sen!2sus"
+                            width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
                 <a href="/images/advertisements.pdf" class="deals-button" target="_blank" rel="noopener noreferrer">
                     <div class="deals-bg" id="dealsBg"></div>
 
@@ -120,6 +135,7 @@
             const storeHour = document.getElementById("storeHour");
             const storePhone = document.getElementById("storePhone");
             const storeEmail = document.getElementById("storeEmail");
+            let map = document.getElementById("map");
 
             let activeIndex = 0;
 
@@ -160,6 +176,12 @@
                     storeHour.innerHTML = active.dataset.hour || "Hour goes here.";
                     storePhone.textContent = active.dataset.phone || "Phone goes here.";
                     storeEmail.textContent = active.dataset.email || "Email goes here.";
+
+                    // Google Maps frame changes with the store location
+                    const query = `${active.dataset.store} ${active.dataset.addr}`;
+                    const encodedAddr = encodeURIComponent(query);
+                    if (map) { map.src = `https://www.google.com/maps?q=${encodedAddr}&output=embed`; }
+
                     storeName.style.opacity = 1;
                     storeAddr.style.opacity = 1;
                     storeHour.style.opacity = 1;

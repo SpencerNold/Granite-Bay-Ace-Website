@@ -8,7 +8,7 @@ import java.io.PrintStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-abstract class AbstractRouteTest implements RequestTester {
+public abstract class AbstractRouteTest implements RequestTester {
 
     protected static HttpxWebServer server;
     private static ExecutorService service;

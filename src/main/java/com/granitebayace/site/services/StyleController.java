@@ -55,5 +55,12 @@ public class StyleController {
     }
 
     @Route.File(path = "/recover.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
-    public InputStream recoverCss() { return Resource.Companion.get("pages/recover.css"); }
+    public InputStream recoverCss() {
+        return Resource.Companion.get("pages/recover.css");
+    }
+    
+    @Route.File(path = "/services.css", contentType = Route.ContentType.CSS, cacheControl = "no-cache")
+    public InputStream servicesCss() {
+        return Resource.Companion.get("pages/services.css");
+    }
 }

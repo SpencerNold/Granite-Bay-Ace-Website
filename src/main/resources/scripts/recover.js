@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const backBtn = document.getElementById("backToLoginBtn");
     const form = document.getElementById("adminRecoverForm");
     const msg = document.getElementById("recoverMsg");

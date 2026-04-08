@@ -1,13 +1,21 @@
 package com.granitebayace.site.services;
 
+import me.spencernold.kwaf.Http;
 import me.spencernold.kwaf.Resource;
 import me.spencernold.kwaf.Route;
+import me.spencernold.kwaf.http.HttpRequest;
+import me.spencernold.kwaf.http.HttpResponse;
 import me.spencernold.kwaf.services.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service.Controller
 public class MediaController {
@@ -52,13 +60,33 @@ public class MediaController {
         return Resource.Companion.get("images/page08.png");
     }
 
-    @Route.File(path = "/uploads/advertisements.pdf", contentType = Route.ContentType.PDF, cacheControl = "public, no-cache")
-    public InputStream advertisements() {
+    private static final Path PDF_PATH = Path.of("uploads", "advertisements.pdf")
+            .toAbsolutePath()
+            .normalize();
+
+    @Route(method = Http.Method.GET, path = "/uploads/advertisements.pdf", encoding = Route.Encoding.RAW, contentType = Route.ContentType.PDF)
+    public HttpResponse advertisements(HttpRequest request) {
+        Map<String, String> headers = new HashMap<>();
+
         try {
-            return Files.newInputStream(Path.of("uploads/advertisements.pdf"));
+            byte[] pdfBytes = Files.readAllBytes(PDF_PATH);
+
+            System.out.println("Serving PDF from: " + PDF_PATH);
+            System.out.println("Serving PDF size: " + pdfBytes.length);
+
+            headers.put("Content-Type", "application/pdf");
+            headers.put("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+            headers.put("Pragma", "no-cache");
+            headers.put("Expires", "0");
+            headers.put("Content-Disposition", "inline; filename=advertisements.pdf");
+            headers.put("Date", ZonedDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.RFC_1123_DATE_TIME));
+
+            return new HttpResponse(200, headers, pdfBytes);
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            byte[] error = "PDF not found".getBytes();
+            headers.put("Content-Type", "text/plain");
+            return new HttpResponse(404, headers, error);
         }
     }
 
@@ -124,4 +152,7 @@ public class MediaController {
 
     @Route.File(path = "/images/craftsman.png", contentType = Route.ContentType.PNG, cacheControl = "public, no-cache")
     public InputStream craftsman() { return Resource.Companion.get("images/craftsman.png"); }
+
+    @Route.File(path = "/images/comingsoon.jpg", contentType = Route.ContentType.JPEG, cacheControl = "public, no-cache")
+    public InputStream comingsoon() { return Resource.Companion.get("images/comingsoon.jpg"); }
 }
