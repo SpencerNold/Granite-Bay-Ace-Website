@@ -1,15 +1,48 @@
 package com.granitebayace.site.services;
 
+import com.google.gson.*;
 import com.granitebayace.site.DatabaseLayer;
 import com.granitebayace.site.SessionManager;
 import com.granitebayace.site.objects.UserData;
+import me.spencernold.kwaf.http.HttpRequest;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public interface SecureService {
+
+    Gson GSON = new GsonBuilder().create();
+
+    default JsonObject getFromRequest(HttpRequest request, JsonObject out) {
+        try (InputStreamReader reader = new InputStreamReader(new ByteArrayInputStream(request.getBody()))) {
+            JsonElement element = GSON.fromJson(reader, JsonElement.class);
+            return requireObject(element, out);
+        } catch (IOException e) {
+            out.add("message", new JsonPrimitive("malformed input"));
+            return null;
+        }
+    }
+
+    default JsonObject requireObject(JsonElement element, JsonObject out) {
+        if (element == null || !element.isJsonObject()) {
+            out.add("message", new JsonPrimitive("malformed input"));
+            return null;
+        }
+        return element.getAsJsonObject();
+    }
+
+    default String requireString(JsonObject input, String key, JsonObject out) {
+        if (!input.has(key) || !input.get(key).isJsonPrimitive()) {
+            out.add("message", new JsonPrimitive("malformed input"));
+            return null;
+        }
+        return input.get(key).getAsString();
+    }
 
     default boolean isAdmin(DatabaseLayer database, Map<String, String> headers) {
         return getRolePermissionLevel(database, headers) == 0;

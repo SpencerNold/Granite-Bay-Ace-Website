@@ -22,8 +22,6 @@ import java.sql.Statement;
 @Service.Controller(path = "/api/accounts")
 public class AccountManagementController extends Implementation implements SecureService {
 
-    private static final Gson GSON = new GsonBuilder().create();
-
     // Create a new manager account (admin only)
     @Route(method = Http.Method.POST, path = "/add", input = true, encoding = Route.Encoding.JSON)
     public JsonObject addManager(HttpRequest request) {
@@ -189,35 +187,9 @@ public class AccountManagementController extends Implementation implements Secur
         return out;
     }
 
-    private JsonObject getFromRequest(HttpRequest request, JsonObject out) {
-        try (InputStreamReader reader = new InputStreamReader(new ByteArrayInputStream(request.getBody()))) {
-            JsonElement element = GSON.fromJson(reader, JsonElement.class);
-            return requireObject(element, out);
-        } catch (IOException e) {
-            out.add("message", new JsonPrimitive("malformed input"));
-            return null;
-        }
-    }
-
     private JsonObject forbidden(JsonObject out) {
         out.add("message", new JsonPrimitive("forbidden"));
         return out;
-    }
-
-    private JsonObject requireObject(JsonElement element, JsonObject out) {
-        if (element == null || !element.isJsonObject()) {
-            out.add("message", new JsonPrimitive("malformed input"));
-            return null;
-        }
-        return element.getAsJsonObject();
-    }
-
-    private String requireString(JsonObject input, String key, JsonObject out) {
-        if (!input.has(key) || !input.get(key).isJsonPrimitive()) {
-            out.add("message", new JsonPrimitive("malformed input"));
-            return null;
-        }
-        return input.get(key).getAsString();
     }
 
     private DatabaseLayer getDatabase() {
