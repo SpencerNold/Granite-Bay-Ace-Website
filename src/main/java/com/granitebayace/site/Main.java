@@ -53,7 +53,7 @@ public class Main {
         return new WebServer.Builder(
                 Protocol.HTTP,
                 80,
-                new Class[]{DatabaseLayer.class, RootController.class, StyleController.class, ScriptController.class, LoginController.class, AccountManagementController.class, SecurePageController.class, MediaController.class},
+                new Class[]{DatabaseLayer.class, RootController.class, StyleController.class, ScriptController.class, LoginController.class, AccountManagementController.class, RecoverPasswordController.class, SecurePageController.class, MediaController.class},
                 Executors.newCachedThreadPool(),
                 false).build();
     }

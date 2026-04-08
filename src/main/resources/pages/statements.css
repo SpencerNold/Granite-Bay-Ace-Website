@@ -4,7 +4,7 @@
     font-family: "Inter-Italic", sans-serif;
     font-size: 50px;
     font-weight: 700;
-    padding-bottom: 32px;
+    padding-bottom: 10px;
 }
 
 .statement-subheading{
@@ -12,7 +12,9 @@
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
     font-size: 32px;
+    font-weight: 600;
     padding-bottom: 32px;
+    font-style: italic;
 }
 
 .statement-body {
@@ -28,4 +30,6 @@
     color: #ff0000;
     display: block;
     width: 100%;
+    font-weight:700;
+    text-decoration: underline;
 }

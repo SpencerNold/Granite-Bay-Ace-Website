@@ -1,0 +1,127 @@
+.services-header {
+    text-align: center;
+    background-color: darkgray;
+
+    font-size: 60px;
+    font-weight: 600;
+    color: white;
+
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+
+    gap: 50px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.store1 {
+    height: 500px;
+    width: 325px;
+    border-radius: 12px;
+
+    background-color: #ff0000;
+    Border: none;
+
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+
+    text-align: center;
+}
+.store2 {
+    height: 500px;
+    width: 325px;
+    border-radius: 12px;
+
+    background-color: #ff0000;
+    Border: none;
+
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+
+    text-align: center;
+}
+.store3 {
+    height: 500px;
+    width: 325px;
+    border-radius: 12px;
+
+    background-color: #ff0000;
+    Border: none;
+
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+
+    text-align: center;
+}
+.store4 {
+    height: 500px;
+    width: 325px;
+    border-radius: 12px;
+
+    background-color: #ff0000;
+    Border: none;
+
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+
+    text-align: center;
+}
+.store5 {
+    height: 500px;
+    width: 325px;
+    border-radius: 12px;
+
+    background-color: #ff0000;
+    Border: none;
+
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+
+    text-align: center;
+}
+
+.store1-subheading{
+    font-size: 20px;
+    font-weight: 300;
+    padding-bottom: 20px;
+    text-align: left;
+}
+.store2-subheading{
+    font-size: 20px;
+    font-weight: 300;
+    padding-bottom: 20px;
+    text-align: left;
+}
+.store3-subheading{
+    font-size: 20px;
+    font-weight: 300;
+    padding-bottom: 20px;
+    text-align: left;
+}
+.store4-subheading{
+    font-size: 20px;
+    font-weight: 300;
+    padding-bottom: 20px;
+    text-align: left;
+}
+.store5-subheading{
+    font-size: 50px;
+    font-weight: 600;
+    text-align: center;
+    padding-right: 35px;
+    padding-top: 60px;
+}
+
+.ul-text {
+    text-decoration: underline;
+}
