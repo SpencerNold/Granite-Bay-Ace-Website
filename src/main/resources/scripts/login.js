@@ -1,13 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".login-form");
 
-    //forgot password button
-    const forgotBtn = document.getElementById("forgotPasswordBtn");
-    if(forgotBtn) {
-        forgotBtn.addEventListener("click", () => {
-            window.location.href = "/recover";
-        });
-    }
+
 
     //Checks if user presses login button
     form.addEventListener("submit", async (e) => {
