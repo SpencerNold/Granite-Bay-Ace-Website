@@ -12,12 +12,11 @@
 
 /* layout */
 .recover-layout {
-    margin-top: 40px;
-    margin-bottom: 120px;
+    margin: 40px auto 120px;
     max-width: 1200px;
     display: grid;
-    grid-template-columns: var(--left-col-width) 1fr;
-    gap: var(--gap);
+    grid-template-columns: 420px minmax(0, 1fr);
+    gap: 60px;
     align-items: start;
 }
 
@@ -29,7 +28,7 @@
 
 .recover-left-box {
     height: var(--panel-height);
-    overflow: auto;
+    overflow: visible;
 }
 
 /* control spacing between ALL elements in the form */
@@ -114,14 +113,18 @@
 }
 
 @media (max-width: 880px) {
-    .recover-layout {
-        display: grid;
-        grid-template-columns: var(--left-col-width) 1fr;
-        gap: var(--gap);
-    }
-
     :root {
         --panel-height: auto;
+    }
+
+    .recover-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .recover-left-box,
+    .accounts-box {
+        height: auto;
     }
 
     .recover-left-box, .recover-right {
@@ -155,6 +158,16 @@
     cursor: pointer;
 }
 
+.pw-toggle-btn {
+    padding: 10px 14px;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+    background: #f3f4f6;
+    color: #111827;
+    font-weight: 500;
+    cursor: pointer;
+}
+
 .hidden {
     display: none !important;
 }
@@ -166,7 +179,7 @@
 }
 
 .recover-button-group .login-button,
-.recover-button-group .create-account-button {
+.recover-button-group .forgot-password-button {
     width: 100%;
     box-sizing: border-box;
     display: block;

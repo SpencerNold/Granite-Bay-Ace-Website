@@ -13,23 +13,64 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.location.href = "/login";
     });
 
-    const response = await fetch('/api/accounts/list', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({})
+
+    form.addEventListener("submit", async(e) => {
+        e.preventDefault();
+
+        msg.textContent = "";
+        msg.style.color = "";
+
+        const u = document.getElementById("adminUsername").value.trim();
+        const p = document.getElementById("adminPassword").value.trim();
+
+        try {
+            // do a real login using backend
+            const loginResponse = await fetch("/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ username: u, password: p })
+            });
+
+            const loginData = await loginResponse.json();
+
+            if (loginData.ok === false || loginData.key === "error") {
+                msg.textContent = loginData.message || "Invalid username or password.";
+                msg.style.color = "red";
+                return;
+            }
+
+            localStorage.setItem("sessionKey", loginData.key);
+            localStorage.setItem("role", u === "admin" ? "admin" : "user");
+
+            //load real accounts
+            const accountsResponse = await fetch("/api/accounts/list", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({})
+            });
+
+            const data = await accountsResponse.json();
+
+            if (data.message !== "ok" || !Array.isArray(data.users)) {
+                msg.textContent = "Logged in, but failed to load accounts.";
+                msg.style.color = "red";
+                return;
+            }
+
+            msg.textContent = "Accounts loaded.";
+            msg.style.color = "green";
+            renderAccounts(data.users);
+
+        } catch (error) {
+            console.error("Error during recover-page login/accounts load:", error);
+            msg.textContent = "An error occurred.";
+            msg.style.color = "red";
+        }
     });
-    if (!response.ok) {
-        console.log(response.status)
-        return
-    }
-    let body = await response.json()
-    let accounts = body.users
-    console.log(JSON.stringify(accounts))
 
-
-    renderAccounts()
-
-    function renderAccounts() {
+    function renderAccounts(accounts) {
         // show the box now that admin is authenticated
         accountsBox.classList.remove("hidden");
 
@@ -43,11 +84,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       <div>${escapeHtml(acct.username)}</div>
       <div class="pw-reset-cell">
         <input class="pw-input" type="password" placeholder="New password" />
+        <button type="button" class="pw-toggle-btn">Show</button>
         <button type="button" class="pw-btn">Set</button>
       </div>`;
 
             const input = row.querySelector(".pw-input");
             const btn = row.querySelector(".pw-btn");
+            const toggleBtn = row.querySelector(".pw-toggle-btn");
+
+
+            //show/hide toggle button
+            toggleBtn.addEventListener("click", () => {
+                if (input.type === "password") {
+                    input.type = "text";
+                    toggleBtn.textContent = "Hide";
+                } else {
+                    input.type = "password";
+                    toggleBtn.textContent = "Show";
+                }
+            });
+
 
             // Disable button initially
             btn.disabled = true;
@@ -66,29 +122,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                     return;
                 }
 
-                input.value = "";
-
-                let uname = acct,username
-                let pword = newPass
-                let result = await fetch("/api/recovery/reset", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        username: uname,
-                        password: pword
-                    })
-                })
-                if (!result.ok) {
-                    msg.textContent = "Failed to update password."
-                    msg.style.color = "red"
-                    return
+                //confirmation message
+                const confirmed = window.confirm(`Are you sure you want to set a new password for ${acct.username}?`);
+                if (!confirmed) {
+                    return;
                 }
-                let body = await result.json()
-                console.log(JSON.stringify(body))
-                msg.textContent = `Password updated for ${acct.username}.`
-                msg.style.color = "green"
+
+                // Demo for passwords. replace with real call to db/backend
+                msg.textContent = `Password updated for ${acct.username}.`;
+                msg.style.color = "green";
+                input.value = "";
+                input.type = "password";
+                toggleBtn.textContent = "Show";
+                btn.disabled = true;
             });
 
             list.appendChild(row);
