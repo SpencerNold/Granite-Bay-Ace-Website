@@ -5,27 +5,34 @@ body {
 }
 
 .container {
-    margin: 4em auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 24px auto;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 20px;
     max-width: 1400px;
-    padding: 0 20px;
+    padding: 0 16px 24px;
+    align-items: start;
 }
 
 .functions-container {
-    flex: 1;
-    padding: 2em;
+    min-width: 0;
+    padding: clamp(1rem, 2vw, 2rem);
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .header {
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 12px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
 }
 
 .table-container {
@@ -33,10 +40,10 @@ body {
     overflow-x: auto;
 }
 
-table {
+.table-container table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 520px;
 }
 
 th {
@@ -55,7 +62,7 @@ td {
 
 button {
     cursor: pointer;
-    padding: 8px 16px;
+    padding: 10px 16px;
     border-radius: 4px;
     border: none;
     font-weight: 600;
@@ -77,25 +84,25 @@ button:hover {
 
 .account-form {
     background: #f1f5f9;
-    padding: 1.5rem;
+    padding: 1.25rem;
     margin-bottom: 2rem;
     border-radius: 8px;
     border-left: 4px solid #E41E26;
 }
 
 .form-row {
-    display: flex;
-    gap: 1em;
-    align-items: center;
-    justify-content: center;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75em;
 }
 
 .form-row input,
 .form-row select {
-    padding: 8px;
+    width: 100%;
+    padding: 10px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    box-sizing: border-box;
 }
 
 .footer-actions {
@@ -104,36 +111,43 @@ button:hover {
 }
 
 .main-buttons {
-    justify-content: space-between;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
     color: white;
+}
+
+.right-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .nav-links-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     gap: 12px;
-    width: 250px;
+    width: 100%;
 }
 
 .nav-links {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1.25em;
+    align-items: stretch;
+    gap: 1rem;
     width: 100%;
 }
 
 .nav-links button {
-    width: 200px;
-    padding: 0.5em;
+    width: 100%;
+    padding: 0.875em 1em;
 }
 
 .nav-links #manageDealsBtn {
-    padding: 1.5em;
+    padding: 1.25em;
     background-color: #E41E26;
     color: white;
 }
@@ -179,7 +193,6 @@ button:hover {
     display: none !important;
 }
 
-/* NEW MODAL STYLES */
 .is-hidden {
     display: none !important;
 }
@@ -192,20 +205,71 @@ button:hover {
     justify-content: center;
     align-items: center;
     z-index: 99999;
+    padding: 16px;
 }
 
 .deals-modal-content {
     background: white;
     padding: 24px;
     border-radius: 10px;
-    width: 400px;
-    max-width: 90%;
+    width: min(100%, 400px);
+    box-sizing: border-box;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.deals-modal-content input[type="file"] {
+    width: 100%;
+    margin-top: 12px;
 }
 
 .modal-actions {
     margin-top: 20px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
     gap: 10px;
+}
+
+@media (min-width: 480px) {
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .form-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .main-buttons,
+    .right-group {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        grid-template-columns: minmax(0, 1fr) 260px;
+        gap: 24px;
+        margin-top: 48px;
+        margin-bottom: 48px;
+    }
+
+    .header {
+        flex-direction: column;
+    }
+
+    .form-row {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        align-items: center;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        gap: 28px;
+    }
 }

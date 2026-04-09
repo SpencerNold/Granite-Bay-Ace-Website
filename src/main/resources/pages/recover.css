@@ -6,17 +6,17 @@
 
 /* page padding */
 .recover-page {
-    padding: 100px 16px 140px;
+    padding: 64px 16px 96px;
     background: #f5f5f5;
 }
 
 /* layout */
 .recover-layout {
-    margin: 40px auto 120px;
+    margin: 24px auto 60px;
     max-width: 1200px;
     display: grid;
-    grid-template-columns: 420px minmax(0, 1fr);
-    gap: 60px;
+    grid-template-columns: 1fr;
+    gap: 24px;
     align-items: start;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .recover-left-box {
-    height: var(--panel-height);
+    height: auto;
     overflow: visible;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .accounts-box {
-    height: var(--panel-height);
+    height: auto;
     display: flex;
     flex-direction: column;
     padding: 0;
@@ -50,7 +50,7 @@
 .accounts-header.twocol {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 120px;
+    column-gap: 16px;
     align-items: center;
     padding: 14px 18px;
 }
@@ -68,9 +68,10 @@
 /* two columns */
 .accounts-row.twocol {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 12px;
     align-items: center;
-    padding: 18px 22px;
+    padding: 18px 16px;
     border-bottom: 1px solid #f0f0f0;
     min-height: 56px;
 }
@@ -108,39 +109,18 @@
 .accounts-box .accounts-header.twocol,
 .accounts-box .accounts-row.twocol {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    column-gap: 120px;
-}
-
-@media (max-width: 880px) {
-    :root {
-        --panel-height: auto;
-    }
-
-    .recover-layout {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
-    .recover-left-box,
-    .accounts-box {
-        height: auto;
-    }
-
-    .recover-left-box, .recover-right {
-        height: auto;
-    }
 }
 
 .pw-reset-cell {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     align-items: center;
     justify-content: flex-start;
 }
 
 .pw-input {
-    flex: 1;
+    flex: 1 1 220px;
     min-width: 0;
     padding: 10px 12px;
     border: 1px solid #d1d5db;
@@ -183,4 +163,49 @@
     width: 100%;
     box-sizing: border-box;
     display: block;
+}
+
+@media (min-width: 768px) {
+    .accounts-row.twocol {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --panel-height: 520px;
+    }
+
+    .recover-layout {
+        grid-template-columns: 420px minmax(0, 1fr);
+        gap: 40px;
+        margin-top: 40px;
+        margin-bottom: 120px;
+    }
+
+    .recover-left-box,
+    .accounts-box,
+    .recover-left,
+    .recover-right {
+        height: var(--panel-height);
+    }
+
+    .accounts-header.twocol,
+    .accounts-box .accounts-header.twocol,
+    .accounts-box .accounts-row.twocol {
+        grid-template-columns: 1fr 1fr !important;
+        column-gap: 80px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .recover-layout {
+        gap: 60px;
+    }
+
+    .accounts-header.twocol,
+    .accounts-box .accounts-header.twocol,
+    .accounts-box .accounts-row.twocol {
+        column-gap: 120px;
+    }
 }
