@@ -6,22 +6,21 @@
     box-sizing: border-box;
 }
 
-.about-us {
-    color: #000000;
+.about-us,
+.about-us-subheading {
+    color: #000;
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
-    font-size: 50px;
     font-weight: 700;
-    padding-bottom: 10px;
-    padding-top: 50px;
 }
 
-.about-us-subheading{
-    color: #000000;
-    text-align: center;
-    font-family: "Inter-Italic", sans-serif;
+.about-us {
+    font-size: 50px;
+    padding: 50px 0 10px;
+}
+
+.about-us-subheading {
     font-size: 25px;
-    font-weight: 700;
     padding-bottom: 30px;
 }
 
@@ -30,9 +29,7 @@
     font-family: "Inter-ExtraLightItalic", sans-serif;
     font-size: 25px;
     font-weight: 200;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 50px;
+    padding: 0 50px 50px;
 }
 
 .ace-red-title{
@@ -76,34 +73,31 @@
     padding-left: 100px;
 }
 
-.button1 {
-    background-color: #ff0000;
-    color: white;
+.button1,
+.button2 {
+    background-color: #f00;
+    color: #fff;
     text-align: left;
-    font-size: 50px;
     font-weight: 700;
     border-radius: 14px;
     margin-top: 30px;
     padding: 10px;
-    text-decoration: none;
     width: 85%;
 }
+
+.button1 {
+    font-size: 50px;
+    text-decoration: none;
+}
+
 .button1:hover {
     background-color: #b80909;
     text-align: left;
 }
 
 .button2 {
-    background-color: #ff0000;
-    color: white;
-    text-align: left;
     font-size: 35px;
-    font-weight: 700;
-    border-radius: 14px;
     cursor: pointer;
-    margin-top: 30px;
-    padding: 10px;
-    width: 85%;
 }
 
 /* how the email button is shown */
@@ -214,27 +208,19 @@
     background-color: #EA4335;
 }
 
-.Gmail:HOVER {
-    transform: translateY(-5px);
-    background-color: #ffffff;
-}
-
 .Outlook {
     background-color: #0072C6;
-}
-
-.Outlook:HOVER {
-    transform: translateY(-5px);
-    background-color: #ffffff;
 }
 
 .Yahoo {
     background-color: #430297;
 }
 
-.Yahoo:HOVER {
+.Gmail:hover,
+.Outlook:hover,
+.Yahoo:hover {
     transform: translateY(-5px);
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
 .social-icons {
