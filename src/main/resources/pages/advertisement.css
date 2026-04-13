@@ -250,6 +250,7 @@
   font-weight: 600;
 }
 
+/* Styles the actions sidebar as a full-height vertical flex container with spacing between items, horizontal padding, and a maximum width for layout control */
 .actions-sidebar {
     display: flex;
     flex-direction: column;
@@ -267,6 +268,7 @@
     min-width: 0;
 }
 
+/* Styles the deals button as a large red clickable card with rounded corners, hidden overflow, a soft shadow, and smooth hover animation effects */
 .deals-button {
     position: relative;
     display: block;
@@ -280,6 +282,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Adds a blurred, semi-transparent background image to the deals section that fills the entire button and smoothly changes opacity when interacted with */
 .deals-bg {
     position: absolute;
     top: 0; left: 0;
@@ -293,6 +296,7 @@
     z-index: 1;
 }
 
+/* Positions the deals content above the background image, centers the text and icon inside the button, styles the text for emphasis, and adds hover effects that slightly enlarge the button, deepen its shadow, and increase the background image opacity */
 .deals-content {
     position: relative;
     z-index: 2;
