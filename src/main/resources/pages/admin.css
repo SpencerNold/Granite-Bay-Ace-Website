@@ -1,44 +1,51 @@
 .about-us * {
     box-sizing: border-box;
 }
+
+/* Styles the About Us heading with centered bold black text, an italic Inter font, large font size, and bottom padding for spacing */
 .about-us {
     color: #000000;
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
-    font-size: 50px;
     font-weight: 700;
+}
+
+.about-us {
+    font-size: 50px;
     padding-bottom: 10px;
 }
 
+/* Styles the About Us subheading with centered bold black text, an italic Inter font, and bottom padding to separate it from the content below */
 .about-us-subheading{
     color: #000000;
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
     font-size: 18px;
-    font-weight: 700;
     padding-bottom: 30px;
-
 }
 
+/*Sets ace title to red*/
 .ace-red-title{
     color: #ff0000;
 }
 
+/*Sets ace subheading to red*/
 .ace-red-subheading{
     color: #ff0000;
-    font-weight:700;
+    font-weight: 700;
 }
 
+/* Styles the main About Us body text with black extra-light italic font and horizontal padding for better readability */
 .about-us-body {
     color: #000000;
     font-family: "Inter-ExtraLightItalic", sans-serif;
     font-size: 16px;
     font-weight: 200;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 0 50px;
 
 }
 
+/* Styles the Contact Us section with black extra-light italic text and padding to create space around the content */
 .contact-us{
     color: #000000;
     font-family: "Inter-ExtraLightItalic", sans-serif;

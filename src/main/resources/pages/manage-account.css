@@ -77,10 +77,15 @@ button:hover {
     padding-bottom: 1em;
 }
 
-#addAccountBtn {
-    background: #E41E26;
-    color: white;
+#addAccountBtn,
+.nav-links #manageDealsBtn,
+.main-buttons #btnRefresh,
+.main-buttons #btnSaveTable,
+.btn-save {
+    background-color: #e41e26;
+    color: #fff;
 }
+
 
 .account-form {
     background: #f1f5f9;
@@ -152,35 +157,17 @@ button:hover {
     color: white;
 }
 
-.main-buttons #btnRefresh {
-    background-color: #E41E26;
-    color: white;
-}
 
 .nav-links #recoverPassBtn,
-.main-buttons #btnCancelTable {
+.main-buttons #btnCancelTable,
+.btn-cancel {
     background-color: darkgray;
     color: white;
 }
 
 .nav-links #logoutBtn {
-    background-color: black;
-    color: white;
-}
-
-.main-buttons #btnSaveTable {
-    background-color: #E41E26;
-    color: white;
-}
-
-.btn-save {
-    background: #E41E26;
-    color: white;
-}
-
-.btn-cancel {
-    background: darkgray;
-    color: white;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .select {
@@ -209,7 +196,7 @@ button:hover {
 }
 
 .deals-modal-content {
-    background: white;
+    background: #ffffff;
     padding: 24px;
     border-radius: 10px;
     width: min(100%, 400px);

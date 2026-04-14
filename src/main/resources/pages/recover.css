@@ -1,7 +1,5 @@
 :root {
     --panel-height: 520px; /* box height */
-    --left-col-width: 420px; /* box width */
-    --gap: 20px;
 }
 
 /* page padding */
@@ -22,7 +20,7 @@
 
 .recover-subtitle {
     text-align: center;
-    margin: 0 0 20px 0;
+    margin: 0 0 20px;
     color: #374151;
 }
 
@@ -90,14 +88,18 @@
 
 
 /* buttons */
-.accounts-row button {
-    padding: 8px 10px;
+.accounts-row button,
+.pw-btn {
     border-radius: 4px;
     border: none;
     background: #e82d34;
     color: #fff;
     font-weight: 600;
     cursor: pointer;
+}
+
+.accounts-row button {
+    padding: 8px 10px;
 }
 
 /* disabled state */
@@ -130,12 +132,6 @@
 
 .pw-btn {
     padding: 10px 14px;
-    border-radius: 4px;
-    border: none;
-    background: #e82d34;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
 }
 
 .pw-toggle-btn {

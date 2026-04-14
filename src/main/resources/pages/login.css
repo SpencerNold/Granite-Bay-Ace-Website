@@ -8,9 +8,9 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background-color: #f5f5f5;
     min-height: 100vh;
-    padding: 0;
 }
 
+/* Styles the login container as a centered, scrollable full-screen section with a constrained width and padding to keep the form properly spaced on the page */
 .login-container {
     height: 100vh;
     overflow-y: auto;
@@ -24,14 +24,16 @@ body {
     justify-content: center;
 }
 
+/* Styles the login box as a full-width white container with a light border, rounded corners, and internal padding to frame the form content neatly */
 .login-box {
-    background-color: white;
+    background-color: #ffffff;
     border: 1px solid #d1d5db;
     border-radius: 4px;
     padding: 3rem 2.5rem;
     width: 100%;
 }
 
+/* Styles the login title with a larger semi-bold font, dark text color, centered alignment, and bottom spacing to separate it from the form fields */
 .login-title {
     font-size: 1.5rem;
     font-weight: 600;
@@ -62,7 +64,7 @@ body {
     font-size: 0.875rem;
     border: 1px solid #d1d5db;
     border-radius: 4px;
-    background-color: white;
+    background-color: #ffffff;
     transition: border-color 0.2s;
 }
 
@@ -75,36 +77,32 @@ body {
     border-color: #6b7280;
 }
 
+/* Styles the login button as a full-width red clickable element with white text, rounded corners, top spacing, and a smooth background color transition */
 .login-button {
     width: 100%;
     padding: 0.75rem;
     font-size: 0.9375rem;
     font-weight: 500;
-    color: white;
-    background-color: #e82d34;
+    color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 0.5rem;
     transition: background-color 0.2s;
+}
+
+.login-button {
+    background-color: #e82d34;
+    margin-top: 0.5rem;
 }
 
 .login-button:active {
     transform: scale(0.99);
 }
 
+/* Styles the forgot password button as a full-width dark clickable element with white text, rounded corners, top spacing, and a smooth background color transition */
 .forgot-password-button {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: white;
     background-color: #333738;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
     margin-top: 1rem;
-    transition: background-color 0.2s;
 }
 
 .forgot-password-button:hover {

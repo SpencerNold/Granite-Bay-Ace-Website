@@ -1,3 +1,4 @@
+/* Styles the services header with centered white text on a dark gray background, a large font size, medium-bold weight, and vertical padding for emphasis and spacing */
 .services-header {
     text-align: center;
     background-color: darkgray;
@@ -7,6 +8,7 @@
     padding: 24px 16px;
 }
 
+/* Styles the main container as a flex layout that centers its child elements horizontally, adds space between them, and applies top and bottom padding for section spacing */
 .container {
     display: grid;
     grid-template-columns: 1fr;
