@@ -208,17 +208,28 @@
     background-color: #EA4335;
 }
 
+/* Slightly lifts the Gmail element and changes its background color when hovered over */
+.Gmail:HOVER {
+    transform: translateY(-5px);
+    background-color: #ffffff;
+}
+
 .Outlook {
     background-color: #0072C6;
+}
+
+/* Slightly lifts the Outlook element and changes its background color when hovered over */
+.Outlook:HOVER {
+    transform: translateY(-5px);
+    background-color: #ffffff;
 }
 
 .Yahoo {
     background-color: #430297;
 }
 
-.Gmail:hover,
-.Outlook:hover,
-.Yahoo:hover {
+/* Slightly lifts the Yahoo element and changes its background color when hovered over */
+.Yahoo:HOVER {
     transform: translateY(-5px);
     background-color: #fff;
 }
@@ -244,6 +255,7 @@
     background-color: #f2f2f2;
 }
 
+/* Slightly lifts the Social icons element and changes its background color when hovered over */
 .social-icons a:hover {
     transform: translateY(-3px);
     color: white;

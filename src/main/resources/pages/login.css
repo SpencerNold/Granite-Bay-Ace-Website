@@ -10,6 +10,7 @@ body {
     min-height: 100vh;
 }
 
+/* Styles the login container as a centered, scrollable full-screen section with a constrained width and padding to keep the form properly spaced on the page */
 .login-container {
     height: 100vh;
     overflow-y: auto;
@@ -23,6 +24,7 @@ body {
     justify-content: center;
 }
 
+/* Styles the login box as a full-width white container with a light border, rounded corners, and internal padding to frame the form content neatly */
 .login-box {
     background-color: #ffffff;
     border: 1px solid #d1d5db;
@@ -31,6 +33,7 @@ body {
     width: 100%;
 }
 
+/* Styles the login title with a larger semi-bold font, dark text color, centered alignment, and bottom spacing to separate it from the form fields */
 .login-title {
     font-size: 1.5rem;
     font-weight: 600;
@@ -74,8 +77,8 @@ body {
     border-color: #6b7280;
 }
 
-.login-button,
-.forgot-password-button {
+/* Styles the login button as a full-width red clickable element with white text, rounded corners, top spacing, and a smooth background color transition */
+.login-button {
     width: 100%;
     padding: 0.75rem;
     font-size: 0.9375rem;
@@ -96,6 +99,7 @@ body {
     transform: scale(0.99);
 }
 
+/* Styles the forgot password button as a full-width dark clickable element with white text, rounded corners, top spacing, and a smooth background color transition */
 .forgot-password-button {
     background-color: #333738;
     margin-top: 1rem;
