@@ -71,9 +71,6 @@ public class MediaController {
         try {
             byte[] pdfBytes = Files.readAllBytes(PDF_PATH);
 
-            System.out.println("Serving PDF from: " + PDF_PATH);
-            System.out.println("Serving PDF size: " + pdfBytes.length);
-
             headers.put("Content-Type", "application/pdf");
             headers.put("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
             headers.put("Pragma", "no-cache");
