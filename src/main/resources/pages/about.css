@@ -1,7 +1,8 @@
 .about-us-container {
-    height: 100vh;
+    min-height: 100vh;
     overflow-y: auto;
 }
+
 .about-us * {
     box-sizing: border-box;
 }
@@ -11,39 +12,42 @@
     color: #000;
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 700;
-}
-
-.about-us {
-    font-size: 50px;
-    padding: 50px 0 10px;
+    padding: 40px 16px 10px;
 }
 
 .about-us-subheading {
-    font-size: 25px;
-    padding-bottom: 30px;
+    color: #000000;
+    text-align: center;
+    font-family: "Inter-Italic", sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    font-weight: 700;
+    padding: 0 16px 30px;
+    line-height: 1.4;
 }
 
 .about-us-body {
     color: #000000;
     font-family: "Inter-ExtraLightItalic", sans-serif;
-    font-size: 25px;
+    font-size: clamp(1rem, 1.3vw, 1.55rem);
     font-weight: 200;
-    padding: 0 50px 50px;
+    padding: 0;
+    line-height: 1.65;
 }
 
-.ace-red-title{
+.ace-red-title {
     color: #ff0000;
     font-style: italic;
 }
 
-.ace-red-subheading{
+.ace-red-subheading {
     color: #ff0000;
-    font-weight:700;
+    font-weight: 700;
     text-decoration: underline;
 }
 
-.contact-us{
+.contact-us {
     color: #000000;
     font-family: "Inter-ExtraLightItalic", sans-serif;
     font-size: 16px;
@@ -51,67 +55,68 @@
     padding: 25px 50px 50px;
 }
 
-/*main container to hold the left and right halves*/
 .container {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr;
     margin: 0 auto;
-    padding: 40px 60px;
-    gap: 60px;
+    padding: 0 16px 48px;
+    gap: 32px;
+    max-width: 1440px;
 }
 
-/*left half*/
-.left-half {
+.left-half,
+.right-half {
     width: 100%;
+    min-width: 0;
 }
 
-/*right half*/
 .right-half {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding-left: 100px;
+    gap: 16px;
+    padding-left: 0;
 }
 
 .button1,
 .button2 {
-    background-color: #f00;
-    color: #fff;
+    background-color: #ff0000;
+    color: white;
     text-align: left;
     font-weight: 700;
     border-radius: 14px;
-    margin-top: 30px;
-    padding: 10px;
-    width: 85%;
+    margin-top: 0;
+    padding: 16px 20px;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .button1 {
-    font-size: 50px;
-    text-decoration: none;
+    font-size: clamp(1.75rem, 3vw, 3.1rem);
+    line-height: 1.15;
 }
 
-.button1:hover {
+.button1:hover,
+.button2:hover {
     background-color: #b80909;
-    text-align: left;
 }
 
 .button2 {
-    font-size: 35px;
+    font-size: clamp(1.1rem, 2vw, 2.2rem);
     cursor: pointer;
 }
 
-/* how the email button is shown */
 .E-Button {
     background: none;
     border: none;
     box-shadow: none;
     color: white;
-    font-size: 1.0em;
+    font-size: 1em;
     transition: color 0.2s ease, transform 0.2s ease;
     cursor: pointer;
+    overflow-wrap: anywhere;
 }
 
-/* Hovering effects */
 .E-Button:hover {
     background: white;
     border: black;
@@ -120,81 +125,67 @@
     transform: translateY(-3px);
 }
 
-/*container of pop-up screen (relying on opac so transition can be seen*/
 .modal {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.6);
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
     z-index: 2000;
-
+    padding: 20px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s ease-out;
 }
 
 .modal-content img {
-    width: 95%;
+    width: 85%;
+    max-width: 120px;
     height: auto;
     object-fit: contain;
 }
 
-/*open pop-up screen (state set)*/
 .modal.show {
     opacity: 1;
     pointer-events: auto;
 }
 
-/*content of pop-up screen*/
 .modal-content {
-    /*set content window size*/
-    width: 200px;
-    height: 650px;
+    width: min(100%, 420px);
+    min-height: 220px;
     background: none;
     border-radius: 15px;
-
-    /*alignment of the actual content*/
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 16px;
-
-    /*transition effect*/
-    transform: translateX(100%);
+    justify-items: center;
+    align-items: center;
+    transform: translateY(24px);
     opacity: 0;
     transition: transform 0.6s ease-out, opacity 0.33s ease-out;
 }
 
-/*linking open window window with content*/
 .modal.show .modal-content {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
 }
 
-/*centralize each item*/
 .modal-content a {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 200px;
-    height: 200px;
-
-    font-size: 70px;
+    width: min(100%, 120px);
+    aspect-ratio: 1 / 1;
+    font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1;
-
     color: white;
     border-radius: 15px;
     text-decoration: none;
     cursor: pointer;
-
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
-/*used to handle closing of pop-up screen*/
 .close {
     position: relative;
     top: 10px;
@@ -203,61 +194,54 @@
     cursor: pointer;
 }
 
-/*icon handling*/
-.Gmail {
-    background-color: #EA4335;
-}
-
-/* Slightly lifts the Gmail element and changes its background color when hovered over */
-.Gmail:HOVER {
-    transform: translateY(-5px);
-    background-color: #ffffff;
-}
-
-.Outlook {
-    background-color: #0072C6;
-}
-
-/* Slightly lifts the Outlook element and changes its background color when hovered over */
-.Outlook:HOVER {
-    transform: translateY(-5px);
-    background-color: #ffffff;
-}
-
-.Yahoo {
-    background-color: #430297;
-}
-
-/* Slightly lifts the Yahoo element and changes its background color when hovered over */
-.Yahoo:HOVER {
-    transform: translateY(-5px);
-    background-color: #fff;
-}
+.Gmail { background-color: #EA4335; }
+.Gmail:hover { transform: translateY(-5px); background-color: #ffffff; }
+.Outlook { background-color: #0072C6; }
+.Outlook:hover { transform: translateY(-5px); background-color: #ffffff; }
+.Yahoo { background-color: #430297; }
+.Yahoo:hover { transform: translateY(-5px); background-color: #ffffff; }
 
 .social-icons {
-    margin-top: 50px;
+    margin-top: 12px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
 }
 
 .social-icons a {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    font-size: 80px;   /* increase size */
-    color: black;
-    height: 150px;      /* gives them clickable area */
+    font-size: clamp(2rem, 4vw, 5rem);
+    min-height: 110px;
     border-radius: 10px;
-
     transition: transform 0.2s ease, color 0.2s ease;
     background-color: #f2f2f2;
+    color: black;
 }
 
-/* Slightly lifts the Social icons element and changes its background color when hovered over */
-.social-icons a:hover {
-    transform: translateY(-3px);
-    color: white;
-    background-color: red;
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+        gap: 40px;
+        padding: 0 32px 60px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        gap: 60px;
+        padding: 0 48px 72px;
+    }
+
+    .right-half {
+        padding-left: 24px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
 }
