@@ -35,4 +35,7 @@ public class ScriptController {
 
     @Route.File(path = "/manage-deals.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
     public InputStream manageDealsJs() { return Resource.Companion.get("scripts/manage-deals.js");}
+
+    @Route.File(path = "/index.js", contentType = Route.ContentType.JAVASCRIPT, cacheControl = "no-cache")
+    public InputStream indexJS() { return Resource.Companion.get("scripts/index.js");}
 }

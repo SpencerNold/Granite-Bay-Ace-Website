@@ -15,7 +15,6 @@
 .container {
     display: flex;
     justify-content: center;
-
     gap: 50px;
     padding-top: 100px;
     padding-bottom: 100px;
@@ -36,6 +35,7 @@
 
     text-align: center;
 }
+
 /*see store1*/
 .store2 {
     height: 500px;
@@ -51,6 +51,7 @@
 
     text-align: center;
 }
+
 /*see store1*/
 .store3 {
     height: 500px;
@@ -66,6 +67,7 @@
 
     text-align: center;
 }
+
 /*see store1*/
 .store4 {
     height: 500px;
@@ -81,46 +83,30 @@
 
     text-align: center;
 }
+
 /*see store1*/
 .store5 {
     height: 500px;
     width: 325px;
     border-radius: 12px;
-
-    background-color: #ff0000;
-    Border: none;
-
-    color: white;
+    background-color: #f00;
+    border: none;
+    color: #fff;
     font-size: 30px;
     font-weight: 600;
-
     text-align: center;
 }
 
-.store1-subheading{
+.store1-subheading,
+.store2-subheading,
+.store3-subheading,
+.store4-subheading {
     font-size: 20px;
     font-weight: 300;
     padding-bottom: 20px;
     text-align: left;
 }
-.store2-subheading{
-    font-size: 20px;
-    font-weight: 300;
-    padding-bottom: 20px;
-    text-align: left;
-}
-.store3-subheading{
-    font-size: 20px;
-    font-weight: 300;
-    padding-bottom: 20px;
-    text-align: left;
-}
-.store4-subheading{
-    font-size: 20px;
-    font-weight: 300;
-    padding-bottom: 20px;
-    text-align: left;
-}
+
 .store5-subheading{
     font-size: 50px;
     font-weight: 600;

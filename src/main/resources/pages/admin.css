@@ -7,8 +7,11 @@
     color: #000000;
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
-    font-size: 50px;
     font-weight: 700;
+}
+
+.about-us {
+    font-size: 50px;
     padding-bottom: 10px;
 }
 
@@ -18,9 +21,7 @@
     text-align: center;
     font-family: "Inter-Italic", sans-serif;
     font-size: 18px;
-    font-weight: 700;
     padding-bottom: 30px;
-
 }
 
 /*Sets ace title to red*/
@@ -31,7 +32,7 @@
 /*Sets ace subheading to red*/
 .ace-red-subheading{
     color: #ff0000;
-    font-weight:700;
+    font-weight: 700;
 }
 
 /* Styles the main About Us body text with black extra-light italic font and horizontal padding for better readability */
@@ -40,8 +41,7 @@
     font-family: "Inter-ExtraLightItalic", sans-serif;
     font-size: 16px;
     font-weight: 200;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 0 50px;
 
 }
 
