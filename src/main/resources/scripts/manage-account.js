@@ -131,7 +131,7 @@ async function logout() {
         localStorage.removeItem('session');
         sessionStorage.removeItem('session');
         localStorage.removeItem('isAdmin');
-        window.location.href = '/index.html';
+        window.location.href = '/index';
     })
     .catch(error => {
         console.error('Error logging out:', error);
@@ -149,5 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
   safeOnClick('btnCancelTable', loadTable);
   safeOnClick('btn-save', saveNewAccount);
   safeOnClick('logoutBtn', logout);
+  safeOnClick('recoverPassBtn', redirectRecoverPage);
 
 });
