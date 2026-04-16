@@ -76,9 +76,6 @@ async function saveAllChanges() {
 // toggles "add account" form
 function toggleAddForm() { document.getElementById('addAccountForm').classList.toggle('hidden'); }
 
-// redirects to recover page when "recover password" button is pressed
-function redirectRecoverPage() { window.location.href = '/recover'; }
-
 // successful logout when "logout" button is pressed
 function logout() {
     localStorage.removeItem("sessionKey")

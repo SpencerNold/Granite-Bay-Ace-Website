@@ -1,7 +1,7 @@
 /* Styles the services header with centered white text on a dark gray background, a large font size, medium-bold weight, and vertical padding for emphasis and spacing */
 .services-header {
     text-align: center;
-    background-color: darkgray;
+    background-color: #E41E26;
     font-size: clamp(2rem, 4vw, 3.75rem);
     font-weight: 600;
     color: white;
