@@ -119,7 +119,7 @@ Running all automated test:
 <img src="Readme_assets/Testing2.png" width = 980 height = 308 alt="home">
 <br><br>
 
-Running a certain automated test
+Running a certain automated test:
 1. Open a terminal window in your respective IDE.
 <img src="Readme_assets/Testing1.png" width = 944 height = 125 alt="home">
 <br><br>
@@ -142,6 +142,7 @@ Ensure all traffic is secure and aligns with standard secure web practices.
 Generate a packaged version of the product that can be deployed on another device.
 - In the preferred IDE (we are using IntelliJ), navigate to the designated project folder, replacing <path/to/project> with your project path.
 <img src="Readme_assets/Deploy1.png" width = 1194 height = 50 alt="home">
+
 <br>
 - Run the following command: ./gradlew distZip
 <img src="Readme_assets/Deploy2.png" width = 1147 height = 57 alt="home">
