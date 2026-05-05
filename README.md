@@ -95,23 +95,36 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 ## Developer Setup
 The following needs to be installed on a computer to properly start development work on the website.
 <strong> Java <strong>
-- Any runtime environment following the Oracle Java 21 specifications needs to be installed and referenced in the PATH/JAVA_HOME environment variables of the system.
-- Installation of Java 21 can be validated by executing ‘java —version’ in the command-line.
+1. Any runtime environment following the Oracle Java 21 specifications needs to be installed and referenced in the PATH/JAVA_HOME environment variables of the system.
+2. Installation of Java 21 can be validated by executing ‘java —version’ in the command-line.
 <img src="Readme_assets/Deployment1.png" width = 780 height = 122 alt="home">
 <br><br>
 
 <strong> Git <strong>
-- GitHub Desktop, git cli, or any way of cloning, committing, pushing, etc. needs to be installed on the system for development.
+1. GitHub Desktop, git cli, or any way of cloning, committing, pushing, etc. needs to be installed on the system for development.
 <img src="Readme_assets/Deployment2.png" width = 580 height = 381 alt="home">
+<br><br>
+
+<strong> IDE <strong>
+1. Any Java IDE which supports Gradle 7.3.3 with Kotlin for the DSL 1.5.31 can be used for development (Eclipse, IntelliJ, VSCode, etc.).
 <br><br><br>
 
-## Testing (Placeholder)
-To be completed in CSC 191.
+## Testing
+Running all automated test:
+1. Open a terminal window in your respective IDE.
+<img src="Readme_assets/Testing1.png" width = 944 height = 125 alt="home">
+2. Run ‘./gradlew test’ in the terminal.
+<img src="Readme_assets/Testing2.png" width = 980 height = 308 alt="home">
+
+Running a certain automated test
+1. Open a terminal window in your respective IDE.
+<img src="Readme_assets/Testing1.png" width = 944 height = 125 alt="home">
+2. Run ‘./gradlew  test <Test Name>’ in the terminal.
+<img src="Readme_assets/Testing3.png" width = 1058 height = 521 alt="home">
+<br><br><br
 
 ## Deployment (Placeholder)
 To be completed in CSC 191.
-
-
 
 ## Team
 <a href="https://github.com/SpencerNold/Granite-Bay-Ace-Website/graphs/contributors">
