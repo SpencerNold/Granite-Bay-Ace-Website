@@ -35,25 +35,35 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 
 ## Current Website:
 
-### We decided to divide the original site into pages so each page only needs to carry one functionality. 
+### We decided to divide the original site into multiple different pages to make information easier to digest.
 
-<img width="1910" height="1032" alt="Screenshot 2025-11-30 145008" src="https://github.com/user-attachments/assets/4d51fe88-aa1e-44ac-8026-90c071ecf1b4" />
-<strong> Home Page:</strong> We brought the advertisements to the website interface rather than having customers open a PDF file. In Spring 2026, we will develop a functionality that lets the owner dynamically change the advertisements <br><br><br><br>
-
-<img width="1918" height="831" alt="image" src="https://github.com/user-attachments/assets/cf19f793-011c-432f-9569-81319c5b1e81" />
-<strong> About Page: </strong> We preferred to put the content in the middle of the page rather than at the page's bottom like the original page
+<img src="Readme_assets/Home.png" width = 2753 height = 1506 alt="home">
+<strong> Home Page:</strong> The home page has been reworked to now display each stores' information on rotation. It also the place to view monthly deals and join the Ace Hardware rewards program.
 <br><br><br>
 
-<img width="1917" height="936" alt="image" src="https://github.com/user-attachments/assets/7d48cabd-b6bb-4975-a346-9ea36de743ec" />
-<strong> Location Page: </strong> Will have locations, their addresses, phone numbers, and opening hours*
+<img src="Readme_assets/About-us.png" width = 2744 height = 1397 alt="home">
+<strong> About Page: </strong> The about page contains basic information on the left and links to extra resources on the right.
 <br><br><br>
 
-<img width="1917" height="940" alt="image" src="https://github.com/user-attachments/assets/ac92065a-e554-4312-a228-e53d80db495e" />
-<strong> Admin Login Page:</strong> A basic style login page where the admins will log in for extended functionalities
+<img src="Readme_assets/Services.png" width = 2746 height = 1344 alt="home">
+<strong> Services Page: </strong> The services was specially requested so users can view which stores offer which services.
 <br><br><br>
 
-<img width="1917" height="942" alt="image" src="https://github.com/user-attachments/assets/432cad5e-d139-4a53-8b91-5ff9cc0d5be9" />
-<strong> Admin Page:</strong> Has more functionalities to manage employees' accounts and dynamically update advertisements
+<img src="Readme_assets/Statements1.png" width = 2745 height = 1513 alt="home">
+<img src="Readme_assets/Statements2.png" width = 2752 height = 1268 alt="home">
+<strong> Statements Page: </strong> All the statements are now integrated into a singular page to make their respective information easier to access.
+<br><br><br>
+
+<img src="Readme_assets/Login.png" width = 2759 height = 724 alt="home">
+<strong> Login Page: </strong> A basic login page for both admin and managers.
+<br><br><br>
+
+<img src="Readme_assets/Manage-Acc.png" width = 1215 height = 489 alt="home">
+<strong> Manager Account Page: </strong> The landing page for the admin/manager upon successful login. It is design to contain all major functionalities in one place.
+<br><br><br>
+
+<img src="Readme_assets/Recover.png" width = 1139 height = 625 alt="home">
+<strong> Recover Account Page: </strong> Accessible to both admins and managers but only interactable by admins, this is a dedicated page to reset account password.
 <br><br><br>
 
 ## Tech Stack
@@ -81,32 +91,6 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 
 ## Application Flow
 ![ace-flow](https://github.com/user-attachments/assets/f1d317e7-5fe5-4ce4-a4c4-3ace6313f377)
-
-## Timeline (CSC 191 Based on JIRA)
-- <strong> Sprint 00: </strong> Sprint 00 consisted of creating a team and Jira account.
-
-- <strong> Sprint 01: </strong>: Sprint 01 finding a client and drafting a project proposal.
-
-- <strong> Sprint 02: </strong>: Sprint 02 consisted of foundational work for the Ace Hardware website. Key accomplishments include navigation and UI components (main navbar, footer, button navbars for Location, Home, Login, About Us, and Ace Hardware logo integration), page development (Admin Page, Login Page, About Us static page, and style guide), database and backend setup (database infrastructure, role-based permissions, and location information display), content and media (location pictures and advertisement components), comprehensive footer elements (standard, copyright, contact details, accessibility, and privacy/security footers), and accessibility improvements (converting PDF content to web page format)
-  <img width="605" height="488" alt="image" src="https://github.com/user-attachments/assets/a6ddb0eb-e74f-4567-b3f2-3ea6364def40" />
-
-- <strong> Sprint 03: </strong>: Sprint 03 consisted of 11 completed tasks for the Ace Hardware website. Key accomplishments include backend work (database creation), content pages (About Us static page, Pictures of Locations), location features (dropdown menu and information display), user functionality (Login page, accessibility improvements), and administrative features (Advertisement, Role-based permission, Admin Page).
-  <img width="626" height="191" alt="image" src="https://github.com/user-attachments/assets/45cafa3d-c270-4056-b87f-f50eefdd8513" />
-
-- <strong> Sprint 04: </strong>: Sprint 03 consisted of 7 completed tasks for the Ace Hardware website. Key accomplishments include full-stack user authentication (back end, front end, and business layer implementations), administrative features (Admin Portal), UI enhancements (Footer update, Advertisement improvements), and location page updates (dropdown menu refinement).
-  <img width="627" height="125" alt="image" src="https://github.com/user-attachments/assets/fc358734-6648-42b5-88ae-d918dea1e3f5" />
-
-- <strong> Sprint 05: </strong>
-  - Deployment prep and CI/CD
-
-- <strong> Sprint 06: </strong>
-  - Testing (unit, integration, load)
-
-- <strong> Sprint 07: </strong>
-  - Client review, polish
-
-- <strong> Sprint 08: </strong>
-  - Final deployment + handoff
 
 ## Developer Setup (Placeholder for CSC 191)
 ```
