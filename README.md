@@ -64,7 +64,7 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 
 <img src="Readme_assets/Recover.png" width = 1139 height = 625 alt="home">
 <strong> Recover Account Page: </strong> Accessible to both admins and managers but only interactable by admins, this is a dedicated page to reset account password.
-<br><br><br>
+<br>
 
 ## Tech Stack
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-%231B72BE.svg?style=for-the-badge&logo=intellij-idea&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) 
@@ -94,6 +94,7 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 
 ## Developer Setup
 The following needs to be installed on a computer to properly start development work on the website.
+
 <strong> Java <strong>
 1. Any runtime environment following the Oracle Java 21 specifications needs to be installed and referenced in the PATH/JAVA_HOME environment variables of the system.
 2. Installation of Java 21 can be validated by executing ‘java —version’ in the command-line.
@@ -107,24 +108,70 @@ The following needs to be installed on a computer to properly start development 
 
 <strong> IDE <strong>
 1. Any Java IDE which supports Gradle 7.3.3 with Kotlin for the DSL 1.5.31 can be used for development (Eclipse, IntelliJ, VSCode, etc.).
-<br><br><br>
+<br>
 
 ## Testing
 Running all automated test:
 1. Open a terminal window in your respective IDE.
 <img src="Readme_assets/Testing1.png" width = 944 height = 125 alt="home">
+<br><br>
 2. Run ‘./gradlew test’ in the terminal.
 <img src="Readme_assets/Testing2.png" width = 980 height = 308 alt="home">
+<br><br>
 
 Running a certain automated test
 1. Open a terminal window in your respective IDE.
 <img src="Readme_assets/Testing1.png" width = 944 height = 125 alt="home">
+<br><br>
 2. Run ‘./gradlew  test <Test Name>’ in the terminal.
 <img src="Readme_assets/Testing3.png" width = 1058 height = 521 alt="home">
-<br><br><br
+<br>
 
-## Deployment (Placeholder)
-To be completed in CSC 191.
+## Deployment
+Since the client intends to self-host, the final production deployment of the website is handled by the client’s IT team. Once deployed by the IT team, the website should be accessible through a live public URL with interactive pages for customers along with functioning admin operations.
+<br>
+To demonstrate deployment, we will instead show the hosting strategy that we will use for our senior project showcase. This involves hosting the application in a controlled environment using the following steps.
+
+<Strong> Preparation for Deployment <Strong>
+Ensure all traffic is secure and aligns with standard secure web practices.
+1. Update the server mode from HTTP to HTTPS
+2. Change the port from 80 to 443
+<br>
+
+<Strong> Build the Application Distribution <strong>
+Generate a packaged version of the product that can be deployed on another device.
+1. In the preferred IDE (we are using IntelliJ), navigate to the designated project folder, replacing <path/to/project> with your project path.
+<img src="Readme_assets/Deploy1.png" width = 1194 height = 50 alt="home">
+2. Run the following command: ./gradlew distZip
+<img src="Readme_assets/Deploy2.png" width = 1147 height = 57 alt="home">
+<br>
+
+<strong> Transfer and Extract the Build <strong>
+Prepare the application files on the device where it will be hosted.
+1. In your project directory, navigate to build/distributions to find the generated ZIP file in your file explorer located at the following location.
+<img src="Readme_assets/Deploy3.png" width = 1263 height = 226 alt="home">
+<br>
+
+<strong> Configure Security Certificates <strong>
+Enable HTTPS by allowing the server to encrypt incoming and outgoing traffic.
+1. Place the TLS certificate into the same directory/folder as the application files
+<br>
+
+<strong> Start the Application <strong>
+Initialize the application and begin serving requests.
+1. From the contents in the extracted ZIP file, navigate to Granite-Bay-Ace-Website/bin
+2. Execute the start script to launch the server
+<br>
+
+<strong> Configure Network Access <strong>
+Allow external users to access the hosted application securely.
+1. Open port 443 on the device’s firewall
+2. Ensure the network allows for inbound connections
+
+<strong> Configure Domain Routing <strong>
+Allow users to access the application using a domain instead of an IP address.
+1. Change domain names to point at the public IP address of the device
+
 
 ## Team
 <a href="https://github.com/SpencerNold/Granite-Bay-Ace-Website/graphs/contributors">
