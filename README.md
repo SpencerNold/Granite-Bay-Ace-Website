@@ -92,18 +92,18 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 ## Application Flow
 ![ace-flow](https://github.com/user-attachments/assets/f1d317e7-5fe5-4ce4-a4c4-3ace6313f377)
 
-## Developer Setup (Placeholder for CSC 191)
-```
-git clone https://github.com/SpencerNold/Granite-Bay-Ace-Website.git
-cd Granite-Bay-Ace-Website
+## Developer Setup
+The following needs to be installed on a computer to properly start development work on the website.
+<strong> Java <strong>
+- Any runtime environment following the Oracle Java 21 specifications needs to be installed and referenced in the PATH/JAVA_HOME environment variables of the system.
+- Installation of Java 21 can be validated by executing ‘java —version’ in the command-line.
+<img src="Readme_assets/Deployment1.png" width = 780 height = 122 alt="home">
+<br><br>
 
-# For PowerShell, ZShell, Bash, and other POSIX shells
-./gradlew run
-
-# For Windows Command Prompt
-./gradlew.bat run
-```
-
+<strong> Git <strong>
+- GitHub Desktop, git cli, or any way of cloning, committing, pushing, etc. needs to be installed on the system for development.
+<img src="Readme_assets/Deployment2.png" width = 580 height = 381 alt="home">
+<br><br><br>
 
 ## Testing (Placeholder)
 To be completed in CSC 191.
