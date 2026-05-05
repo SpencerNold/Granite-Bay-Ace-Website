@@ -129,49 +129,50 @@ Running a certain automated test
 
 ## Deployment
 Since the client intends to self-host, the final production deployment of the website is handled by the client’s IT team. Once deployed by the IT team, the website should be accessible through a live public URL with interactive pages for customers along with functioning admin operations.
-<br>
+<br><br>
 To demonstrate deployment, we will instead show the hosting strategy that we will use for our senior project showcase. This involves hosting the application in a controlled environment using the following steps.
 
 <Strong> Preparation for Deployment <Strong>
 Ensure all traffic is secure and aligns with standard secure web practices.
-1. Update the server mode from HTTP to HTTPS
-2. Change the port from 80 to 443
+- Update the server mode from HTTP to HTTPS
+- Change the port from 80 to 443
 <br>
 
 <Strong> Build the Application Distribution <strong>
 Generate a packaged version of the product that can be deployed on another device.
-1. In the preferred IDE (we are using IntelliJ), navigate to the designated project folder, replacing <path/to/project> with your project path.
+- In the preferred IDE (we are using IntelliJ), navigate to the designated project folder, replacing <path/to/project> with your project path.
 <img src="Readme_assets/Deploy1.png" width = 1194 height = 50 alt="home">
-2. Run the following command: ./gradlew distZip
-<img src="Readme_assets/Deploy2.png" width = 1147 height = 57 alt="home">
 <br>
+- Run the following command: ./gradlew distZip
+<img src="Readme_assets/Deploy2.png" width = 1147 height = 57 alt="home">
+<br><br>
 
 <strong> Transfer and Extract the Build <strong>
 Prepare the application files on the device where it will be hosted.
-1. In your project directory, navigate to build/distributions to find the generated ZIP file in your file explorer located at the following location.
+- In your project directory, navigate to build/distributions to find the generated ZIP file in your file explorer located at the following location.
 <img src="Readme_assets/Deploy3.png" width = 1263 height = 226 alt="home">
-<br>
+<br><br>
 
 <strong> Configure Security Certificates <strong>
 Enable HTTPS by allowing the server to encrypt incoming and outgoing traffic.
-1. Place the TLS certificate into the same directory/folder as the application files
+- Place the TLS certificate into the same directory/folder as the application files
 <br>
 
 <strong> Start the Application <strong>
 Initialize the application and begin serving requests.
-1. From the contents in the extracted ZIP file, navigate to Granite-Bay-Ace-Website/bin
-2. Execute the start script to launch the server
+- From the contents in the extracted ZIP file, navigate to Granite-Bay-Ace-Website/bin
+- Execute the start script to launch the server
 <br>
 
 <strong> Configure Network Access <strong>
 Allow external users to access the hosted application securely.
-1. Open port 443 on the device’s firewall
-2. Ensure the network allows for inbound connections
+- Open port 443 on the device’s firewall
+- Ensure the network allows for inbound connections
 
 <strong> Configure Domain Routing <strong>
 Allow users to access the application using a domain instead of an IP address.
-1. Change domain names to point at the public IP address of the device
-
+- Change domain names to point at the public IP address of the device
+<br>
 
 ## Team
 <a href="https://github.com/SpencerNold/Granite-Bay-Ace-Website/graphs/contributors">
