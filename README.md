@@ -32,6 +32,7 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 - Allow existing admins to control user roles and permissions more efficiently​
 - Allow admins to manage advertisements​
 - Storing admin-related info in a database
+- Implemented Google Maps API for intuitive user interaction
 
 ## Current Website:
 
@@ -80,6 +81,8 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
   - N/A​
 - Version Control​
   - Git/Github​
+- Testing Framework
+  -JUnit5
 - Servers​/Server Cost
   - Estimated cost for Amazon Lightsail:​
   - Domain cost: $10-20/year​
