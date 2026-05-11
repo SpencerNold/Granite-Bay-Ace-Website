@@ -82,7 +82,7 @@ This project rebuilds Ace Hardware’s multi-location website from scratch using
 - Version Control​
   - Git/Github​
 - Testing Framework
-  -JUnit5
+  - JUnit5
 - Servers​/Server Cost
   - Estimated cost for Amazon Lightsail:​
   - Domain cost: $10-20/year​
@@ -115,6 +115,7 @@ The following needs to be installed on a computer to properly start development 
 
 ## Testing
 Running all automated test:
+
 1. Open a terminal window in your respective IDE.
 <img src="Readme_assets/Testing1.png" width = 944 height = 125 alt="home">
 <br><br>
@@ -123,12 +124,14 @@ Running all automated test:
 <br><br>
 
 Running a certain automated test:
+
 1. Open a terminal window in your respective IDE.
 <img src="Readme_assets/Testing1.png" width = 944 height = 125 alt="home">
 <br><br>
 2. Run ‘./gradlew  test <Test Name>’ in the terminal.
 <img src="Readme_assets/Testing3.png" width = 1058 height = 521 alt="home">
 <br>
+3. To look at the different integration and unit tests please navigate to src/test/routes or src/test/unit. 
 
 ## Deployment
 Since the client intends to self-host, the final production deployment of the website is handled by the client’s IT team. Once deployed by the IT team, the website should be accessible through a live public URL with interactive pages for customers along with functioning admin operations.
