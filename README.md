@@ -130,8 +130,9 @@ Running a certain automated test:
 <br><br>
 2. Run ‘./gradlew  test <Test Name>’ in the terminal.
 <img src="Readme_assets/Testing3.png" width = 1058 height = 521 alt="home">
-<br>
+<br><br>
 3. To look at the different integration and unit tests please navigate to src/test/routes or src/test/unit. 
+<br>
 
 ## Deployment
 Since the client intends to self-host, the final production deployment of the website is handled by the client’s IT team. Once deployed by the IT team, the website should be accessible through a live public URL with interactive pages for customers along with functioning admin operations.
